@@ -1,6 +1,6 @@
 package heapsort;
 
-import com.example.heapsort.HeapSort;
+import heapsort.HeapSort;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Random;

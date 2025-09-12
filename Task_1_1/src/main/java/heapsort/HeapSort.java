@@ -1,4 +1,4 @@
-package com.example.heapsort;
+package heapsort;
 
 public final class HeapSort {
     private HeapSort() {}
