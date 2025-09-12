@@ -1,6 +1,6 @@
 package com.example.heapsort;
 
-public final class HeapUtils {
+final class HeapUtils {
     private HeapUtils() {}
 
     public static void siftDown(int[] a, int i, int size) {
