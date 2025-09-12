@@ -5,7 +5,9 @@ public final class HeapSort {
     }
 
     public static void sort(int[] a) {
-        if (a == null) throw new NullPointerException("Input array must not be null");
+        if (a == null) {
+            throw new NullPointerException("Input array must not be null");
+        }
         int n = a.length;
 
         for (int i = HeapUtils.parent(n - 1); i >= 0; i--) {
