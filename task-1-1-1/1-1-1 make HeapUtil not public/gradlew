@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TARGET="$HERE/../task-1-1-1"   # <-- если твоя папка проекта называется иначе — поменяй
+
+exec "$TARGET/gradlew" -p "$TARGET" "$@"
