@@ -11,7 +11,7 @@ public class App {
                 a[i] = Integer.parseInt(args[i]);
             }
         } else {
-            a = new int[] {5, 1, 5, 3, 2, 9, 0, -4};
+            a = new int[]{5, 1, 5, 3, 2, 9, 0, -4};
         }
         HeapSort.sort(a);
         System.out.println(Arrays.toString(a));

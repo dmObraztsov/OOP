@@ -1,7 +1,8 @@
 package heapsort;
 
 public final class HeapSort {
-    private HeapSort() {}
+    private HeapSort() {
+    }
 
     public static void sort(int[] a) {
         if (a == null) throw new NullPointerException("Input array must not be null");

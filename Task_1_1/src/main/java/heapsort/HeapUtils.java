@@ -1,7 +1,8 @@
 package heapsort;
 
 final class HeapUtils {
-    private HeapUtils() {}
+    private HeapUtils() {
+    }
 
     public static void siftDown(int[] a, int i, int size) {
         while (true) {
@@ -18,9 +19,17 @@ final class HeapUtils {
         }
     }
 
-    public static int parent(int i) { return (i - 1) / 2; }
-    public static int left(int i)   { return 2 * i + 1; }
+    public static int parent(int i) {
+        return (i - 1) / 2;
+    }
+
+    public static int left(int i) {
+        return 2 * i + 1;
+    }
+
     public static void swap(int[] a, int i, int j) {
-        int t = a[i]; a[i] = a[j]; a[j] = t;
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
     }
 }
