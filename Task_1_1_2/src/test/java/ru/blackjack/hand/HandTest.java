@@ -33,7 +33,7 @@ class HandTest {
         List<Integer> perCard = h.computePerCardValuesAsCurrentlyCounted();
         assertEquals(3, perCard.size());
         // один туз как 11, второй как 1 (порядок соответствует добавлению)
-        assertEquals(11, perCard.get(0) + perCard.get(1)); // 11+1 или 1+11
+        assertEquals(12, perCard.get(0) + perCard.get(1)); // 11+1 или 1+11
         assertEquals(9, perCard.get(2));
     }
 

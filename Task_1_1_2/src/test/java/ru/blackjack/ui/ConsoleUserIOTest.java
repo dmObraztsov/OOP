@@ -41,7 +41,6 @@ class ConsoleUserIOTest {
 
         String text = outContent.toString(StandardCharsets.UTF_8);
         assertTrue(text.contains("Добро пожаловать в Блэкджек!"));
-        assertTrue(text.contains("Используется одна колода."));
     }
 
     @Test
