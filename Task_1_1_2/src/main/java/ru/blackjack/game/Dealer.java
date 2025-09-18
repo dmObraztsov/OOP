@@ -46,7 +46,7 @@ public class Dealer extends Participant {
     }
 
     /**
-     * Дилер берёт карты, пока сумма < 17
+     * Дилер берёт карты, пока сумма меньше 17
      */
     public boolean mustDrawAccordingToRules() {
         return getHand().bestValue() < 17;
