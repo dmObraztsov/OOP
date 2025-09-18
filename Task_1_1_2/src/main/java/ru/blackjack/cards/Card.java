@@ -3,6 +3,9 @@ package ru.blackjack.cards;
 import java.util.Objects;
 
 
+/**
+ *
+ */
 public final class Card {
 
     private final Suit suit;

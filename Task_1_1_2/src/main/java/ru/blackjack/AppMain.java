@@ -9,6 +9,9 @@ import java.util.Scanner;
 import ru.blackjack.ui.ConsoleUserIo;
 
 
+/**
+ *
+ */
 public class AppMain {
 
     public static void main(String[] args) {

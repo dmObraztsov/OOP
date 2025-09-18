@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 
+/**
+ *
+ */
 public class Shoe {
 
     private static final int RESHUFFLE_THRESHOLD = 15; // если осталось <=, пора перетасовать

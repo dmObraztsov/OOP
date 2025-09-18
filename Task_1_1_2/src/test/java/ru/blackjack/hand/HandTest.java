@@ -12,7 +12,9 @@ import ru.blackjack.cards.Suit;
 import java.util.List;
 
 
-
+/**
+ *
+ */
 class HandTest {
 
     @Test

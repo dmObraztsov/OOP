@@ -1,5 +1,8 @@
 package ru.blackjack.ui;
 
+/**
+ *
+ */
 public final class RussianPhrases {
     private RussianPhrases() {
     }

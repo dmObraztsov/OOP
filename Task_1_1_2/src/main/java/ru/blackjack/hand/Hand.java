@@ -7,6 +7,9 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Rank;
 
 
+/**
+ *
+ */
 public class Hand {
 
     private final List<Card> cards = new ArrayList<>();

@@ -4,6 +4,9 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Shoe;
 
 
+/**
+ *
+ */
 public class Dealer extends Participant {
 
     private Card holeCard; // закрытая карта

@@ -1,6 +1,9 @@
 package ru.blackjack.cards;
 
 
+/**
+ *
+ */
 public enum Rank {
     ACE("Туз", 11, true),
     TWO("Двойка", 2, false),

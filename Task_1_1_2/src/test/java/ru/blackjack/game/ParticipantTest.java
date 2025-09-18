@@ -8,6 +8,9 @@ import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Suit;
 
 
+/**
+ *
+ */
 class ParticipantTest {
 
     @Test

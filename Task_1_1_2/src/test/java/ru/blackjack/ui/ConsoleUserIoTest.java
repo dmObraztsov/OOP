@@ -18,7 +18,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 
-
+/**
+ *
+ */
 class ConsoleUserIoTest {
 
     private PrintStream originalOut;

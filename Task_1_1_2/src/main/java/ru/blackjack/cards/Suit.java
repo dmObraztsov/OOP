@@ -1,6 +1,9 @@
 package ru.blackjack.cards;
 
 
+/**
+ *
+ */
 public enum Suit {
     SPADES("Пики"),
     HEARTS("Червы"),

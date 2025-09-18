@@ -6,6 +6,9 @@ import ru.blackjack.cards.Shoe;
 import ru.blackjack.hand.Hand;
 
 
+/**
+ *
+ */
 public class Participant {
 
     private final String displayName;

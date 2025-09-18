@@ -8,6 +8,9 @@ import ru.blackjack.game.Dealer;
 import ru.blackjack.game.Participant;
 
 
+/**
+ *
+ */
 public class ConsoleUserIo {
 
     private final Scanner scanner;

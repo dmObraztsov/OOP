@@ -6,6 +6,9 @@ import ru.blackjack.cards.Shoe;
 import ru.blackjack.ui.ConsoleUserIo;
 
 
+/**
+ *
+ */
 public class BlackJackGame {
 
     private final ConsoleUserIo userIo;
