@@ -46,7 +46,7 @@ public class ConsoleUserIo {
             if ("1".equals(in)) {
                 return 1;
             }
-            if ("0".equals(in)){
+            if ("0".equals(in)) {
                 return 0;
             }
         }
@@ -71,7 +71,8 @@ public class ConsoleUserIo {
 
     public void printToUserConsoleRevealHoleCard(Dealer dealer) {
         if (dealer.isHoleCardHidden() && dealer.getHoleCardIfAny() != null) {
-            println(RussianPhrases.DEALER_REVEALS + buildSingleCardWithDynamicValueForDealer(dealer.getHoleCardIfAny(), dealer));
+            println(RussianPhrases.DEALER_REVEALS +
+                    buildSingleCardWithDynamicValueForDealer(dealer.getHoleCardIfAny(), dealer));
         }
     }
 
@@ -162,7 +163,8 @@ public class ConsoleUserIo {
 
     private String joinCardsWithValues(List<Card> cards, List<Integer> values) {
         return cards.stream()
-                .map(c -> c.buildDisplayNameWithoutValue() + " (" + values.get(cards.indexOf(c)) + ")")
+                .map(c -> c.buildDisplayNameWithoutValue() + " (" +
+                        values.get(cards.indexOf(c)) + ")")
                 .collect(Collectors.joining(", "));
     }
 
@@ -189,11 +191,14 @@ public class ConsoleUserIo {
     private String buildScoreLineWithFavor(String prefix, int playerWins, int dealerWins) {
         String suffix;
         if (playerWins > dealerWins) {
-            suffix = String.format(RussianPhrases.SCORE_SUFFIX_IN_YOUR_FAVOR, playerWins, dealerWins);
+            suffix = String.format(RussianPhrases.SCORE_SUFFIX_IN_YOUR_FAVOR,
+                    playerWins, dealerWins);
         } else if (dealerWins > playerWins) {
-            suffix = String.format(RussianPhrases.SCORE_SUFFIX_IN_DEALER_FAVOR, playerWins, dealerWins);
+            suffix = String.format(RussianPhrases.SCORE_SUFFIX_IN_DEALER_FAVOR,
+                    playerWins, dealerWins);
         } else {
-            suffix = String.format(RussianPhrases.SCORE_SUFFIX_TIED, playerWins, dealerWins);
+            suffix = String.format(RussianPhrases.SCORE_SUFFIX_TIED,
+                    playerWins, dealerWins);
         }
         return prefix + suffix;
     }
