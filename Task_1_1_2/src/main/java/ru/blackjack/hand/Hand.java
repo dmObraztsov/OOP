@@ -1,11 +1,10 @@
 package ru.blackjack.hand;
 
-import ru.blackjack.cards.Card;
-import ru.blackjack.cards.Rank;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import ru.blackjack.cards.Card;
+import ru.blackjack.cards.Rank;
 
 
 public class Hand {

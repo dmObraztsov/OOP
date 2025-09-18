@@ -1,12 +1,11 @@
 package ru.blackjack.ui;
 
-import ru.blackjack.cards.Card;
-import ru.blackjack.game.Dealer;
-import ru.blackjack.game.Participant;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import ru.blackjack.cards.Card;
+import ru.blackjack.game.Dealer;
+import ru.blackjack.game.Participant;
 
 
 public class ConsoleUserIo {

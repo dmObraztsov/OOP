@@ -63,8 +63,12 @@ public class BlackJackGame {
             userIo.printToUserConsoleRevealHoleCard(dealer);
             userIo.printToUserConsoleHandsWithSums(player, dealer);
 
-            if (playerBj && dealerBj) return RoundResult.PUSH;
-            if (playerBj) return RoundResult.PLAYER_WINS;
+            if (playerBj && dealerBj) {
+                return RoundResult.PUSH;
+            }
+            if (playerBj) {
+                return RoundResult.PLAYER_WINS;
+            }
             return RoundResult.DEALER_WINS;
         }
 
@@ -107,8 +111,12 @@ public class BlackJackGame {
 
         int playerSum = player.getHand().bestValue();
         int dealerSum = dealer.getHand().bestValue();
-        if (playerSum > dealerSum) return RoundResult.PLAYER_WINS;
-        if (dealerSum > playerSum) return RoundResult.DEALER_WINS;
+        if (playerSum > dealerSum) {
+            return RoundResult.PLAYER_WINS;
+        }
+        if (dealerSum > playerSum) {
+            return RoundResult.DEALER_WINS;
+        }
         return RoundResult.PUSH;
     }
 
