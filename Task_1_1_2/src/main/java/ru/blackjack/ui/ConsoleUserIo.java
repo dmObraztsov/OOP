@@ -245,7 +245,8 @@ public class ConsoleUserIo {
     private String buildDealerHandLineWithHiddenHole(Dealer dealer) {
         // Первая открытая карта дилера + <закрытая карта>
         String left = dealer.getHand().viewCards().isEmpty() ? "" :
-                buildSingleCardWithDynamicValueForDealer(dealer.getHand().viewCards().get(0), dealer);
+                buildSingleCardWithDynamicValueForDealer(dealer.getHand().viewCards().get(0),
+                        dealer);
         String list = "[" + left + (left.isEmpty() ? "" : ", ") + RussianPhrases.CLOSED_CARD + "]";
         return RussianPhrases.DEALER_CARDS + list;
     }
