@@ -1,15 +1,16 @@
 package ru.blackjack.hand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Suit;
-import java.util.List;
+
 
 /**
  * Тесты класса {@link Hand}.

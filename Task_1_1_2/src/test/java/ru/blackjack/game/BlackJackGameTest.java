@@ -2,18 +2,19 @@ package ru.blackjack.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-import ru.blackjack.cards.Card;
-import ru.blackjack.cards.Rank;
-import ru.blackjack.cards.Shoe;
-import ru.blackjack.cards.Suit;
-import ru.blackjack.ui.ConsoleUserIo;
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
+import ru.blackjack.cards.Card;
+import ru.blackjack.cards.Rank;
+import ru.blackjack.cards.Shoe;
+import ru.blackjack.cards.Suit;
+import ru.blackjack.ui.ConsoleUserIo;
+import org.junit.jupiter.api.Test;
+
 
 /**
  * Интеграционные тесты игрового раунда {@link BlackJackGame}.

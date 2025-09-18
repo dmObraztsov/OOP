@@ -6,16 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.blackjack.cards.Card;
-import ru.blackjack.cards.Rank;
-import ru.blackjack.cards.Suit;
-import ru.blackjack.game.Dealer;
-import ru.blackjack.game.Participant;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import ru.blackjack.cards.Card;
+import ru.blackjack.cards.Rank;
+import ru.blackjack.cards.Suit;
+import ru.blackjack.game.Dealer;
+import ru.blackjack.game.Participant;
+
 
 /**
  * Тесты консольного интерфейса {@link ConsoleUserIo}.

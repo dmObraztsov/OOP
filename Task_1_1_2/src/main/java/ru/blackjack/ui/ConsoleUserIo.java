@@ -126,8 +126,8 @@ public class ConsoleUserIo {
      */
     public void printToUserConsoleRevealHoleCard(Dealer dealer) {
         if (dealer.isHoleCardHidden() && dealer.getHoleCardIfAny() != null) {
-            println(RussianPhrases.DEALER_REVEALS +
-                    buildSingleCardWithDynamicValueForDealer(dealer.getHoleCardIfAny(), dealer));
+            println(RussianPhrases.DEALER_REVEALS
+                    + buildSingleCardWithDynamicValueForDealer(dealer.getHoleCardIfAny(), dealer));
         }
     }
 
