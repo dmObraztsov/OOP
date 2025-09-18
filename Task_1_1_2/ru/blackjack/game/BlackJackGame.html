@@ -77,6 +77,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BlackJackGame</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Игровой процесс Блэкджека: управление раундами, раздачами и очками.
+ Создаёт участника-игрока и дилера, ведёт счёт по раундам.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +91,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.blackjack.ui.ConsoleUserIo)" class="member-name-link">BlackJackGame</a><wbr>(<a href="../ui/ConsoleUserIo.html" title="class in ru.blackjack.ui">ConsoleUserIo</a>&nbsp;userIo)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создаёт игру с одним «башмаком» карт и консольным интерфейсом.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,7 +110,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startGameLoopUntilUserStops()" class="member-name-link">startGameLoopUntilUserStops</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Запускает игровой цикл: последовательность раундов до отказа игрока.</div>
+</div>
 </div>
 </div>
 </div>
@@ -128,6 +134,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.blackjack.ui.ConsoleUserIo)">
 <h3>BlackJackGame</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BlackJackGame</span><wbr><span class="parameters">(<a href="../ui/ConsoleUserIo.html" title="class in ru.blackjack.ui">ConsoleUserIo</a>&nbsp;userIo)</span></div>
+<div class="block">Создаёт игру с одним «башмаком» карт и консольным интерфейсом.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>userIo</code> - интерфейс ввода/вывода для пользователя</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - если <code>userIo</code> равен <code>null</code></dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -142,6 +155,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="startGameLoopUntilUserStops()">
 <h3>startGameLoopUntilUserStops</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startGameLoopUntilUserStops</span>()</div>
+<div class="block">Запускает игровой цикл: последовательность раундов до отказа игрока.
+ Печатает приветствие, результаты раундов и финальный счёт.</div>
 </section>
 </li>
 </ul>

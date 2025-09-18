@@ -79,6 +79,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Dealer</span>
 <span class="extends-implements">extends <a href="Participant.html" title="class in ru.blackjack.game">Participant</a></span></div>
+<div class="block">Дилер в игре Блэкджек. Хранит скрытую карту и следует правилу добора до 17.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +92,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Dealer</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;displayName)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создаёт дилера с отображаемым именем.</div>
+</div>
 </div>
 </section>
 </li>
@@ -108,30 +111,44 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHoleCardIfAny()" class="member-name-link">getHoleCardIfAny</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает скрытую карту, если она была выдана.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isHoleCardHidden()" class="member-name-link">isHoleCardHidden</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Показывает, скрыта ли hole-карта.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#mustDrawAccordingToRules()" class="member-name-link">mustDrawAccordingToRules</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Дилер берёт карты, пока сумма меньше 17</div>
+<div class="block">Возвращает необходимость добора по правилу дилера.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#receiveHoleCardFromShoe(ru.blackjack.cards.Card)" class="member-name-link">receiveHoleCardFromShoe</a><wbr>(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получает скрытую карту (hole) и помечает её как скрытую.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#receiveOpenCardFromShoe(ru.blackjack.cards.Card)" class="member-name-link">receiveOpenCardFromShoe</a><wbr>(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получает открытую карту из вне и добавляет её в руку.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#receiveOpenCardFromShoe(ru.blackjack.cards.Shoe)" class="member-name-link">receiveOpenCardFromShoe</a><wbr>(<a href="../cards/Shoe.html" title="class in ru.blackjack.cards">Shoe</a>&nbsp;shoe)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получает открытую карту из башмака и добавляет её в руку.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetHandAndHideHoleCard()" class="member-name-link">resetHandAndHideHoleCard</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Сбрасывает руку дилера и скрытую карту.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#revealHoleCard()" class="member-name-link">revealHoleCard</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Раскрывает скрытую карту и добавляет её в руку.</div>
+</div>
 </div>
 </div>
 </div>
@@ -156,6 +173,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Dealer</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Dealer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;displayName)</span></div>
+<div class="block">Создаёт дилера с отображаемым именем.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>displayName</code> - имя дилера для вывода</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -170,49 +192,81 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="resetHandAndHideHoleCard()">
 <h3>resetHandAndHideHoleCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetHandAndHideHoleCard</span>()</div>
+<div class="block">Сбрасывает руку дилера и скрытую карту.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="receiveOpenCardFromShoe(ru.blackjack.cards.Card)">
 <h3>receiveOpenCardFromShoe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveOpenCardFromShoe</span><wbr><span class="parameters">(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</span></div>
+<div class="block">Получает открытую карту из вне и добавляет её в руку.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - открытая карта</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="receiveOpenCardFromShoe(ru.blackjack.cards.Shoe)">
 <h3>receiveOpenCardFromShoe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveOpenCardFromShoe</span><wbr><span class="parameters">(<a href="../cards/Shoe.html" title="class in ru.blackjack.cards">Shoe</a>&nbsp;shoe)</span></div>
+<div class="block">Получает открытую карту из башмака и добавляет её в руку.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>shoe</code> - башмак, из которого тянется карта</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="receiveHoleCardFromShoe(ru.blackjack.cards.Card)">
 <h3>receiveHoleCardFromShoe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveHoleCardFromShoe</span><wbr><span class="parameters">(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</span></div>
+<div class="block">Получает скрытую карту (hole) и помечает её как скрытую.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - скрытая карта</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isHoleCardHidden()">
 <h3>isHoleCardHidden</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isHoleCardHidden</span>()</div>
+<div class="block">Показывает, скрыта ли hole-карта.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code>, если скрытая карта ещё не раскрыта; иначе <code>false</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="revealHoleCard()">
 <h3>revealHoleCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">revealHoleCard</span>()</div>
+<div class="block">Раскрывает скрытую карту и добавляет её в руку.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="mustDrawAccordingToRules()">
 <h3>mustDrawAccordingToRules</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">mustDrawAccordingToRules</span>()</div>
-<div class="block">Дилер берёт карты, пока сумма меньше 17</div>
+<div class="block">Возвращает необходимость добора по правилу дилера.
+ Дилер берёт карты, пока сумма строго меньше 17.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code>, если нужно добирать; иначе <code>false</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getHoleCardIfAny()">
 <h3>getHoleCardIfAny</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a></span>&nbsp;<span class="element-name">getHoleCardIfAny</span>()</div>
+<div class="block">Возвращает скрытую карту, если она была выдана.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>скрытая карта или <code>null</code>, если её нет</dd>
+</dl>
 </section>
 </li>
 </ul>

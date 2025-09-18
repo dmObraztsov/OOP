@@ -77,6 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Shoe</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Башмак с одной стандартной колодой из 52 карт. Умеет тасовать и выдавать верхнюю карту.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Shoe</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создаёт башмак и сразу перетасовывает колоду.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,13 +109,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Card.html" title="class in ru.blackjack.cards">Card</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#drawTopCard()" class="member-name-link">drawTopCard</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает верхнюю карту из башмака.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shouldShuffleBecauseLowOnCards()" class="member-name-link">shouldShuffleBecauseLowOnCards</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Показывает, нужно ли перетасовать колоду из-за малого остатка.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shuffleAllDecksBack()" class="member-name-link">shuffleAllDecksBack</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Пересобирает и перетасовывает одну полную колоду из 52 карт.</div>
+</div>
 </div>
 </div>
 </div>
@@ -134,6 +143,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Shoe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Shoe</span>()</div>
+<div class="block">Создаёт башмак и сразу перетасовывает колоду.</div>
 </section>
 </li>
 </ul>
@@ -148,18 +158,30 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="drawTopCard()">
 <h3>drawTopCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Card.html" title="class in ru.blackjack.cards">Card</a></span>&nbsp;<span class="element-name">drawTopCard</span>()</div>
+<div class="block">Возвращает верхнюю карту из башмака.
+ Если карты закончились, колода автоматически перетасовывается и берётся карта из новой колоды.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>снятая верхняя карта</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="shouldShuffleBecauseLowOnCards()">
 <h3>shouldShuffleBecauseLowOnCards</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">shouldShuffleBecauseLowOnCards</span>()</div>
+<div class="block">Показывает, нужно ли перетасовать колоду из-за малого остатка.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code>, если карт осталось не больше порога; иначе <code>false</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="shuffleAllDecksBack()">
 <h3>shuffleAllDecksBack</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shuffleAllDecksBack</span>()</div>
+<div class="block">Пересобирает и перетасовывает одну полную колоду из 52 карт.</div>
 </section>
 </li>
 </ul>

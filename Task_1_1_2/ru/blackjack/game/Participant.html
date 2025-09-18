@@ -81,6 +81,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Participant</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Участник игры (общая логика для игрока и дилера).
+ Хранит имя и руку, умеет получать карты и сбрасывать руку.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -93,7 +95,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Participant</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;displayName)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создаёт участника с отображаемым именем.</div>
+</div>
 </div>
 </section>
 </li>
@@ -110,22 +114,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDisplayName()" class="member-name-link">getDisplayName</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает имя участника.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../hand/Hand.html" title="class in ru.blackjack.hand">Hand</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHand()" class="member-name-link">getHand</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает руку участника.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#receiveCardFromShoe(ru.blackjack.cards.Card)" class="member-name-link">receiveCardFromShoe</a><wbr>(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получает карту и добавляет её в руку.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#receiveCardFromShoe(ru.blackjack.cards.Shoe)" class="member-name-link">receiveCardFromShoe</a><wbr>(<a href="../cards/Shoe.html" title="class in ru.blackjack.cards">Shoe</a>&nbsp;shoe)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Тянет верхнюю карту из башмака и добавляет её в руку.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#receiveFromShoeInternal(ru.blackjack.cards.Shoe)" class="member-name-link">receiveFromShoeInternal</a><wbr>(<a href="../cards/Shoe.html" title="class in ru.blackjack.cards">Shoe</a>&nbsp;shoe)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Вспомогательный метод добора карты из башмака.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetHand()" class="member-name-link">resetHand</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Очищает руку участника.</div>
+</div>
 </div>
 </div>
 </div>
@@ -147,6 +163,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Participant</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Participant</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;displayName)</span></div>
+<div class="block">Создаёт участника с отображаемым именем.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>displayName</code> - имя участника для вывода</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - если <code>displayName</code> равен <code>null</code></dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -161,36 +184,63 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getDisplayName()">
 <h3>getDisplayName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getDisplayName</span>()</div>
+<div class="block">Возвращает имя участника.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>отображаемое имя</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getHand()">
 <h3>getHand</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../hand/Hand.html" title="class in ru.blackjack.hand">Hand</a></span>&nbsp;<span class="element-name">getHand</span>()</div>
+<div class="block">Возвращает руку участника.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>рука с картами</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="resetHand()">
 <h3>resetHand</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetHand</span>()</div>
+<div class="block">Очищает руку участника.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="receiveCardFromShoe(ru.blackjack.cards.Card)">
 <h3>receiveCardFromShoe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveCardFromShoe</span><wbr><span class="parameters">(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</span></div>
+<div class="block">Получает карту и добавляет её в руку.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - карта, которую нужно добавить</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="receiveCardFromShoe(ru.blackjack.cards.Shoe)">
 <h3>receiveCardFromShoe</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveCardFromShoe</span><wbr><span class="parameters">(<a href="../cards/Shoe.html" title="class in ru.blackjack.cards">Shoe</a>&nbsp;shoe)</span></div>
+<div class="block">Тянет верхнюю карту из башмака и добавляет её в руку.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>shoe</code> - башмак с картами</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="receiveFromShoeInternal(ru.blackjack.cards.Shoe)">
 <h3>receiveFromShoeInternal</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveFromShoeInternal</span><wbr><span class="parameters">(<a href="../cards/Shoe.html" title="class in ru.blackjack.cards">Shoe</a>&nbsp;shoe)</span></div>
+<div class="block">Вспомогательный метод добора карты из башмака.
+ Предназначен для наследников.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>shoe</code> - башмак с картами</dd>
+</dl>
 </section>
 </li>
 </ul>
