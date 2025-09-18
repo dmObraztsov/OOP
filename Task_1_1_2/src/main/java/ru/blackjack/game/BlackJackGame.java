@@ -5,9 +5,9 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Shoe;
 import ru.blackjack.ui.ConsoleUserIo;
 
-
 /**
- *
+ * Игровой процесс Блэкджека: управление раундами, раздачами и очками.
+ * Создаёт участника-игрока и дилера, ведёт счёт по раундам.
  */
 public class BlackJackGame {
 
@@ -20,6 +20,12 @@ public class BlackJackGame {
     private int playerWins = 0;
     private int dealerWins = 0;
 
+    /**
+     * Создаёт игру с одним «башмаком» карт и консольным интерфейсом.
+     *
+     * @param userIo интерфейс ввода/вывода для пользователя
+     * @throws NullPointerException если {@code userIo} равен {@code null}
+     */
     public BlackJackGame(ConsoleUserIo userIo) {
         this.userIo = Objects.requireNonNull(userIo);
         this.shoe = new Shoe();            // всегда одна колода
@@ -27,6 +33,10 @@ public class BlackJackGame {
         this.player = new Participant("Игрок");
     }
 
+    /**
+     * Запускает игровой цикл: последовательность раундов до отказа игрока.
+     * Печатает приветствие, результаты раундов и финальный счёт.
+     */
     public void startGameLoopUntilUserStops() {
         userIo.printToUserConsoleWelcomeMessage();
         boolean keepPlaying = true;
@@ -41,6 +51,13 @@ public class BlackJackGame {
         userIo.printToUserConsoleGoodbyeWithFinalScore(playerWins, dealerWins);
     }
 
+    /**
+     * Проводит один раунд Блэкджека целиком и возвращает его исход.
+     * Обрабатывает блэкджек на раздаче, ход игрока, затем ход дилера
+     * с добором до значения 17 включительно.
+     *
+     * @return исход раунда
+     */
     private RoundResult runSingleRoundAndReturnResult() {
         ensureShoeHasEnoughCardsOrReshuffle();
 
@@ -122,6 +139,11 @@ public class BlackJackGame {
         return RoundResult.PUSH;
     }
 
+    /**
+     * Обновляет счёт по итогам раунда и печатает строку со счётом.
+     *
+     * @param result исход завершившегося раунда
+     */
     private void updateScoreAndInformUser(RoundResult result) {
         switch (result) {
             case PLAYER_WINS -> {
@@ -138,6 +160,10 @@ public class BlackJackGame {
         }
     }
 
+    /**
+     * Проверяет остаток карт и при необходимости перетасовывает колоду.
+     * Также сообщает пользователю о перетасовке.
+     */
     private void ensureShoeHasEnoughCardsOrReshuffle() {
         if (shoe.shouldShuffleBecauseLowOnCards()) {
             shoe.shuffleAllDecksBack();

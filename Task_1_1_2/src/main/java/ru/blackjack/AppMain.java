@@ -1,6 +1,5 @@
 package ru.blackjack;
 
-
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -8,17 +7,34 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import ru.blackjack.ui.ConsoleUserIo;
 
-
 /**
- *
+ * Точка входа консольного приложения Блэкджек.
+ * Настраивает UTF-8 для ввода/вывода и запускает игровой цикл.
  */
 public class AppMain {
 
+    /**
+     * Запускает приложение.
+     *
+     * @param args аргументы командной строки (не используются)
+     */
     public static void main(String[] args) {
         // Гарантируем UTF-8 для вывода:
         try {
-            System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, StandardCharsets.UTF_8));
-            System.setErr(new PrintStream(new FileOutputStream(FileDescriptor.err), true, StandardCharsets.UTF_8));
+            System.setOut(
+                    new PrintStream(
+                            new FileOutputStream(FileDescriptor.out),
+                            true,
+                            StandardCharsets.UTF_8
+                    )
+            );
+            System.setErr(
+                    new PrintStream(
+                            new FileOutputStream(FileDescriptor.err),
+                            true,
+                            StandardCharsets.UTF_8
+                    )
+            );
         } catch (Exception ignored) {
             // если не получилось — продолжим со стандартным потоком
         }

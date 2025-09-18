@@ -6,26 +6,45 @@ import java.util.List;
 import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Rank;
 
-
 /**
- *
+ * Рука игрока/дилера в Блэкджеке.
+ * Хранит карты и корректно считает сумму с учётом тузов.
  */
 public class Hand {
 
     private final List<Card> cards = new ArrayList<>();
 
+    /**
+     * Добавляет карту в руку.
+     *
+     * @param card карта для добавления
+     */
     public void add(Card card) {
         cards.add(card);
     }
 
+    /**
+     * Очищает руку.
+     */
     public void clear() {
         cards.clear();
     }
 
+    /**
+     * Возвращает неизменяемый список карт руки.
+     *
+     * @return немодифицируемое представление списка карт
+     */
     public List<Card> viewCards() {
         return Collections.unmodifiableList(cards);
     }
 
+    /**
+     * Вычисляет лучшую сумму очков руки с учётом тузов.
+     * Сначала все тузы считаются как 11, затем по одному «схлопываются» до 1, если сумма превышает 21.
+     *
+     * @return наилучшая сумма очков
+     */
     public int bestValue() {
         int sum = 0;
         int aces = 0;
@@ -44,15 +63,32 @@ public class Hand {
         return sum;
     }
 
+    /**
+     * Проверяет, является ли рука блэкджеком.
+     * Блэкджек — это ровно две карты суммой 21.
+     *
+     * @return {@code true}, если блэкджек; иначе {@code false}
+     */
     public boolean hasBlackjack() {
         return cards.size() == 2 && bestValue() == 21;
     }
 
+    /**
+     * Проверяет, произошёл ли перебор.
+     *
+     * @return {@code true}, если сумма больше 21; иначе {@code false}
+     */
     public boolean isBusted() {
         return bestValue() > 21;
     }
 
-
+    /**
+     * Возвращает список текущих значений для каждой карты в руке.
+     * Для не тузов используется их базовое значение. Для тузов часть считается как 11,
+     * а оставшиеся — как 1, исходя из текущей оптимальной суммы руки.
+     *
+     * @return список значений карт в текущем подсчёте
+     */
     public List<Integer> computePerCardValuesAsCurrentlyCounted() {
         int sum = 0;
         int totalAces = 0;
