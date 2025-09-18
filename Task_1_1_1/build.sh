@@ -7,13 +7,19 @@ mkdir -p build docs dist
 # компиляция исходников
 javac -d build \
   src/main/java/HeapSort.java \
-  src/main/java/HeapUtils.java
+  src/main/java/HeapUtils.java \
+  src/main/java/Main.java
+
 
 # генерация Javadoc
 javadoc -d docs -Xdoclint:none \
   src/main/java/HeapSort.java \
-  src/main/java/HeapUtils.java
+  src/main/java/HeapUtils.java \
+  src/main/java/Main.java
 
 # создаём JAR
-jar cf dist/heapsort-1.0.0.jar -C build .
+jar cf Main -C build .
+
+# запуск
+java -jar app.jar "$@"
 

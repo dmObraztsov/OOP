@@ -1,8 +1,31 @@
 class HeapUtils {
-    private HeapUtils() {
+    private final int[] a;
+    private int size;
+
+    HeapUtils(int[] a, int size) {
+        this.a = a;
+        this.size = size;
     }
 
-    public static void siftDown(int[] a, int i, int size) {
+    void setSize(int size) {
+        this.size = size;
+    }
+
+    int parent(int i) {
+        return (i - 1) / 2;
+    }
+
+    int left(int i) {
+        return 2 * i + 1;
+    }
+
+    void swap(int i, int j) {
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+    }
+
+    void siftDown(int i) {
         while (true) {
             int left = left(i);
             int right = left + 1;
@@ -12,22 +35,10 @@ class HeapUtils {
             if (right < size && a[right] > a[largest]) largest = right;
             if (largest == i) break;
 
-            swap(a, i, largest);
+            swap(i, largest);
             i = largest;
         }
     }
 
-    public static int parent(int i) {
-        return (i - 1) / 2;
-    }
 
-    public static int left(int i) {
-        return 2 * i + 1;
-    }
-
-    public static void swap(int[] a, int i, int j) {
-        int t = a[i];
-        a[i] = a[j];
-        a[j] = t;
-    }
 }
