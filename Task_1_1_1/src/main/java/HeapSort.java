@@ -3,7 +3,9 @@ public class HeapSort {
     }
 
     public static void sort(int[] a) {
-        if (a == null) throw new NullPointerException("Input array must not be null");
+        if (a == null) {
+            throw new NullPointerException("Input array must not be null");
+        }
         int n = a.length;
 
         HeapUtils heap = new HeapUtils(a, n);
