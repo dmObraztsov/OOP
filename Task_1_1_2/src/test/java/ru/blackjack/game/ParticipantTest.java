@@ -5,7 +5,7 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Suit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParticipantTest {
 

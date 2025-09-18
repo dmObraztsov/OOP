@@ -9,11 +9,11 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
-public class ConsoleUserIO {
+public class ConsoleUserIo {
 
     private final Scanner scanner;
 
-    public ConsoleUserIO(Scanner scanner) {
+    public ConsoleUserIo(Scanner scanner) {
         this.scanner = scanner;
     }
 
@@ -44,8 +44,12 @@ public class ConsoleUserIO {
         while (true) {
             print(RussianPhrases.ASK_HIT_OR_STAND);
             String in = scanner.nextLine().trim();
-            if ("1".equals(in)) return 1;
-            if ("0".equals(in)) return 0;
+            if ("1".equals(in)) {
+                return 1;
+            }
+            if ("0".equals(in)){
+                return 0;
+            }
         }
     }
 
@@ -89,8 +93,12 @@ public class ConsoleUserIO {
         while (true) {
             print(RussianPhrases.PLAY_AGAIN);
             String in = scanner.nextLine().trim();
-            if ("1".equals(in)) return true;
-            if ("0".equals(in)) return false;
+            if ("1".equals(in)) {
+                return true;
+            }
+            if ("0".equals(in)) {
+                return false;
+            }
         }
     }
 

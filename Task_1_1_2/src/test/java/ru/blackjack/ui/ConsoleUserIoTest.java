@@ -8,14 +8,17 @@ import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Suit;
 import ru.blackjack.game.Dealer;
 import ru.blackjack.game.Participant;
-
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class ConsoleUserIOTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class ConsoleUserIoTest {
 
     private PrintStream originalOut;
     private ByteArrayOutputStream outContent;
@@ -35,7 +38,7 @@ class ConsoleUserIOTest {
     @Test
     void printsWelcomeAndUsingDeck() {
         Scanner sc = new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8);
-        ConsoleUserIO io = new ConsoleUserIO(sc);
+        ConsoleUserIo io = new ConsoleUserIo(sc);
 
         io.printToUserConsoleWelcomeMessage();
 
@@ -47,7 +50,7 @@ class ConsoleUserIOTest {
     void askHitOrStandReadsFromScanner() {
         byte[] input = "1\n".getBytes(StandardCharsets.UTF_8);
         Scanner sc = new Scanner(new ByteArrayInputStream(input), StandardCharsets.UTF_8);
-        ConsoleUserIO io = new ConsoleUserIO(sc);
+        ConsoleUserIo io = new ConsoleUserIo(sc);
 
         int decision = io.askUserHitOrStand();
         assertEquals(1, decision);
@@ -56,7 +59,7 @@ class ConsoleUserIOTest {
     @Test
     void handsFormattingWithHiddenAndSums() {
         Scanner sc = new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8);
-        ConsoleUserIO io = new ConsoleUserIO(sc);
+        ConsoleUserIo io = new ConsoleUserIo(sc);
 
         Participant player = new Participant("Игрок");
         Dealer dealer = new Dealer("Дилер");

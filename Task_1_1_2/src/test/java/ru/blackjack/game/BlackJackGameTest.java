@@ -5,7 +5,7 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Shoe;
 import ru.blackjack.cards.Suit;
-import ru.blackjack.ui.ConsoleUserIO;
+import ru.blackjack.ui.ConsoleUserIo;
 
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.Field;
@@ -14,7 +14,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Тестируем раунд через подмену Shoe (рефлексией) и заглушку IO.
@@ -51,10 +51,10 @@ class BlackJackGameTest {
     /**
      * Заглушка IO: всегда не хочу играть ещё.
      */
-    static class StubIO extends ConsoleUserIO {
+    static class StubIo extends ConsoleUserIo {
         private final StringBuilder buffer = new StringBuilder();
 
-        public StubIO() {
+        public StubIo() {
             super(new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8));
         }
 
@@ -87,7 +87,7 @@ class BlackJackGameTest {
 
         FixedShoe fixed = new FixedShoe(seq);
 
-        StubIO io = new StubIO();
+        StubIo io = new StubIo();
         BlackJackGame game = new BlackJackGame(io);
 
         // Рефлексией подменим приватное поле shoe
@@ -119,7 +119,7 @@ class BlackJackGameTest {
         seq.add(new Card(Suit.CLUBS, Rank.THREE));    // Dhole (не важно)
 
         FixedShoe fixed = new FixedShoe(seq);
-        StubIO io = new StubIO();
+        StubIo io = new StubIo();
         BlackJackGame game = new BlackJackGame(io);
 
         Field shoeField = BlackJackGame.class.getDeclaredField("shoe");

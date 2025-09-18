@@ -1,10 +1,10 @@
 package ru.blackjack.game;
 
+import java.util.Objects;
+
 import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Shoe;
 import ru.blackjack.hand.Hand;
-
-import java.util.Objects;
 
 
 public class Participant {

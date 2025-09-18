@@ -1,14 +1,15 @@
 package ru.blackjack.game;
 
+import java.util.Objects;
+
 import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Shoe;
-import ru.blackjack.ui.ConsoleUserIO;
+import ru.blackjack.ui.ConsoleUserIo;
 
-import java.util.Objects;
 
 public class BlackJackGame {
 
-    private final ConsoleUserIO userIO;
+    private final ConsoleUserIo userIo;
     private final Shoe shoe;
     private final Dealer dealer;
     private final Participant player;
@@ -17,25 +18,25 @@ public class BlackJackGame {
     private int playerWins = 0;
     private int dealerWins = 0;
 
-    public BlackJackGame(ConsoleUserIO userIO) {
-        this.userIO = Objects.requireNonNull(userIO);
+    public BlackJackGame(ConsoleUserIo userIo) {
+        this.userIo = Objects.requireNonNull(userIo);
         this.shoe = new Shoe();            // всегда одна колода
         this.dealer = new Dealer("Дилер");
         this.player = new Participant("Игрок");
     }
 
     public void startGameLoopUntilUserStops() {
-        userIO.printToUserConsoleWelcomeMessage();
+        userIo.printToUserConsoleWelcomeMessage();
         boolean keepPlaying = true;
         while (keepPlaying) {
             roundNumber++;
             RoundResult result = runSingleRoundAndReturnResult();
             updateScoreAndInformUser(result);
-            keepPlaying = userIO.askUserWhetherPlayAnotherRound();
-            userIO.printToUserConsoleEmptyLine();
+            keepPlaying = userIo.askUserWhetherPlayAnotherRound();
+            userIo.printToUserConsoleEmptyLine();
         }
 
-        userIO.printToUserConsoleGoodbyeWithFinalScore(playerWins, dealerWins);
+        userIo.printToUserConsoleGoodbyeWithFinalScore(playerWins, dealerWins);
     }
 
     private RoundResult runSingleRoundAndReturnResult() {
@@ -44,43 +45,43 @@ public class BlackJackGame {
         player.resetHand();
         dealer.resetHandAndHideHoleCard();
 
-        userIO.printToUserConsoleRoundHeader(roundNumber);
-        userIO.printToUserConsoleDealerDealsCards();
+        userIo.printToUserConsoleRoundHeader(roundNumber);
+        userIo.printToUserConsoleDealerDealsCards();
 
         player.receiveCardFromShoe(shoe.drawTopCard());
         dealer.receiveOpenCardFromShoe(shoe.drawTopCard());
         player.receiveCardFromShoe(shoe.drawTopCard());
         dealer.receiveHoleCardFromShoe(shoe.drawTopCard());
 
-        userIO.printToUserConsoleHandsAfterDeal(player, dealer);
+        userIo.printToUserConsoleHandsAfterDeal(player, dealer);
 
-        boolean playerBJ = player.getHand().hasBlackjack();
-        boolean dealerBJ = dealer.getHand().hasBlackjack();
+        boolean playerBj = player.getHand().hasBlackjack();
+        boolean dealerBj = dealer.getHand().hasBlackjack();
 
-        if (playerBJ || dealerBJ) {
+        if (playerBj || dealerBj) {
             dealer.revealHoleCard();
-            userIO.printToUserConsoleRevealHoleCard(dealer);
-            userIO.printToUserConsoleHandsWithSums(player, dealer);
+            userIo.printToUserConsoleRevealHoleCard(dealer);
+            userIo.printToUserConsoleHandsWithSums(player, dealer);
 
-            if (playerBJ && dealerBJ) return RoundResult.PUSH;
-            if (playerBJ) return RoundResult.PLAYER_WINS;
+            if (playerBj && dealerBj) return RoundResult.PUSH;
+            if (playerBj) return RoundResult.PLAYER_WINS;
             return RoundResult.DEALER_WINS;
         }
 
-        userIO.printToUserConsolePlayerTurnHeader();
+        userIo.printToUserConsolePlayerTurnHeader();
         boolean playerStands = false;
         while (!playerStands) {
-            int decision = userIO.askUserHitOrStand();
+            int decision = userIo.askUserHitOrStand();
             if (decision == 1) {
                 Card newCard = shoe.drawTopCard();
                 player.receiveCardFromShoe(newCard);
-                userIO.printToUserConsolePlayerDrewCard(newCard);
-                userIO.printToUserConsoleHandsWithHiddenDealerHole(player, dealer);
+                userIo.printToUserConsolePlayerDrewCard(newCard);
+                userIo.printToUserConsoleHandsWithHiddenDealerHole(player, dealer);
                 if (player.getHand().isBusted()) {
-                    userIO.printToUserConsolePlayerBusted();
+                    userIo.printToUserConsolePlayerBusted();
                     dealer.revealHoleCard();
-                    userIO.printToUserConsoleRevealHoleCard(dealer);
-                    userIO.printToUserConsoleHandsWithSums(player, dealer);
+                    userIo.printToUserConsoleRevealHoleCard(dealer);
+                    userIo.printToUserConsoleHandsWithSums(player, dealer);
                     return RoundResult.DEALER_WINS;
                 }
             } else {
@@ -88,18 +89,18 @@ public class BlackJackGame {
             }
         }
 
-        userIO.printToUserConsoleDealerTurnHeader();
+        userIo.printToUserConsoleDealerTurnHeader();
         dealer.revealHoleCard();
-        userIO.printToUserConsoleRevealHoleCard(dealer);
-        userIO.printToUserConsoleHandsWithSums(player, dealer);
+        userIo.printToUserConsoleRevealHoleCard(dealer);
+        userIo.printToUserConsoleHandsWithSums(player, dealer);
 
         while (dealer.mustDrawAccordingToRules()) {
             Card card = shoe.drawTopCard();
             dealer.receiveOpenCardFromShoe(card);
-            userIO.printToUserConsoleDealerDrewCard(card);
-            userIO.printToUserConsoleHandsWithSums(player, dealer);
+            userIo.printToUserConsoleDealerDrewCard(card);
+            userIo.printToUserConsoleHandsWithSums(player, dealer);
             if (dealer.getHand().isBusted()) {
-                userIO.printToUserConsoleDealerBusted();
+                userIo.printToUserConsoleDealerBusted();
                 return RoundResult.PLAYER_WINS;
             }
         }
@@ -115,14 +116,14 @@ public class BlackJackGame {
         switch (result) {
             case PLAYER_WINS -> {
                 playerWins++;
-                userIO.printToUserConsoleRoundWinDynamicFavor(playerWins, dealerWins);
+                userIo.printToUserConsoleRoundWinDynamicFavor(playerWins, dealerWins);
             }
             case DEALER_WINS -> {
                 dealerWins++;
-                userIO.printToUserConsoleRoundLoseDynamicFavor(playerWins, dealerWins);
+                userIo.printToUserConsoleRoundLoseDynamicFavor(playerWins, dealerWins);
             }
             default -> {
-                userIO.printToUserConsoleRoundPushDynamicFavor(playerWins, dealerWins);
+                userIo.printToUserConsoleRoundPushDynamicFavor(playerWins, dealerWins);
             }
         }
     }
@@ -130,7 +131,7 @@ public class BlackJackGame {
     private void ensureShoeHasEnoughCardsOrReshuffle() {
         if (shoe.shouldShuffleBecauseLowOnCards()) {
             shoe.shuffleAllDecksBack();
-            userIO.printToUserConsoleShoeShuffleHappened();
+            userIo.printToUserConsoleShoeShuffleHappened();
         }
     }
 }

@@ -1,10 +1,14 @@
 package ru.blackjack;
 
+
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+
+import ru.blackjack.ui.ConsoleUserIo;
+
 
 public class AppMain {
 
@@ -19,7 +23,7 @@ public class AppMain {
 
         // Гарантируем UTF-8 для ввода:
         try (Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8)) {
-            var userIO = new ru.blackjack.ui.ConsoleUserIO(scanner);
+            var userIO = new ConsoleUserIo(scanner);
             var game = new ru.blackjack.game.BlackJackGame(userIO);
             game.startGameLoopUntilUserStops();
         }
