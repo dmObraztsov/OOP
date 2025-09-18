@@ -17,15 +17,20 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-
 /**
- *
+ * Тесты консольного интерфейса {@link ConsoleUserIo}.
+ * Проверяются приветствие, чтение решений и форматирование рук.
  */
 class ConsoleUserIoTest {
 
     private PrintStream originalOut;
     private ByteArrayOutputStream outContent;
 
+    /**
+     * Перенаправляет {@code System.out} в буфер перед каждым тестом.
+     *
+     * @throws Exception при ошибке перенастройки потоков
+     */
     @BeforeEach
     void setUp() throws Exception {
         originalOut = System.out;
@@ -33,11 +38,17 @@ class ConsoleUserIoTest {
         System.setOut(new PrintStream(outContent, true, StandardCharsets.UTF_8));
     }
 
+    /**
+     * Возвращает {@code System.out} на место после каждого теста.
+     */
     @AfterEach
     void tearDown() {
         System.setOut(originalOut);
     }
 
+    /**
+     * Проверяет, что выводится приветствие.
+     */
     @Test
     void printsWelcomeAndUsingDeck() {
         Scanner sc = new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8);
@@ -49,6 +60,9 @@ class ConsoleUserIoTest {
         assertTrue(text.contains("Добро пожаловать в Блэкджек!"));
     }
 
+    /**
+     * Проверяет чтение решения «взять/стоп» из сканера.
+     */
     @Test
     void askHitOrStandReadsFromScanner() {
         byte[] input = "1\n".getBytes(StandardCharsets.UTF_8);
@@ -59,6 +73,10 @@ class ConsoleUserIoTest {
         assertEquals(1, decision);
     }
 
+    /**
+     * Проверяет форматирование рук: после раздачи (скрытая карта дилера)
+     * и после раскрытия карты с выводом сумм.
+     */
     @Test
     void handsFormattingWithHiddenAndSums() {
         Scanner sc = new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8);
@@ -82,7 +100,8 @@ class ConsoleUserIoTest {
         dealer.revealHoleCard();
         io.printToUserConsoleHandsWithSums(player, dealer);
         String text2 = outContent.toString(StandardCharsets.UTF_8);
+        // допускаем отображение туза как 1 или 11 в зависимости от контекста подсчёта
         assertTrue(text2.contains("Карты дилера: [Туз Трефы (11), Тройка Бубны (3)] > 14")
-                || text2.contains("Карты дилера: [Туз Трефы (1), Тройка Бубны (3)] > 14")); // допускаем отображение туза как 1/11
+                || text2.contains("Карты дилера: [Туз Трефы (1), Тройка Бубны (3)] > 14"));
     }
 }

@@ -6,12 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-
 /**
- *
+ * Тесты перечислений {@link Suit} и {@link Rank}.
+ * Проверяем локализованные названия мастей и базовые значения рангов.
  */
 class RankSuitTest {
 
+    /**
+     * Проверяет русские названия мастей.
+     */
     @Test
     void suitRussianNames() {
         assertEquals("Пики", Suit.SPADES.getRussianName());
@@ -20,6 +23,9 @@ class RankSuitTest {
         assertEquals("Бубны", Suit.DIAMONDS.getRussianName());
     }
 
+    /**
+     * Проверяет базовые значения рангов и флаг туза.
+     */
     @Test
     void ranksBaseValuesAndAceFlag() {
         assertEquals(11, Rank.ACE.getBaseValue());

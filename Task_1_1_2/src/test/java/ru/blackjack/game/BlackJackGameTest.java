@@ -15,18 +15,23 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
 
-
 /**
- * Тестируем раунд через подмену Shoe (рефлексией) и заглушку IO.
+ * Интеграционные тесты игрового раунда {@link BlackJackGame}.
+ * Подменяем башмак фиксированной последовательностью и используем заглушку ввода.
  */
 class BlackJackGameTest {
 
     /**
-     * Фиксированный башмак: отдаёт карты из очереди, не перетасовывается.
+     * Фиксированный башмак: отдаёт карты из очереди и не перетасовывается.
      */
     static class FixedShoe extends Shoe {
         private final Deque<Card> queue = new ArrayDeque<>();
 
+        /**
+         * Создаёт фиксированный башмак с заранее заданной очередью карт.
+         *
+         * @param initial последовательность карт для раздачи
+         */
         FixedShoe(Deque<Card> initial) {
             super(); // создаст обычную колоду, но мы переопределим поведение
             this.queue.addAll(initial);
@@ -49,26 +54,34 @@ class BlackJackGameTest {
     }
 
     /**
-     * Заглушка IO: всегда не хочу играть ещё.
+     * Заглушка консольного I/O: всегда «стою» и не начинаю новый раунд.
      */
     static class StubIo extends ConsoleUserIo {
         private final StringBuilder buffer = new StringBuilder();
 
+        /**
+         * Создаёт заглушку без входных данных.
+         */
         public StubIo() {
             super(new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8));
         }
 
         @Override
         public int askUserHitOrStand() {
-            return 0;
-        } // всегда стою
+            return 0; // всегда стою
+        }
 
         @Override
         public boolean askUserWhetherPlayAnotherRound() {
-            return false;
-        } // 1 раунд
+            return false; // 1 раунд
+        }
     }
 
+    /**
+     * Если дилер перебрал, раунд выигрывает игрок; счёт становится 1:0.
+     *
+     * @throws Exception при ошибке рефлексии
+     */
     @Test
     void playerWinsWhenDealerBusts() throws Exception {
         // Очередность вытягивания карт в игре:
@@ -96,7 +109,6 @@ class BlackJackGameTest {
         shoeField.set(game, fixed);
 
         // И запускаем цикл — он сыграет один раунд и выйдет
-        // (askUserWhetherPlayAnotherRound() -> false)
         game.startGameLoopUntilUserStops();
 
         Field pw = BlackJackGame.class.getDeclaredField("playerWins");
@@ -109,6 +121,11 @@ class BlackJackGameTest {
         assertEquals(0, dealerWins);
     }
 
+    /**
+     * Блэкджек у игрока на раздаче сразу завершает раунд в его пользу.
+     *
+     * @throws Exception при ошибке рефлексии
+     */
     @Test
     void blackjackImmediatelyResolves() throws Exception {
         // Игрок получает Blackjack (Туз + Король), дилер — нет.

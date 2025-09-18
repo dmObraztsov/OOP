@@ -8,10 +8,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
- *
+ * Тесты башмака {@link Shoe}.
+ * Проверяем уникальность 52 карт и логику порога перетасовки.
  */
 class ShoeTest {
 
+    /**
+     * Убеждаемся, что одна колода даёт 52 уникальные карты,
+     * а затем можно продолжать тянуть карты (после автоматической перетасовки).
+     */
     @Test
     void oneDeckHas52UniqueCardsAndKeepsDrawing() {
         Shoe shoe = new Shoe();
@@ -29,6 +34,9 @@ class ShoeTest {
         assertNotNull(extra);
     }
 
+    /**
+     * Проверяем, что триггер «мало карт — нужно перетасовать» срабатывает у конца колоды.
+     */
     @Test
     void shouldShuffleThresholdTriggersNearEnd() {
         Shoe shoe = new Shoe();

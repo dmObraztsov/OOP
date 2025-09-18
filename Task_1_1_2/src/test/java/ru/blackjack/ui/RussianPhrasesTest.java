@@ -5,12 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-
 /**
- *
+ * Тесты класса {@link RussianPhrases}.
+ * Проверяем, что ключевые константы заданы и содержат ожидаемый текст.
  */
 class RussianPhrasesTest {
 
+    /**
+     * Проверяет, что важные строковые константы не равны {@code null}
+     * и приветствие содержит слово «Блэкджек».
+     */
     @Test
     void constantsNotNull() {
         assertNotNull(RussianPhrases.WELCOME);

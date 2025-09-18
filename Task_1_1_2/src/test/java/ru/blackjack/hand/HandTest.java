@@ -11,12 +11,15 @@ import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Suit;
 import java.util.List;
 
-
 /**
- *
+ * Тесты класса {@link Hand}.
+ * Проверяем подсчёт суммы, блэкджек, перебор и неизменяемый просмотр карт.
  */
 class HandTest {
 
+    /**
+     * Проверяет, что две карты на 21 считаются блэкджеком.
+     */
     @Test
     void blackjackWithTwoCardsIsDetected() {
         Hand h = new Hand();
@@ -27,6 +30,9 @@ class HandTest {
         assertFalse(h.isBusted());
     }
 
+    /**
+     * Проверяет понижение тузов с 11 до 1 для избежания перебора.
+     */
     @Test
     void acesDowngradeFrom11To1ToAvoidBust() {
         Hand h = new Hand();
@@ -43,6 +49,9 @@ class HandTest {
         assertEquals(9, perCard.get(2));
     }
 
+    /**
+     * Проверяет детектирование перебора.
+     */
     @Test
     void bustDetected() {
         Hand h = new Hand();
@@ -53,13 +62,16 @@ class HandTest {
         assertTrue(h.bestValue() > 21);
     }
 
+    /**
+     * Проверяет очистку руки и неизменяемость представления {@code viewCards()}.
+     */
     @Test
     void clearAndViewCardsImmutability() {
         Hand h = new Hand();
         h.add(new Card(Suit.CLUBS, Rank.THREE));
         assertEquals(1, h.viewCards().size());
-        assertThrows(UnsupportedOperationException.class, () -> h.viewCards().add(
-                new Card(Suit.SPADES, Rank.FOUR)));
+        assertThrows(UnsupportedOperationException.class, () ->
+                h.viewCards().add(new Card(Suit.SPADES, Rank.FOUR)));
         h.clear();
         assertEquals(0, h.viewCards().size());
     }

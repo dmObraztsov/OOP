@@ -11,12 +11,16 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.cards.Rank;
 import ru.blackjack.cards.Suit;
 
-
 /**
- *
+ * Тесты класса {@link Dealer}.
+ * Проверяем жизненный цикл скрытой карты и правило добора до 17.
  */
 class DealerTest {
 
+    /**
+     * Проверяет жизненный цикл hole-карты:
+     * изначально отсутствует, затем скрывается, и после раскрытия попадает в руку.
+     */
     @Test
     void holeCardLifecycle() {
         Dealer d = new Dealer("Дилер");
@@ -36,6 +40,9 @@ class DealerTest {
         assertEquals(2, d.getHand().viewCards().size());
     }
 
+    /**
+     * Проверяет правило дилера: добирает, пока сумма строго меньше 17.
+     */
     @Test
     void mustDrawAccordingToRules_Until17() {
         Dealer d = new Dealer("Дилер");
