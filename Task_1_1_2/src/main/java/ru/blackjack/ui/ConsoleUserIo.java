@@ -7,314 +7,178 @@ import ru.blackjack.cards.Card;
 import ru.blackjack.game.Dealer;
 import ru.blackjack.game.Participant;
 
-/**
- * Консольный ввод/вывод для игры Блэкджек.
- * Отвечает за все фразы, вопросы к пользователю и форматирование рук/сумм.
- */
 public class ConsoleUserIo {
 
     private final Scanner scanner;
+    private final Phrases phrases;
 
-    /**
-     * Создаёт консольный интерфейс с указанным сканером ввода.
-     *
-     * @param scanner источник строк ввода пользователя
-     */
-    public ConsoleUserIo(Scanner scanner) {
+    public ConsoleUserIo(Scanner scanner, Phrases phrases) {
         this.scanner = scanner;
+        this.phrases = phrases;
     }
 
-    /**
-     * Печатает приветствие.
-     */
     public void printToUserConsoleWelcomeMessage() {
-        println(RussianPhrases.WELCOME);
+        println(phrases.welcome());
         println("");
     }
 
-    /**
-     * Печатает заголовок раунда.
-     *
-     * @param roundNumber номер раунда
-     */
     public void printToUserConsoleRoundHeader(int roundNumber) {
-        println(RussianPhrases.ROUND + roundNumber);
+        println(phrases.roundPrefix() + roundNumber);
     }
 
-    /**
-     * Сообщает о раздаче карт дилером.
-     */
     public void printToUserConsoleDealerDealsCards() {
-        println(RussianPhrases.DEALT);
+        println(phrases.dealt());
     }
 
-    /**
-     * Печатает руки после стартовой раздачи (у дилера одна карта скрыта).
-     *
-     * @param player игрок
-     * @param dealer дилер
-     */
     public void printToUserConsoleHandsAfterDeal(Participant player, Dealer dealer) {
         println(buildPlayerHandLineWithSum(player));
         println(buildDealerHandLineWithHiddenHole(dealer));
         println("");
     }
 
-    /**
-     * Печатает заголовок хода игрока.
-     */
     public void printToUserConsolePlayerTurnHeader() {
-        println(RussianPhrases.PLAYER_TURN_HEADER);
+        println(phrases.playerTurnHeader());
     }
 
-    /**
-     * Спрашивает у пользователя «взять карту» или «остановиться».
-     *
-     * @return {@code 1}, если «взять»; {@code 0}, если «стоп»
-     */
     public int askUserHitOrStand() {
         while (true) {
-            print(RussianPhrases.ASK_HIT_OR_STAND);
+            print(phrases.askHitOrStand());
             String in = scanner.nextLine().trim();
-            if ("1".equals(in)) {
-                return 1;
-            }
-            if ("0".equals(in)) {
-                return 0;
-            }
+            if ("1".equals(in)) return 1;
+            if ("0".equals(in)) return 0;
         }
     }
 
-    /**
-     * Сообщает, какую карту открыл игрок.
-     *
-     * @param card только что полученная карта
-     */
     public void printToUserConsolePlayerDrewCard(Card card) {
-        println(RussianPhrases.PLAYER_DREW + buildSingleCardWithValueUnknown(card));
+        println(phrases.playerDrewPrefix() + buildSingleCardWithValueUnknown(card));
     }
 
-    /**
-     * Печатает руки при скрытой карте дилера (и сумму игрока).
-     *
-     * @param player игрок
-     * @param dealer дилер
-     */
     public void printToUserConsoleHandsWithHiddenDealerHole(Participant player, Dealer dealer) {
         println(buildPlayerHandLineWithSum(player));
         println(buildDealerHandLineWithHiddenHole(dealer));
     }
 
-    /**
-     * Сообщает о переборе у игрока.
-     */
     public void printToUserConsolePlayerBusted() {
-        println(RussianPhrases.PLAYER_BUSTED);
+        println(phrases.playerBusted());
     }
 
-    /**
-     * Печатает заголовок хода дилера.
-     */
     public void printToUserConsoleDealerTurnHeader() {
-        println(RussianPhrases.DEALER_TURN_HEADER);
+        println(phrases.dealerTurnHeader());
     }
 
-    /**
-     * Сообщает о раскрытии скрытой карты дилера.
-     *
-     * @param dealer дилер
-     */
     public void printToUserConsoleRevealHoleCard(Dealer dealer) {
         if (dealer.isHoleCardHidden() && dealer.getHoleCardIfAny() != null) {
-            println(RussianPhrases.DEALER_REVEALS
+            println(phrases.dealerRevealsPrefix()
                     + buildSingleCardWithDynamicValueForDealer(dealer.getHoleCardIfAny(), dealer));
         }
     }
 
-    /**
-     * Печатает обе руки с суммами (у дилера все карты открыты).
-     *
-     * @param player игрок
-     * @param dealer дилер
-     */
     public void printToUserConsoleHandsWithSums(Participant player, Dealer dealer) {
         println(buildPlayerHandLineWithSum(player));
         println(buildDealerHandLineWithSum(dealer));
     }
 
-    /**
-     * Сообщает, какую карту открыл дилер.
-     *
-     * @param card только что полученная карта
-     */
     public void printToUserConsoleDealerDrewCard(Card card) {
-        println(RussianPhrases.DEALER_DREW + buildSingleCardWithValueUnknown(card));
+        println(phrases.dealerDrewPrefix() + buildSingleCardWithValueUnknown(card));
     }
 
-    /**
-     * Сообщает о переборе у дилера.
-     */
     public void printToUserConsoleDealerBusted() {
-        println(RussianPhrases.DEALER_BUSTED);
+        println(phrases.dealerBusted());
     }
 
-    /**
-     * Спрашивает, сыграть ли ещё один раунд.
-     *
-     * @return {@code true}, если пользователь хочет продолжить; иначе {@code false}
-     */
     public boolean askUserWhetherPlayAnotherRound() {
         while (true) {
-            print(RussianPhrases.PLAY_AGAIN);
+            print(phrases.playAgain());
             String in = scanner.nextLine().trim();
-            if ("1".equals(in)) {
-                return true;
-            }
-            if ("0".equals(in)) {
-                return false;
-            }
+            if ("1".equals(in)) return true;
+            if ("0".equals(in)) return false;
         }
     }
 
-    /**
-     * Печатает прощание и финальный счёт.
-     *
-     * @param playerWins победы игрока
-     * @param dealerWins победы дилера
-     */
     public void printToUserConsoleGoodbyeWithFinalScore(int playerWins, int dealerWins) {
-        println(String.format(RussianPhrases.GOODBYE, playerWins, dealerWins));
+        println(phrases.goodbye(playerWins, dealerWins));
     }
 
-    /**
-     * Печатает пустую строку.
-     */
     public void printToUserConsoleEmptyLine() {
         println("");
     }
 
-    /**
-     * Сообщает о перетасовке колоды.
-     */
     public void printToUserConsoleShoeShuffleHappened() {
-        println(RussianPhrases.SHUFFLE);
+        println(phrases.shuffleNotice());
         println("");
     }
 
-    /**
-     * Печатает исход раунда (победа игрока) и динамический суффикс со счётом.
-     *
-     * @param playerWins победы игрока
-     * @param dealerWins победы дилера
-     */
     public void printToUserConsoleRoundWinDynamicFavor(int playerWins, int dealerWins) {
-        println(buildScoreLineWithFavor(
-                RussianPhrases.ROUND_PLAYER_WIN_PREFIX, playerWins, dealerWins));
+        println(buildScoreLineWithFavor(phrases.roundPlayerWinPrefix(), playerWins, dealerWins));
     }
 
-    /**
-     * Печатает исход раунда (поражение игрока) и динамический суффикс со счётом.
-     *
-     * @param playerWins победы игрока
-     * @param dealerWins победы дилера
-     */
     public void printToUserConsoleRoundLoseDynamicFavor(int playerWins, int dealerWins) {
-        println(buildScoreLineWithFavor(
-                RussianPhrases.ROUND_PLAYER_LOSE_PREFIX, playerWins, dealerWins));
+        println(buildScoreLineWithFavor(phrases.roundPlayerLosePrefix(), playerWins, dealerWins));
     }
 
-    /**
-     * Печатает исход раунда (ничья) и динамический суффикс со счётом.
-     *
-     * @param playerWins победы игрока
-     * @param dealerWins победы дилера
-     */
     public void printToUserConsoleRoundPushDynamicFavor(int playerWins, int dealerWins) {
-        println(buildScoreLineWithFavor(
-                RussianPhrases.ROUND_PUSH_PREFIX, playerWins, dealerWins));
+        println(buildScoreLineWithFavor(phrases.roundPushPrefix(), playerWins, dealerWins));
     }
-
-    // -------------------- private helpers --------------------
 
     private String buildPlayerHandLineWithSum(Participant player) {
         String list = buildCardsListWithPerCardValues(player);
         int sum = player.getHand().bestValue();
-        return RussianPhrases.YOUR_CARDS + list + RussianPhrases.GREATER_SIGN + sum;
+        return phrases.yourCardsPrefix() + list + phrases.greaterSignWithSpaces() + sum;
     }
 
     private String buildDealerHandLineWithHiddenHole(Dealer dealer) {
-        // Первая открытая карта дилера + <закрытая карта>
         String left = dealer.getHand().viewCards().isEmpty() ? "" :
-                buildSingleCardWithDynamicValueForDealer(dealer.getHand().viewCards().get(0),
-                        dealer);
-        String list = "[" + left + (left.isEmpty() ? "" : ", ") + RussianPhrases.CLOSED_CARD + "]";
-        return RussianPhrases.DEALER_CARDS + list;
+                buildSingleCardWithDynamicValueForDealer(dealer.getHand().viewCards().get(0), dealer);
+        String list = "[" + left + (left.isEmpty() ? "" : ", ") + phrases.closedCardToken() + "]";
+        return phrases.dealerCardsPrefix() + list;
     }
 
     private String buildDealerHandLineWithSum(Dealer dealer) {
         String list = buildCardsListWithPerCardValues(dealer);
         int sum = dealer.getHand().bestValue();
-        return RussianPhrases.DEALER_CARDS + list + RussianPhrases.GREATER_SIGN + sum;
+        return phrases.dealerCardsPrefix() + list + phrases.greaterSignWithSpaces() + sum;
     }
 
     private String buildCardsListWithPerCardValues(Participant participant) {
-        List<Card> cards = participant.getHand().viewCards();
-        List<Integer> values = participant.getHand().computePerCardValuesAsCurrentlyCounted();
-
-        String joined = "";
-        if (!cards.isEmpty()) {
-            joined = joinCardsWithValues(cards, values);
-        }
+        var cards = participant.getHand().viewCards();
+        var values = participant.getHand().computePerCardValuesAsCurrentlyCounted();
+        String joined = cards.isEmpty() ? "" : joinCardsWithValues(cards, values);
         return "[" + joined + "]";
     }
 
-    private String joinCardsWithValues(List<Card> cards, List<Integer> values) {
+    private String joinCardsWithValues(List<ru.blackjack.cards.Card> cards, List<Integer> values) {
         return cards.stream()
                 .map(c -> c.buildDisplayNameWithoutValue() + " (" +
                         values.get(cards.indexOf(c)) + ")")
                 .collect(Collectors.joining(", "));
     }
 
-    private String buildSingleCardWithValueUnknown(Card card) {
+    private String buildSingleCardWithValueUnknown(ru.blackjack.cards.Card card) {
         return card.buildDisplayNameWithoutValue()
                 + " (" + (card.getRank().isAce() ? "11" : card.getRank().getBaseValue()) + ")";
     }
 
-    private String buildSingleCardWithDynamicValueForDealer(Card card, Dealer dealer) {
-        // Чтобы корректно показать туз как 1/11 именно в КОНТЕКСТЕ текущей руки дилера:
-        List<Card> cards = dealer.getHand().viewCards();
-        List<Integer> values = dealer.getHand().computePerCardValuesAsCurrentlyCounted();
+    private String buildSingleCardWithDynamicValueForDealer(ru.blackjack.cards.Card card, Dealer dealer) {
+        var cards = dealer.getHand().viewCards();
+        var values = dealer.getHand().computePerCardValuesAsCurrentlyCounted();
         int idx = cards.indexOf(card);
-        int v;
-        if (idx >= 0) {
-            v = values.get(idx);
-        } else {
-            // Если карта ещё не в руке (например, hole, до reveal), покажем «сырой» номинал.
-            v = card.getRank().isAce() ? 11 : card.getRank().getBaseValue();
-        }
+        int v = (idx >= 0) ? values.get(idx)
+                : (card.getRank().isAce() ? 11 : card.getRank().getBaseValue());
         return card.buildDisplayNameWithoutValue() + " (" + v + ")";
     }
 
     private String buildScoreLineWithFavor(String prefix, int playerWins, int dealerWins) {
         String suffix;
         if (playerWins > dealerWins) {
-            suffix = String.format(RussianPhrases.SCORE_SUFFIX_IN_YOUR_FAVOR,
-                    playerWins, dealerWins);
+            suffix = phrases.scoreSuffixInYourFavor(playerWins, dealerWins);
         } else if (dealerWins > playerWins) {
-            suffix = String.format(RussianPhrases.SCORE_SUFFIX_IN_DEALER_FAVOR,
-                    playerWins, dealerWins);
+            suffix = phrases.scoreSuffixInDealerFavor(playerWins, dealerWins);
         } else {
-            suffix = String.format(RussianPhrases.SCORE_SUFFIX_TIED,
-                    playerWins, dealerWins);
+            suffix = phrases.scoreSuffixTied(playerWins, dealerWins);
         }
         return prefix + suffix;
     }
 
-    private void println(String s) {
-        System.out.println(s);
-    }
-
-    private void print(String s) {
-        System.out.print(s);
-    }
+    private void println(String s) { System.out.println(s); }
+    private void print(String s) { System.out.print(s); }
 }

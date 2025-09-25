@@ -40,15 +40,6 @@ public class Dealer extends Participant {
     }
 
     /**
-     * Получает открытую карту из башмака и добавляет её в руку.
-     *
-     * @param shoe башмак, из которого тянется карта
-     */
-    public void receiveOpenCardFromShoe(Shoe shoe) {
-        getHand().add(shoe.drawTopCard());
-    }
-
-    /**
      * Получает скрытую карту (hole) и помечает её как скрытую.
      *
      * @param card скрытая карта

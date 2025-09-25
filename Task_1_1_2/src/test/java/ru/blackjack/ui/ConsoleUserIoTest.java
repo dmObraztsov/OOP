@@ -53,7 +53,7 @@ class ConsoleUserIoTest {
     @Test
     void printsWelcomeAndUsingDeck() {
         Scanner sc = new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8);
-        ConsoleUserIo io = new ConsoleUserIo(sc);
+        ConsoleUserIo io = new ConsoleUserIo(sc, new RussianPhrases());
 
         io.printToUserConsoleWelcomeMessage();
 
@@ -68,7 +68,7 @@ class ConsoleUserIoTest {
     void askHitOrStandReadsFromScanner() {
         byte[] input = "1\n".getBytes(StandardCharsets.UTF_8);
         Scanner sc = new Scanner(new ByteArrayInputStream(input), StandardCharsets.UTF_8);
-        ConsoleUserIo io = new ConsoleUserIo(sc);
+        ConsoleUserIo io = new ConsoleUserIo(sc, new RussianPhrases());
 
         int decision = io.askUserHitOrStand();
         assertEquals(1, decision);
@@ -81,7 +81,7 @@ class ConsoleUserIoTest {
     @Test
     void handsFormattingWithHiddenAndSums() {
         Scanner sc = new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8);
-        ConsoleUserIo io = new ConsoleUserIo(sc);
+        ConsoleUserIo io = new ConsoleUserIo(sc, new RussianPhrases());
 
         Participant player = new Participant("Игрок");
         Dealer dealer = new Dealer("Дилер");

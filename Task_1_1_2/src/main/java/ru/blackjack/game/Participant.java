@@ -57,23 +57,4 @@ public class Participant {
     public void receiveCardFromShoe(Card card) {
         hand.add(card);
     }
-
-    /**
-     * Тянет верхнюю карту из башмака и добавляет её в руку.
-     *
-     * @param shoe башмак с картами
-     */
-    public void receiveCardFromShoe(Shoe shoe) {
-        hand.add(shoe.drawTopCard());
-    }
-
-    /**
-     * Вспомогательный метод добора карты из башмака.
-     * Предназначен для наследников.
-     *
-     * @param shoe башмак с картами
-     */
-    protected void receiveFromShoeInternal(Shoe shoe) {
-        hand.add(shoe.drawTopCard());
-    }
 }

@@ -33,10 +33,6 @@ public class BlackJackGame {
         this.player = new Participant("Игрок");
     }
 
-    /**
-     * Запускает игровой цикл: последовательность раундов до отказа игрока.
-     * Печатает приветствие, результаты раундов и финальный счёт.
-     */
     public void startGameLoopUntilUserStops() {
         userIo.printToUserConsoleWelcomeMessage();
         boolean keepPlaying = true;

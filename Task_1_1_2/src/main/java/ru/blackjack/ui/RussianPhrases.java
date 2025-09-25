@@ -1,47 +1,51 @@
 package ru.blackjack.ui;
 
-/**
- * Текстовые фразы для консольного интерфейса Блэкджека.
- * Содержит константы сообщений и шаблонов вывода.
- */
-public final class RussianPhrases {
 
-    /**
-     * Утилитный класс: создание экземпляров не предполагается.
-     */
-    private RussianPhrases() {
+public final class RussianPhrases implements Phrases {
+
+    @Override public String welcome() { return "Добро пожаловать в Блэкджек!"; }
+    @Override public String roundPrefix() { return "Раунд "; }
+    @Override public String dealt() { return "Дилер раздал карты"; }
+    @Override public String yourCardsPrefix() { return "Ваши карты: "; }
+    @Override public String dealerCardsPrefix() { return "Карты дилера: "; }
+    @Override public String closedCardToken() { return "<закрытая карта>"; }
+    @Override public String greaterSignWithSpaces() { return " > "; }
+
+    @Override public String playerTurnHeader() { return "Ваш ход\n-------"; }
+    @Override public String dealerTurnHeader() { return "Ход дилера\n-------"; }
+
+    @Override public String askHitOrStand() {
+        return "Введите \"1\", чтобы взять карту, и \"0\", чтобы остановиться: ";
+    }
+    @Override public String playerDrewPrefix() { return "Вы открыли карту "; }
+    @Override public String dealerRevealsPrefix() { return "Дилер открывает закрытую карту "; }
+    @Override public String dealerDrewPrefix() { return "Дилер открывает карту "; }
+    @Override public String playerBusted() { return "Перебор у игрока: больше 21."; }
+    @Override public String dealerBusted() { return "Перебор у дилера: больше 21."; }
+
+    @Override public String roundPlayerWinPrefix() { return "Вы выиграли раунд!"; }
+    @Override public String roundPlayerLosePrefix() { return "Вы проиграли раунд."; }
+    @Override public String roundPushPrefix() { return "Ничья в раунде."; }
+
+    @Override
+    public String scoreSuffixInYourFavor(int playerWins, int dealerWins) {
+        return String.format(" Счет %d:%d в вашу пользу.", playerWins, dealerWins);
+    }
+    @Override
+    public String scoreSuffixInDealerFavor(int playerWins, int dealerWins) {
+        return String.format(" Счет %d:%d в пользу дилера.", playerWins, dealerWins);
+    }
+    @Override
+    public String scoreSuffixTied(int playerWins, int dealerWins) {
+        return String.format(" Счет %d:%d.", playerWins, dealerWins);
     }
 
-    public static final String WELCOME = "Добро пожаловать в Блэкджек!";
-    public static final String USING_ONE_DECK = "Используется одна колода.";
-    public static final String ROUND = "Раунд ";
-    public static final String DEALT = "Дилер раздал карты";
-    public static final String YOUR_CARDS = "Ваши карты: ";
-    public static final String DEALER_CARDS = "Карты дилера: ";
-    public static final String CLOSED_CARD = "<закрытая карта>";
-    public static final String GREATER_SIGN = " > ";
-
-    public static final String PLAYER_TURN_HEADER = "Ваш ход\n-------";
-    public static final String DEALER_TURN_HEADER = "Ход дилера\n-------";
-
-    public static final String ASK_HIT_OR_STAND =
-            "Введите \"1\", чтобы взять карту, и \"0\", чтобы остановиться: ";
-    public static final String PLAYER_DREW = "Вы открыли карту ";
-    public static final String DEALER_REVEALS = "Дилер открывает закрытую карту ";
-    public static final String DEALER_DREW = "Дилер открывает карту ";
-    public static final String PLAYER_BUSTED = "Перебор у игрока: больше 21.";
-    public static final String DEALER_BUSTED = "Перебор у дилера: больше 21.";
-
-    public static final String ROUND_PLAYER_WIN_PREFIX = "Вы выиграли раунд!";
-    public static final String ROUND_PLAYER_LOSE_PREFIX = "Вы проиграли раунд.";
-    public static final String ROUND_PUSH_PREFIX = "Ничья в раунде.";
-
-    public static final String SCORE_SUFFIX_IN_YOUR_FAVOR = " Счет %d:%d в вашу пользу.";
-    public static final String SCORE_SUFFIX_IN_DEALER_FAVOR = " Счет %d:%d в пользу дилера.";
-    public static final String SCORE_SUFFIX_TIED = " Счет %d:%d.";
-
-    public static final String PLAY_AGAIN =
-            "Сыграем ещё? Введите \"1\" — да, \"0\" — нет: ";
-    public static final String GOODBYE = "Игра завершена. Финальный счет %d:%d. Спасибо за игру!";
-    public static final String SHUFFLE = "Перетасовали колоды: в башмаке мало карт.";
+    @Override public String playAgain() { return "Сыграем ещё? Введите \"1\" — да, \"0\" — нет: "; }
+    @Override public String goodbye(int playerWins, int dealerWins) {
+        return String.format("Игра завершена. Финальный счет %d:%d. Спасибо за игру!",
+                playerWins, dealerWins);
+    }
+    @Override public String shuffleNotice() {
+        return "Перетасовали колоды: в башмаке мало карт.";
+    }
 }

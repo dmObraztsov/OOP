@@ -14,6 +14,7 @@ import ru.blackjack.cards.Shoe;
 import ru.blackjack.cards.Suit;
 import ru.blackjack.ui.ConsoleUserIo;
 import org.junit.jupiter.api.Test;
+import ru.blackjack.ui.RussianPhrases;
 
 
 /**
@@ -64,12 +65,13 @@ class BlackJackGameTest {
          * Создаёт заглушку без входных данных.
          */
         public StubIo() {
-            super(new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8));
+            super(new Scanner(new ByteArrayInputStream(new byte[0]), StandardCharsets.UTF_8),
+                    new RussianPhrases());
         }
 
         @Override
         public int askUserHitOrStand() {
-            return 0; // всегда стою
+            return 0;
         }
 
         @Override

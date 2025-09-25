@@ -14,27 +14,14 @@ public class Hand {
 
     private final List<Card> cards = new ArrayList<>();
 
-    /**
-     * Добавляет карту в руку.
-     *
-     * @param card карта для добавления
-     */
     public void add(Card card) {
         cards.add(card);
     }
 
-    /**
-     * Очищает руку.
-     */
     public void clear() {
         cards.clear();
     }
 
-    /**
-     * Возвращает неизменяемый список карт руки.
-     *
-     * @return немодифицируемое представление списка карт
-     */
     public List<Card> viewCards() {
         return Collections.unmodifiableList(cards);
     }
@@ -66,7 +53,6 @@ public class Hand {
 
     /**
      * Проверяет, является ли рука блэкджеком.
-     * Блэкджек — это ровно две карты суммой 21.
      *
      * @return {@code true}, если блэкджек; иначе {@code false}
      */
@@ -74,11 +60,6 @@ public class Hand {
         return cards.size() == 2 && bestValue() == 21;
     }
 
-    /**
-     * Проверяет, произошёл ли перебор.
-     *
-     * @return {@code true}, если сумма больше 21; иначе {@code false}
-     */
     public boolean isBusted() {
         return bestValue() > 21;
     }

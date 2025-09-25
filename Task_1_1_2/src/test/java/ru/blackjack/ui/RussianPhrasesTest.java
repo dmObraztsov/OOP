@@ -17,9 +17,9 @@ class RussianPhrasesTest {
      */
     @Test
     void constantsNotNull() {
-        assertNotNull(RussianPhrases.WELCOME);
-        assertNotNull(RussianPhrases.USING_ONE_DECK);
-        assertNotNull(RussianPhrases.ASK_HIT_OR_STAND);
-        assertTrue(RussianPhrases.WELCOME.contains("Блэкджек"));
+        RussianPhrases p = new RussianPhrases();
+        assertNotNull(p.welcome());
+        assertNotNull(p.askHitOrStand());
+        assertTrue(p.welcome().contains("Блэкджек"));
     }
 }
