@@ -15,7 +15,11 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -40,15 +44,15 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method-detail">Method</a></li>
 </ul>
 </div>
 <div class="nav-list-search"><label for="search-input">SEARCH:</label>
@@ -70,97 +74,26 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">ru.blackjack.ui.RussianPhrases</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">RussianPhrases</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Текстовые фразы для консольного интерфейса Блэкджека.
- Содержит константы сообщений и шаблонов вывода.</div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
-<!-- =========== FIELD SUMMARY =========== -->
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
-<section class="field-summary" id="field-summary">
-<h2>Field Summary</h2>
-<div class="caption"><span>Fields</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Field</div>
+<section class="constructor-summary" id="constructor-summary">
+<h2>Constructor Summary</h2>
+<div class="caption"><span>Constructors</span></div>
+<div class="summary-table two-column-summary">
+<div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#ASK_HIT_OR_STAND" class="member-name-link">ASK_HIT_OR_STAND</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#CLOSED_CARD" class="member-name-link">CLOSED_CARD</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#DEALER_BUSTED" class="member-name-link">DEALER_BUSTED</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#DEALER_CARDS" class="member-name-link">DEALER_CARDS</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#DEALER_DREW" class="member-name-link">DEALER_DREW</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#DEALER_REVEALS" class="member-name-link">DEALER_REVEALS</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#DEALER_TURN_HEADER" class="member-name-link">DEALER_TURN_HEADER</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#DEALT" class="member-name-link">DEALT</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#GOODBYE" class="member-name-link">GOODBYE</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#GREATER_SIGN" class="member-name-link">GREATER_SIGN</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#PLAY_AGAIN" class="member-name-link">PLAY_AGAIN</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#PLAYER_BUSTED" class="member-name-link">PLAYER_BUSTED</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#PLAYER_DREW" class="member-name-link">PLAYER_DREW</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#PLAYER_TURN_HEADER" class="member-name-link">PLAYER_TURN_HEADER</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#ROUND" class="member-name-link">ROUND</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#ROUND_PLAYER_LOSE_PREFIX" class="member-name-link">ROUND_PLAYER_LOSE_PREFIX</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#ROUND_PLAYER_WIN_PREFIX" class="member-name-link">ROUND_PLAYER_WIN_PREFIX</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#ROUND_PUSH_PREFIX" class="member-name-link">ROUND_PUSH_PREFIX</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#SCORE_SUFFIX_IN_DEALER_FAVOR" class="member-name-link">SCORE_SUFFIX_IN_DEALER_FAVOR</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#SCORE_SUFFIX_IN_YOUR_FAVOR" class="member-name-link">SCORE_SUFFIX_IN_YOUR_FAVOR</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#SCORE_SUFFIX_TIED" class="member-name-link">SCORE_SUFFIX_TIED</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#SHUFFLE" class="member-name-link">SHUFFLE</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#USING_ONE_DECK" class="member-name-link">USING_ONE_DECK</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#WELCOME" class="member-name-link">WELCOME</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#YOUR_CARDS" class="member-name-link">YOUR_CARDS</a></code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">RussianPhrases</a>()</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -169,6 +102,92 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
+<div id="method-summary-table">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#askHitOrStand()" class="member-name-link">askHitOrStand</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#closedCardToken()" class="member-name-link">closedCardToken</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerBusted()" class="member-name-link">dealerBusted</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerCardsPrefix()" class="member-name-link">dealerCardsPrefix</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerDrewPrefix()" class="member-name-link">dealerDrewPrefix</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerRevealsPrefix()" class="member-name-link">dealerRevealsPrefix</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerTurnHeader()" class="member-name-link">dealerTurnHeader</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealt()" class="member-name-link">dealt</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#goodbye(int,int)" class="member-name-link">goodbye</a><wbr>(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#greaterSignWithSpaces()" class="member-name-link">greaterSignWithSpaces</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playAgain()" class="member-name-link">playAgain</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerBusted()" class="member-name-link">playerBusted</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerDrewPrefix()" class="member-name-link">playerDrewPrefix</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerTurnHeader()" class="member-name-link">playerTurnHeader</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#roundPlayerLosePrefix()" class="member-name-link">roundPlayerLosePrefix</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#roundPlayerWinPrefix()" class="member-name-link">roundPlayerWinPrefix</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#roundPrefix()" class="member-name-link">roundPrefix</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#roundPushPrefix()" class="member-name-link">roundPushPrefix</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scoreSuffixInDealerFavor(int,int)" class="member-name-link">scoreSuffixInDealerFavor</a><wbr>(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scoreSuffixInYourFavor(int,int)" class="member-name-link">scoreSuffixInYourFavor</a><wbr>(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scoreSuffixTied(int,int)" class="member-name-link">scoreSuffixTied</a><wbr>(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shuffleNotice()" class="member-name-link">shuffleNotice</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#welcome()" class="member-name-link">welcome</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#yourCardsPrefix()" class="member-name-link">yourCardsPrefix</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+</div>
+</div>
+</div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -178,358 +197,266 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ============ FIELD DETAIL =========== -->
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
-<section class="field-details" id="field-detail">
-<h2>Field Details</h2>
+<section class="constructor-details" id="constructor-detail">
+<h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="WELCOME">
-<h3>WELCOME</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">WELCOME</span></div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.WELCOME">Constant Field Values</a></li>
+<section class="detail" id="&lt;init&gt;()">
+<h3>RussianPhrases</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RussianPhrases</span>()</div>
+</section>
+</li>
 </ul>
-</dd>
+</section>
+</li>
+<!-- ============ METHOD DETAIL ========== -->
+<li>
+<section class="method-details" id="method-detail">
+<h2>Method Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="welcome()">
+<h3>welcome</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">welcome</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#welcome()">welcome</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="USING_ONE_DECK">
-<h3>USING_ONE_DECK</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">USING_ONE_DECK</span></div>
+<section class="detail" id="roundPrefix()">
+<h3>roundPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">roundPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.USING_ONE_DECK">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#roundPrefix()">roundPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="ROUND">
-<h3>ROUND</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROUND</span></div>
+<section class="detail" id="dealt()">
+<h3>dealt</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">dealt</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.ROUND">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#dealt()">dealt</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="DEALT">
-<h3>DEALT</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEALT</span></div>
+<section class="detail" id="yourCardsPrefix()">
+<h3>yourCardsPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">yourCardsPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.DEALT">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#yourCardsPrefix()">yourCardsPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="YOUR_CARDS">
-<h3>YOUR_CARDS</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">YOUR_CARDS</span></div>
+<section class="detail" id="dealerCardsPrefix()">
+<h3>dealerCardsPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">dealerCardsPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.YOUR_CARDS">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#dealerCardsPrefix()">dealerCardsPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="DEALER_CARDS">
-<h3>DEALER_CARDS</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEALER_CARDS</span></div>
+<section class="detail" id="closedCardToken()">
+<h3>closedCardToken</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">closedCardToken</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.DEALER_CARDS">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#closedCardToken()">closedCardToken</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="CLOSED_CARD">
-<h3>CLOSED_CARD</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">CLOSED_CARD</span></div>
+<section class="detail" id="greaterSignWithSpaces()">
+<h3>greaterSignWithSpaces</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">greaterSignWithSpaces</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.CLOSED_CARD">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#greaterSignWithSpaces()">greaterSignWithSpaces</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="GREATER_SIGN">
-<h3>GREATER_SIGN</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">GREATER_SIGN</span></div>
+<section class="detail" id="playerTurnHeader()">
+<h3>playerTurnHeader</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">playerTurnHeader</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.GREATER_SIGN">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#playerTurnHeader()">playerTurnHeader</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="PLAYER_TURN_HEADER">
-<h3>PLAYER_TURN_HEADER</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PLAYER_TURN_HEADER</span></div>
+<section class="detail" id="dealerTurnHeader()">
+<h3>dealerTurnHeader</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">dealerTurnHeader</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.PLAYER_TURN_HEADER">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#dealerTurnHeader()">dealerTurnHeader</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="DEALER_TURN_HEADER">
-<h3>DEALER_TURN_HEADER</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEALER_TURN_HEADER</span></div>
+<section class="detail" id="askHitOrStand()">
+<h3>askHitOrStand</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">askHitOrStand</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.DEALER_TURN_HEADER">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#askHitOrStand()">askHitOrStand</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="ASK_HIT_OR_STAND">
-<h3>ASK_HIT_OR_STAND</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ASK_HIT_OR_STAND</span></div>
+<section class="detail" id="playerDrewPrefix()">
+<h3>playerDrewPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">playerDrewPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.ASK_HIT_OR_STAND">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#playerDrewPrefix()">playerDrewPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="PLAYER_DREW">
-<h3>PLAYER_DREW</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PLAYER_DREW</span></div>
+<section class="detail" id="dealerRevealsPrefix()">
+<h3>dealerRevealsPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">dealerRevealsPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.PLAYER_DREW">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#dealerRevealsPrefix()">dealerRevealsPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="DEALER_REVEALS">
-<h3>DEALER_REVEALS</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEALER_REVEALS</span></div>
+<section class="detail" id="dealerDrewPrefix()">
+<h3>dealerDrewPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">dealerDrewPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.DEALER_REVEALS">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#dealerDrewPrefix()">dealerDrewPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="DEALER_DREW">
-<h3>DEALER_DREW</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEALER_DREW</span></div>
+<section class="detail" id="playerBusted()">
+<h3>playerBusted</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">playerBusted</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.DEALER_DREW">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#playerBusted()">playerBusted</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="PLAYER_BUSTED">
-<h3>PLAYER_BUSTED</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PLAYER_BUSTED</span></div>
+<section class="detail" id="dealerBusted()">
+<h3>dealerBusted</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">dealerBusted</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.PLAYER_BUSTED">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#dealerBusted()">dealerBusted</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="DEALER_BUSTED">
-<h3>DEALER_BUSTED</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEALER_BUSTED</span></div>
+<section class="detail" id="roundPlayerWinPrefix()">
+<h3>roundPlayerWinPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">roundPlayerWinPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.DEALER_BUSTED">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#roundPlayerWinPrefix()">roundPlayerWinPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="ROUND_PLAYER_WIN_PREFIX">
-<h3>ROUND_PLAYER_WIN_PREFIX</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROUND_PLAYER_WIN_PREFIX</span></div>
+<section class="detail" id="roundPlayerLosePrefix()">
+<h3>roundPlayerLosePrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">roundPlayerLosePrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.ROUND_PLAYER_WIN_PREFIX">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#roundPlayerLosePrefix()">roundPlayerLosePrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="ROUND_PLAYER_LOSE_PREFIX">
-<h3>ROUND_PLAYER_LOSE_PREFIX</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROUND_PLAYER_LOSE_PREFIX</span></div>
+<section class="detail" id="roundPushPrefix()">
+<h3>roundPushPrefix</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">roundPushPrefix</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.ROUND_PLAYER_LOSE_PREFIX">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#roundPushPrefix()">roundPushPrefix</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="ROUND_PUSH_PREFIX">
-<h3>ROUND_PUSH_PREFIX</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">ROUND_PUSH_PREFIX</span></div>
+<section class="detail" id="scoreSuffixInYourFavor(int,int)">
+<h3>scoreSuffixInYourFavor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">scoreSuffixInYourFavor</span><wbr><span class="parameters">(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</span></div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.ROUND_PUSH_PREFIX">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#scoreSuffixInYourFavor(int,int)">scoreSuffixInYourFavor</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="SCORE_SUFFIX_IN_YOUR_FAVOR">
-<h3>SCORE_SUFFIX_IN_YOUR_FAVOR</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">SCORE_SUFFIX_IN_YOUR_FAVOR</span></div>
+<section class="detail" id="scoreSuffixInDealerFavor(int,int)">
+<h3>scoreSuffixInDealerFavor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">scoreSuffixInDealerFavor</span><wbr><span class="parameters">(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</span></div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.SCORE_SUFFIX_IN_YOUR_FAVOR">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#scoreSuffixInDealerFavor(int,int)">scoreSuffixInDealerFavor</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="SCORE_SUFFIX_IN_DEALER_FAVOR">
-<h3>SCORE_SUFFIX_IN_DEALER_FAVOR</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">SCORE_SUFFIX_IN_DEALER_FAVOR</span></div>
+<section class="detail" id="scoreSuffixTied(int,int)">
+<h3>scoreSuffixTied</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">scoreSuffixTied</span><wbr><span class="parameters">(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</span></div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.SCORE_SUFFIX_IN_DEALER_FAVOR">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#scoreSuffixTied(int,int)">scoreSuffixTied</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="SCORE_SUFFIX_TIED">
-<h3>SCORE_SUFFIX_TIED</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">SCORE_SUFFIX_TIED</span></div>
+<section class="detail" id="playAgain()">
+<h3>playAgain</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">playAgain</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.SCORE_SUFFIX_TIED">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#playAgain()">playAgain</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="PLAY_AGAIN">
-<h3>PLAY_AGAIN</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PLAY_AGAIN</span></div>
+<section class="detail" id="goodbye(int,int)">
+<h3>goodbye</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">goodbye</span><wbr><span class="parameters">(int&nbsp;playerWins,
+ int&nbsp;dealerWins)</span></div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.PLAY_AGAIN">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#goodbye(int,int)">goodbye</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="GOODBYE">
-<h3>GOODBYE</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">GOODBYE</span></div>
+<section class="detail" id="shuffleNotice()">
+<h3>shuffleNotice</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">shuffleNotice</span>()</div>
 <dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.GOODBYE">Constant Field Values</a></li>
-</ul>
-</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="SHUFFLE">
-<h3>SHUFFLE</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">SHUFFLE</span></div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#ru.blackjack.ui.RussianPhrases.SHUFFLE">Constant Field Values</a></li>
-</ul>
-</dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Phrases.html#shuffleNotice()">shuffleNotice</a></code>&nbsp;in interface&nbsp;<code><a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a></code></dd>
 </dl>
 </section>
 </li>

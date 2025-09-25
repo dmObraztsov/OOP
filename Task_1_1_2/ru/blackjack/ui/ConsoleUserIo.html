@@ -77,8 +77,6 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ConsoleUserIo</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Консольный ввод/вывод для игры Блэкджек.
- Отвечает за все фразы, вопросы к пользователю и форматирование рук/сумм.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,10 +88,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.Scanner)" class="member-name-link">ConsoleUserIo</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html" title="class or interface in java.util" class="external-link">Scanner</a>&nbsp;scanner)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Создаёт консольный интерфейс с указанным сканером ввода.</div>
-</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.Scanner,ru.blackjack.ui.Phrases)" class="member-name-link">ConsoleUserIo</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html" title="class or interface in java.util" class="external-link">Scanner</a>&nbsp;scanner,
+ <a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a>&nbsp;phrases)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -110,116 +107,74 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#askUserHitOrStand()" class="member-name-link">askUserHitOrStand</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Спрашивает у пользователя «взять карту» или «остановиться».</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#askUserWhetherPlayAnotherRound()" class="member-name-link">askUserWhetherPlayAnotherRound</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Спрашивает, сыграть ли ещё один раунд.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleDealerBusted()" class="member-name-link">printToUserConsoleDealerBusted</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает о переборе у дилера.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleDealerDealsCards()" class="member-name-link">printToUserConsoleDealerDealsCards</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает о раздаче карт дилером.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleDealerDrewCard(ru.blackjack.cards.Card)" class="member-name-link">printToUserConsoleDealerDrewCard</a><wbr>(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает, какую карту открыл дилер.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleDealerTurnHeader()" class="member-name-link">printToUserConsoleDealerTurnHeader</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает заголовок хода дилера.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleEmptyLine()" class="member-name-link">printToUserConsoleEmptyLine</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает пустую строку.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleGoodbyeWithFinalScore(int,int)" class="member-name-link">printToUserConsoleGoodbyeWithFinalScore</a><wbr>(int&nbsp;playerWins,
  int&nbsp;dealerWins)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает прощание и финальный счёт.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleHandsAfterDeal(ru.blackjack.game.Participant,ru.blackjack.game.Dealer)" class="member-name-link">printToUserConsoleHandsAfterDeal</a><wbr>(<a href="../game/Participant.html" title="class in ru.blackjack.game">Participant</a>&nbsp;player,
  <a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает руки после стартовой раздачи (у дилера одна карта скрыта).</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleHandsWithHiddenDealerHole(ru.blackjack.game.Participant,ru.blackjack.game.Dealer)" class="member-name-link">printToUserConsoleHandsWithHiddenDealerHole</a><wbr>(<a href="../game/Participant.html" title="class in ru.blackjack.game">Participant</a>&nbsp;player,
  <a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает руки при скрытой карте дилера (и сумму игрока).</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleHandsWithSums(ru.blackjack.game.Participant,ru.blackjack.game.Dealer)" class="member-name-link">printToUserConsoleHandsWithSums</a><wbr>(<a href="../game/Participant.html" title="class in ru.blackjack.game">Participant</a>&nbsp;player,
  <a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает обе руки с суммами (у дилера все карты открыты).</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsolePlayerBusted()" class="member-name-link">printToUserConsolePlayerBusted</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает о переборе у игрока.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsolePlayerDrewCard(ru.blackjack.cards.Card)" class="member-name-link">printToUserConsolePlayerDrewCard</a><wbr>(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает, какую карту открыл игрок.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsolePlayerTurnHeader()" class="member-name-link">printToUserConsolePlayerTurnHeader</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает заголовок хода игрока.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleRevealHoleCard(ru.blackjack.game.Dealer)" class="member-name-link">printToUserConsoleRevealHoleCard</a><wbr>(<a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает о раскрытии скрытой карты дилера.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleRoundHeader(int)" class="member-name-link">printToUserConsoleRoundHeader</a><wbr>(int&nbsp;roundNumber)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает заголовок раунда.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleRoundLoseDynamicFavor(int,int)" class="member-name-link">printToUserConsoleRoundLoseDynamicFavor</a><wbr>(int&nbsp;playerWins,
  int&nbsp;dealerWins)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает исход раунда (поражение игрока) и динамический суффикс со счётом.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleRoundPushDynamicFavor(int,int)" class="member-name-link">printToUserConsoleRoundPushDynamicFavor</a><wbr>(int&nbsp;playerWins,
  int&nbsp;dealerWins)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает исход раунда (ничья) и динамический суффикс со счётом.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleRoundWinDynamicFavor(int,int)" class="member-name-link">printToUserConsoleRoundWinDynamicFavor</a><wbr>(int&nbsp;playerWins,
  int&nbsp;dealerWins)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает исход раунда (победа игрока) и динамический суффикс со счётом.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleShoeShuffleHappened()" class="member-name-link">printToUserConsoleShoeShuffleHappened</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сообщает о перетасовке колоды.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printToUserConsoleWelcomeMessage()" class="member-name-link">printToUserConsoleWelcomeMessage</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает приветствие.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -238,14 +193,10 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.Scanner)">
+<section class="detail" id="&lt;init&gt;(java.util.Scanner,ru.blackjack.ui.Phrases)">
 <h3>ConsoleUserIo</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ConsoleUserIo</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html" title="class or interface in java.util" class="external-link">Scanner</a>&nbsp;scanner)</span></div>
-<div class="block">Создаёт консольный интерфейс с указанным сканером ввода.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>scanner</code> - источник строк ввода пользователя</dd>
-</dl>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ConsoleUserIo</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html" title="class or interface in java.util" class="external-link">Scanner</a>&nbsp;scanner,
+ <a href="Phrases.html" title="interface in ru.blackjack.ui">Phrases</a>&nbsp;phrases)</span></div>
 </section>
 </li>
 </ul>
@@ -260,25 +211,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="printToUserConsoleWelcomeMessage()">
 <h3>printToUserConsoleWelcomeMessage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleWelcomeMessage</span>()</div>
-<div class="block">Печатает приветствие.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleRoundHeader(int)">
 <h3>printToUserConsoleRoundHeader</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleRoundHeader</span><wbr><span class="parameters">(int&nbsp;roundNumber)</span></div>
-<div class="block">Печатает заголовок раунда.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>roundNumber</code> - номер раунда</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleDealerDealsCards()">
 <h3>printToUserConsoleDealerDealsCards</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleDealerDealsCards</span>()</div>
-<div class="block">Сообщает о раздаче карт дилером.</div>
 </section>
 </li>
 <li>
@@ -286,41 +230,24 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleHandsAfterDeal</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleHandsAfterDeal</span><wbr><span class="parameters">(<a href="../game/Participant.html" title="class in ru.blackjack.game">Participant</a>&nbsp;player,
  <a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</span></div>
-<div class="block">Печатает руки после стартовой раздачи (у дилера одна карта скрыта).</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>player</code> - игрок</dd>
-<dd><code>dealer</code> - дилер</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsolePlayerTurnHeader()">
 <h3>printToUserConsolePlayerTurnHeader</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsolePlayerTurnHeader</span>()</div>
-<div class="block">Печатает заголовок хода игрока.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="askUserHitOrStand()">
 <h3>askUserHitOrStand</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">askUserHitOrStand</span>()</div>
-<div class="block">Спрашивает у пользователя «взять карту» или «остановиться».</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd><code>1</code>, если «взять»; <code>0</code>, если «стоп»</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsolePlayerDrewCard(ru.blackjack.cards.Card)">
 <h3>printToUserConsolePlayerDrewCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsolePlayerDrewCard</span><wbr><span class="parameters">(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</span></div>
-<div class="block">Сообщает, какую карту открыл игрок.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>card</code> - только что полученная карта</dd>
-</dl>
 </section>
 </li>
 <li>
@@ -328,37 +255,24 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleHandsWithHiddenDealerHole</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleHandsWithHiddenDealerHole</span><wbr><span class="parameters">(<a href="../game/Participant.html" title="class in ru.blackjack.game">Participant</a>&nbsp;player,
  <a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</span></div>
-<div class="block">Печатает руки при скрытой карте дилера (и сумму игрока).</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>player</code> - игрок</dd>
-<dd><code>dealer</code> - дилер</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsolePlayerBusted()">
 <h3>printToUserConsolePlayerBusted</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsolePlayerBusted</span>()</div>
-<div class="block">Сообщает о переборе у игрока.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleDealerTurnHeader()">
 <h3>printToUserConsoleDealerTurnHeader</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleDealerTurnHeader</span>()</div>
-<div class="block">Печатает заголовок хода дилера.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleRevealHoleCard(ru.blackjack.game.Dealer)">
 <h3>printToUserConsoleRevealHoleCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleRevealHoleCard</span><wbr><span class="parameters">(<a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</span></div>
-<div class="block">Сообщает о раскрытии скрытой карты дилера.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>dealer</code> - дилер</dd>
-</dl>
 </section>
 </li>
 <li>
@@ -366,41 +280,24 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleHandsWithSums</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleHandsWithSums</span><wbr><span class="parameters">(<a href="../game/Participant.html" title="class in ru.blackjack.game">Participant</a>&nbsp;player,
  <a href="../game/Dealer.html" title="class in ru.blackjack.game">Dealer</a>&nbsp;dealer)</span></div>
-<div class="block">Печатает обе руки с суммами (у дилера все карты открыты).</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>player</code> - игрок</dd>
-<dd><code>dealer</code> - дилер</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleDealerDrewCard(ru.blackjack.cards.Card)">
 <h3>printToUserConsoleDealerDrewCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleDealerDrewCard</span><wbr><span class="parameters">(<a href="../cards/Card.html" title="class in ru.blackjack.cards">Card</a>&nbsp;card)</span></div>
-<div class="block">Сообщает, какую карту открыл дилер.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>card</code> - только что полученная карта</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleDealerBusted()">
 <h3>printToUserConsoleDealerBusted</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleDealerBusted</span>()</div>
-<div class="block">Сообщает о переборе у дилера.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="askUserWhetherPlayAnotherRound()">
 <h3>askUserWhetherPlayAnotherRound</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">askUserWhetherPlayAnotherRound</span>()</div>
-<div class="block">Спрашивает, сыграть ли ещё один раунд.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd><code>true</code>, если пользователь хочет продолжить; иначе <code>false</code></dd>
-</dl>
 </section>
 </li>
 <li>
@@ -408,26 +305,18 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleGoodbyeWithFinalScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleGoodbyeWithFinalScore</span><wbr><span class="parameters">(int&nbsp;playerWins,
  int&nbsp;dealerWins)</span></div>
-<div class="block">Печатает прощание и финальный счёт.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>playerWins</code> - победы игрока</dd>
-<dd><code>dealerWins</code> - победы дилера</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleEmptyLine()">
 <h3>printToUserConsoleEmptyLine</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleEmptyLine</span>()</div>
-<div class="block">Печатает пустую строку.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="printToUserConsoleShoeShuffleHappened()">
 <h3>printToUserConsoleShoeShuffleHappened</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleShoeShuffleHappened</span>()</div>
-<div class="block">Сообщает о перетасовке колоды.</div>
 </section>
 </li>
 <li>
@@ -435,12 +324,6 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleRoundWinDynamicFavor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleRoundWinDynamicFavor</span><wbr><span class="parameters">(int&nbsp;playerWins,
  int&nbsp;dealerWins)</span></div>
-<div class="block">Печатает исход раунда (победа игрока) и динамический суффикс со счётом.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>playerWins</code> - победы игрока</dd>
-<dd><code>dealerWins</code> - победы дилера</dd>
-</dl>
 </section>
 </li>
 <li>
@@ -448,12 +331,6 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleRoundLoseDynamicFavor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleRoundLoseDynamicFavor</span><wbr><span class="parameters">(int&nbsp;playerWins,
  int&nbsp;dealerWins)</span></div>
-<div class="block">Печатает исход раунда (поражение игрока) и динамический суффикс со счётом.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>playerWins</code> - победы игрока</dd>
-<dd><code>dealerWins</code> - победы дилера</dd>
-</dl>
 </section>
 </li>
 <li>
@@ -461,12 +338,6 @@ loadScripts(document, 'script');</script>
 <h3>printToUserConsoleRoundPushDynamicFavor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printToUserConsoleRoundPushDynamicFavor</span><wbr><span class="parameters">(int&nbsp;playerWins,
  int&nbsp;dealerWins)</span></div>
-<div class="block">Печатает исход раунда (ничья) и динамический суффикс со счётом.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>playerWins</code> - победы игрока</dd>
-<dd><code>dealerWins</code> - победы дилера</dd>
-</dl>
 </section>
 </li>
 </ul>

@@ -83,8 +83,6 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">Rank</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="Rank.html" title="enum class in ru.blackjack.cards">Rank</a>&gt;</span></div>
-<div class="block">Достоинство (ранг) игральной карты.
- Для туза базовое значение 11, но в подсчёте руки он может считаться как 1.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -147,19 +145,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBaseValue()" class="member-name-link">getBaseValue</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает базовое количество очков для карты.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRussianName()" class="member-name-link">getRussianName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает название достоинства.</div>
-</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAce()" class="member-name-link">isAce</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Показывает, является ли данное достоинство тузом.</div>
-</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Rank.html" title="enum class in ru.blackjack.cards">Rank</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -312,34 +304,18 @@ not permitted.)</div>
 <section class="detail" id="getRussianName()">
 <h3>getRussianName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getRussianName</span>()</div>
-<div class="block">Возвращает название достоинства.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>имя</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getBaseValue()">
 <h3>getBaseValue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getBaseValue</span>()</div>
-<div class="block">Возвращает базовое количество очков для карты.
- Для туза это 11; в руке значение может понижаться до 1.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>базовое значение очков</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isAce()">
 <h3>isAce</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAce</span>()</div>
-<div class="block">Показывает, является ли данное достоинство тузом.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd><code>true</code>, если это туз; иначе <code>false</code></dd>
-</dl>
 </section>
 </li>
 </ul>
