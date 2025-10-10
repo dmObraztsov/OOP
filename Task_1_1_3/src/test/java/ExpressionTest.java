@@ -1,6 +1,7 @@
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class ExpressionTest {
 
@@ -80,5 +81,56 @@ public class ExpressionTest {
     void testInvalidSyntax() {
         assertThrows(ParseException.class, () -> Parser.parse("2 + + 3"),
                 "Некорректное выражение должно вызвать ParseException");
+    }
+
+    @Test
+    void testSubPositiveNumbers() throws ParseException {
+        Expression e = Parser.parse("(10 - 3)");
+        assertEquals(7, e.eval(""), "(10 - 3) должно быть 7");
+    }
+
+    @Test
+    void testSubWithVariable() throws ParseException {
+        Expression e = Parser.parse("(x - 7)");
+        assertEquals(3, e.eval("x = 10"), "(x - 7) при x=10 должно быть 3");
+    }
+
+    @Test
+    void testSubNestedExpression() throws ParseException {
+        Expression e = Parser.parse("((x - 3) - (y - 2))"); // (x-3)-(y-2) = x - y - 1
+        assertEquals(4, e.eval("x = 10; y = 5"),
+                "((x - 3) - (y - 2)) при x=10, y=5 должно быть 4");
+    }
+
+    @Test
+    void testSubDerivative() throws ParseException {
+        Expression e = Parser.parse("(x - 5)");
+        Expression de = e.derivative("x");
+        assertEquals(1, de.eval("x = 10"), "Производная (x - 5) должна быть 1");
+    }
+
+    @Test
+    void testDivPositiveNumbers() throws ParseException {
+        Expression e = Parser.parse("(20 / 4)");
+        assertEquals(5, e.eval(""), "(20 / 4) должно быть 5");
+    }
+
+    @Test
+    void testDivWithVariables() throws ParseException {
+        Expression e = Parser.parse("(x / y)");
+        assertEquals(3, e.eval("x = 9; y = 3"), "(x / y) при x=9, y=3 должно быть 3");
+    }
+
+    @Test
+    void testDivZeroNumerator() throws ParseException {
+        Expression e = Parser.parse("(0 / x)");
+        assertEquals(0, e.eval("x = 10"), "(0 / x) всегда должно быть 0");
+    }
+
+    @Test
+    void testDivByZeroThrows() throws ParseException {
+        Expression e = Parser.parse("(x / (y - 2))");
+        assertThrows(ArithmeticException.class, () -> e.eval("x = 5; y = 2"),
+                "Деление на ноль должно вызывать ArithmeticException");
     }
 }
