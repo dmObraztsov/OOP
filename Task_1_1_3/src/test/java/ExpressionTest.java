@@ -1,6 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
 public class ExpressionTest {
@@ -90,6 +89,12 @@ public class ExpressionTest {
     }
 
     @Test
+    void testSubNegativeNumbers() throws ParseException {
+        Expression e = Parser.parse("((0 - 5) - (0 - 3))");
+        assertEquals(-2, e.eval(""), "(-5 - (-3)) должно быть -2");
+    }
+
+    @Test
     void testSubWithVariable() throws ParseException {
         Expression e = Parser.parse("(x - 7)");
         assertEquals(3, e.eval("x = 10"), "(x - 7) при x=10 должно быть 3");
@@ -116,9 +121,22 @@ public class ExpressionTest {
     }
 
     @Test
+    void testDivNegativeNumbers() throws ParseException {
+        Expression e = Parser.parse("((0 - 10) / 2)");
+        assertEquals(-5, e.eval(""), "(-10 / 2) должно быть -5");
+    }
+
+    @Test
     void testDivWithVariables() throws ParseException {
         Expression e = Parser.parse("(x / y)");
         assertEquals(3, e.eval("x = 9; y = 3"), "(x / y) при x=9, y=3 должно быть 3");
+    }
+
+    @Test
+    void testDivNestedExpression() throws ParseException {
+        Expression e = Parser.parse("((x + y) / (x - y))");
+        assertEquals(1, e.eval("x = 8; y = 2"),
+                "((x + y) / (x - y)) при x=8, y=2 должно быть 1 при целочисленном делении");
     }
 
     @Test
@@ -132,5 +150,11 @@ public class ExpressionTest {
         Expression e = Parser.parse("(x / (y - 2))");
         assertThrows(ArithmeticException.class, () -> e.eval("x = 5; y = 2"),
                 "Деление на ноль должно вызывать ArithmeticException");
+    }
+
+    @Test
+    void testDivByNegative() throws ParseException {
+        Expression e = Parser.parse("(10 / (0 - 2))");
+        assertEquals(-5, e.eval(""), "(10 / -2) должно быть -5");
     }
 }
