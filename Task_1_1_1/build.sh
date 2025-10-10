@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-rm -rf build docs dist app.jar
-mkdir -p build docs dist
+rm -rf build docs app.jar
+mkdir -p build docs
 
 # компиляция исходников
 javac -d build \
@@ -18,7 +18,7 @@ javadoc -d docs -Xdoclint:none \
   src/main/java/Main.java
 
 # создаём JAR
-jar cf Main -C build .
+jar cfe app.jar Main -C build .
 
 # запуск
 java -jar app.jar "$@"
