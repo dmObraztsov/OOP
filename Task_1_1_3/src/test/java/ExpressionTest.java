@@ -11,6 +11,24 @@ public class ExpressionTest {
     }
 
     @Test
+    void testSimpleMul() throws ParseException {
+        Expression e = Parser.parse("(2 * 3)");
+        assertEquals(6, e.eval(""), "(2 * 3) должно быть 6");
+    }
+
+    @Test
+    void testSimpleSub() throws ParseException {
+        Expression e = Parser.parse("(3 - 2)");
+        assertEquals(1, e.eval(""), "(3 - 2) должно быть 1");
+    }
+
+    @Test
+    void testSimpleDiv() throws ParseException {
+        Expression e = Parser.parse("(8 / 4)");
+        assertEquals(2, e.eval(""), "(8 / 4) должно быть 2");
+    }
+
+    @Test
     void testNestedExpression() throws ParseException {
         Expression e = Parser.parse("(3 + (2 * 5))"); // 3 + (2 * 5)
         assertEquals(13, e.eval(""), "(3 + (2 * 5)) должно быть 13");
@@ -156,5 +174,53 @@ public class ExpressionTest {
     void testDivByNegative() throws ParseException {
         Expression e = Parser.parse("(10 / (0 - 2))");
         assertEquals(-5, e.eval(""), "(10 / -2) должно быть -5");
+    }
+
+    @Test
+    void testParseMissingParen() {
+        assertThrows(ParseException.class, () -> Parser.parse("(3 + 2"),
+                "Отсутствующая закрывающая скобка должна вызвать ParseException");
+    }
+
+    @Test
+    void testParseEmptyInput() {
+        assertThrows(ParseException.class, () -> Parser.parse(""),
+                "Пустая строка должна вызвать ParseException");
+    }
+
+    @Test
+    void testParseUnexpectedSymbol() {
+        assertThrows(ParseException.class, () -> Parser.parse("(3 $ 5)"),
+                "Недопустимый символ должен вызвать ParseException");
+    }
+
+    @Test
+    void testParseStartsWithOperator() {
+        assertThrows(ParseException.class, () -> Parser.parse("+ 5"),
+                "Выражение не должно начинаться с оператора");
+    }
+
+    @Test
+    void testParseEndsWithOperator() {
+        assertThrows(ParseException.class, () -> Parser.parse("(3 + )"),
+                "Выражение не должно заканчиваться оператором");
+    }
+
+    @Test
+    void testLargeNumbers() throws ParseException {
+        Expression e = Parser.parse("(1000000 * 1000)");
+        assertEquals(1000000000, e.eval(""), "1e6 * 1e3 = 1e9");
+    }
+
+    @Test
+    void testComplexMix() throws ParseException {
+        Expression e = Parser.parse("(((x + 2) * (y - 3)) / (2 + 1))");
+        assertEquals(6, e.eval("x = 4; y = 6"), "(((x + 2) * (y - 3)) / 3) при x=4, y=6 будет 6");
+    }
+
+    @Test
+    void testDivisionChain() throws ParseException {
+        Expression e = Parser.parse("((20 / 4) / 5)");
+        assertEquals(1, e.eval(""), "((20 / 4) / 5) должно быть 1");
     }
 }
