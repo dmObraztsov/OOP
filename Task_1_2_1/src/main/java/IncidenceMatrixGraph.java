@@ -86,13 +86,13 @@ public class IncidenceMatrixGraph implements Graph {
 
         List<List<String>> e1 = edges.stream()
                 .map(e -> List.of(e[0], e[1]))
-                .sorted(Comparator.comparing((List<String> l) -> l.getFirst())
+                .sorted(Comparator.comparing((List<String> l) -> l.get(0))
                         .thenComparing(l -> l.get(1)))
                 .toList();
 
         List<List<String>> e2 = g.edges.stream()
                 .map(e -> List.of(e[0], e[1]))
-                .sorted(Comparator.comparing((List<String> l) -> l.getFirst())
+                .sorted(Comparator.comparing((List<String> l) -> l.get(0))
                         .thenComparing(l -> l.get(1)))
                 .toList();
 
@@ -104,7 +104,7 @@ public class IncidenceMatrixGraph implements Graph {
         int result = vertices.hashCode();
         List<List<String>> myList = edges.stream()
                 .map(e -> List.of(e[0], e[1]))
-                .sorted(Comparator.comparing((List<String> l) -> l.getFirst())
+                .sorted(Comparator.comparing((List<String> l) -> l.get(0))
                         .thenComparing(l -> l.get(1)))
                 .toList();
         result = 31 * result + myList.hashCode();
