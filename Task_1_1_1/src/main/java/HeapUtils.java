@@ -1,9 +1,14 @@
 class HeapUtils {
-    private final int[] array; //
+
+    private final int[] array; // было: a
     private int size;
 
-    HeapUtils(int[] array, int size) {
+    HeapUtils(int[] array, int size) { // было: (int[] a, int size)
         this.array = array;
+        this.size = size;
+    }
+
+    void setSize(int size) {
         this.size = size;
     }
 
@@ -13,6 +18,12 @@ class HeapUtils {
 
     int left(int i) {
         return 2 * i + 1;
+    }
+
+    void swap(int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
     }
 
     void siftDown(int i) {
@@ -34,15 +45,5 @@ class HeapUtils {
             swap(i, largest);
             i = largest;
         }
-    }
-
-    void swap(int i, int j) {
-        int t = array[i];
-        array[i] = array[j];
-        array[j] = t;
-    }
-
-    void setSize(int size) {
-        this.size = size;
     }
 }
