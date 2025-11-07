@@ -1,10 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-
-import java.util.Arrays;
-import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 class HeapSortTest {
+    @Test
+    void throwsOnNull() {
+        assertThrows(NullPointerException.class, () -> HeapSort.sort(null));
+    }
 
     @Test
     void handlesEmpty() {
