@@ -9,6 +9,11 @@ class HeapUtils {
     }
 
     void setSize(int size) {
+    private final int[] array; //
+    private int size;
+
+    HeapUtils(int[] array, int size) {
+        this.array = array;
         this.size = size;
     }
 
@@ -45,5 +50,15 @@ class HeapUtils {
             swap(i, largest);
             i = largest;
         }
+    }
+
+    void swap(int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+
+    void setSize(int size) {
+        this.size = size;
     }
 }
