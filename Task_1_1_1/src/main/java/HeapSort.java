@@ -1,7 +1,21 @@
+/**
+ * Пирамидальная сортировка (HeapSort).
+ * Сортирует целочисленный массив по неубыванию на месте.
+ */
 public class HeapSort {
+
+    /**
+     * Утилитный класс: создание экземпляров не предполагается.
+     */
     private HeapSort() {
     }
 
+    /**
+     * Сортирует массив целых чисел по неубыванию (in-place) с использованием двоичной кучи.
+     *
+     * @param a массив для сортировки
+     * @throws NullPointerException если {@code a} равен {@code null}
+     */
     public static void sort(int[] a) {
         if (a == null) {
             throw new NullPointerException("Input array must not be null");
