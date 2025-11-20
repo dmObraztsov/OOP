@@ -120,4 +120,41 @@ class SubstringSearchTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    void testPatternLongerThanFile() throws IOException {
+        Path file = createTempFileWithContent("абв");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "абвгд");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testMatchAcrossArtificialBoundary() throws IOException {
+        String part1 = "AAAAAABR".replace("BR", "бр".substring(0, 1));
+        String part2 = "раBBBBB";
+        Path file = createTempFileWithContent(part1 + part2);
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "бра");
+
+        assertEquals(List.of(6), result);
+    }
+
+    @Test
+    void testSingleCharFileNoMatch() throws IOException {
+        Path file = createTempFileWithContent("a");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "b");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testSingleCharFileExactMatch() throws IOException {
+        Path file = createTempFileWithContent("я");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "я");
+
+        assertEquals(List.of(0), result);
+    }
+
+
 }
