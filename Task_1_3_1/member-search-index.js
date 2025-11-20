@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"<Unnamed>","c":"SubstringSearch","l":"findOccurrences(String, String)","u":"findOccurrences(java.lang.String,java.lang.String)"},{"p":"<Unnamed>","c":"SubstringSearch","l":"main(String[])","u":"main(java.lang.String[])"},{"p":"<Unnamed>","c":"SubstringSearch","l":"SubstringSearch()","u":"%3Cinit%3E()"}];updateSearchResults();
