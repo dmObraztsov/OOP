@@ -156,5 +156,28 @@ class SubstringSearchTest {
         assertEquals(List.of(0), result);
     }
 
+    @Test
+    void testEmptyFile() throws IOException {
+        Path file = createTempFileWithContent("");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "abc");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testEmptyPattern() {
+        Path file = null;
+        try {
+            file = createTempFileWithContent("abcdef");
+        } catch (IOException e) {
+            fail("Unexpected error creating temp file");
+        }
+
+        Path finalFile = file;
+        assertThrows(StringIndexOutOfBoundsException.class, () -> {
+            SubstringSearch.findOccurrences(finalFile.toString(), "");
+        });
+    }
+
 
 }
