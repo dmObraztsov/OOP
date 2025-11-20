@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.*;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -179,5 +180,66 @@ class SubstringSearchTest {
         });
     }
 
+    @Test
+    void testSubstringWithSpaces() throws IOException {
+        Path file = createTempFileWithContent(
+                "word with spaces and another word with spaces"
+        );
 
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "word with");
+
+        assertEquals(List.of(0, 29), result);
+    }
+
+
+    @Test
+    void testSubstringWithSymbols() throws IOException {
+        Path file = createTempFileWithContent(
+                "Value: !@#$%^ and again !@#$%^ end"
+        );
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "!@#$%^");
+
+        assertEquals(List.of(7, 24), result);
+    }
+
+
+    @Test
+    void testManySingleCharMatches() throws IOException {
+        Path file = createTempFileWithContent("bbbbbbbbbb");
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "b");
+
+        assertEquals(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), result);
+    }
+
+    @Test
+    void testMatchAcrossNewline() throws IOException {
+        Path file = createTempFileWithContent("abcde\r\nfghij");
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "e\r\nf");
+
+        assertEquals(List.of(4), result);
+    }
+
+    @Test
+    void testLargeFileNoMatch() throws IOException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("xxxxxxxxxxxxxxxxxxxx".repeat(20000));
+
+        Path file = createTempFileWithContent(sb.toString());
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "abc");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testManySpacesBeforeMatch() throws IOException {
+        Path file = createTempFileWithContent("                    target");
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "target");
+
+        assertEquals(List.of(20), result);
+    }
 }
