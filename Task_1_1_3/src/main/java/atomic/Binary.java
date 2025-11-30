@@ -1,3 +1,5 @@
+package atomic;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

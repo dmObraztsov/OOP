@@ -1,3 +1,7 @@
+package operations;
+
+import atomic.Binary;
+import atomic.Expression;
 import java.util.Map;
 
 public final class Sub extends Binary {
@@ -16,7 +20,7 @@ public final class Sub extends Binary {
     }
 
     @Override
-    protected int eval(Map<String, Integer> vars) {
+    public int eval(Map<String, Integer> vars) {
         return left.eval(vars) - right.eval(vars);
     }
 }

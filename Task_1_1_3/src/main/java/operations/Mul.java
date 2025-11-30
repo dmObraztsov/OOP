@@ -1,4 +1,9 @@
+package operations;
+
+import atomic.Binary;
+import atomic.Expression;
 import java.util.Map;
+
 
 public final class Mul extends Binary {
     public Mul(Expression l, Expression r) {
@@ -16,7 +21,7 @@ public final class Mul extends Binary {
     }
 
     @Override
-    protected int eval(Map<String, Integer> vars) {
+    public int eval(Map<String, Integer> vars) {
         return left.eval(vars) * right.eval(vars);
     }
 }

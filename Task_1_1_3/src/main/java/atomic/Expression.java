@@ -1,3 +1,5 @@
+package atomic;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +15,7 @@ public abstract class Expression {
         return eval(map);
     }
 
-    protected abstract int eval(Map<String, Integer> vars);
+    public abstract int eval(Map<String, Integer> vars);
 
     private static Map<String, Integer> parseAssignments(String s) {
         Map<String, Integer> m = new HashMap<>();

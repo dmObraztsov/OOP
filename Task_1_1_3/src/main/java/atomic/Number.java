@@ -1,3 +1,5 @@
+package atomic;
+
 import java.util.Map;
 import lombok.AllArgsConstructor;
 
@@ -16,7 +18,7 @@ public final class Number extends Expression {
     }
 
     @Override
-    protected int eval(Map<String, Integer> vars) {
+    public int eval(Map<String, Integer> vars) {
         return value;
     }
 }

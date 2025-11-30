@@ -1,6 +1,10 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import atomic.Expression;
+import exceptions.ParseException;
 import org.junit.jupiter.api.Test;
+import parser.Parser;
 
 public class ExpressionTest {
 
@@ -97,7 +101,7 @@ public class ExpressionTest {
     @Test
     void testInvalidSyntax() {
         assertThrows(ParseException.class, () -> Parser.parse("2 + + 3"),
-                "Некорректное выражение должно вызвать ParseException");
+                "Некорректное выражение должно вызвать exceptions.ParseException");
     }
 
     @Test
@@ -179,19 +183,19 @@ public class ExpressionTest {
     @Test
     void testParseMissingParen() {
         assertThrows(ParseException.class, () -> Parser.parse("(3 + 2"),
-                "Отсутствующая закрывающая скобка должна вызвать ParseException");
+                "Отсутствующая закрывающая скобка должна вызвать exceptions.ParseException");
     }
 
     @Test
     void testParseEmptyInput() {
         assertThrows(ParseException.class, () -> Parser.parse(""),
-                "Пустая строка должна вызвать ParseException");
+                "Пустая строка должна вызвать exceptions.ParseException");
     }
 
     @Test
     void testParseUnexpectedSymbol() {
         assertThrows(ParseException.class, () -> Parser.parse("(3 $ 5)"),
-                "Недопустимый символ должен вызвать ParseException");
+                "Недопустимый символ должен вызвать exceptions.ParseException");
     }
 
     @Test

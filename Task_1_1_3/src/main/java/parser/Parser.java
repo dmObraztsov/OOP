@@ -1,6 +1,17 @@
+package parser;
+
+import atomic.Expression;
+import atomic.Number;
+import atomic.Variable;
+import exceptions.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import operations.Add;
+import operations.Div;
+import operations.Mul;
+import operations.Sub;
+
 
 public class Parser {
     private enum TokType { NUMBER, IDENT, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF }

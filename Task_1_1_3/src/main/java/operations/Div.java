@@ -1,3 +1,7 @@
+package operations;
+
+import atomic.Binary;
+import atomic.Expression;
 import java.util.Map;
 
 public final class Div extends Binary {
@@ -20,7 +24,7 @@ public final class Div extends Binary {
     }
 
     @Override
-    protected int eval(Map<String, Integer> vars) {
+    public int eval(Map<String, Integer> vars) {
         int numerator = left.eval(vars);
         int denominator = right.eval(vars);
         if (denominator == 0) {

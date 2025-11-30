@@ -1,3 +1,7 @@
+import atomic.Expression;
+import exceptions.ParseException;
+import parser.Parser;
+
 public class Main {
     public static void main(String[] args) throws ParseException {
         Expression e = Parser.parse(" (3 + (2 * x) ) ");

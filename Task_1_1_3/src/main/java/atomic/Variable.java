@@ -1,3 +1,5 @@
+package atomic;
+
 import java.util.Map;
 import lombok.AllArgsConstructor;
 
@@ -17,9 +19,9 @@ public final class Variable extends Expression {
     }
 
     @Override
-    protected int eval(Map<String, Integer> vars) {
+    public int eval(Map<String, Integer> vars) {
         if (!vars.containsKey(name)) {
-            throw new RuntimeException("Variable '" + name + "' is not assigned");
+            throw new RuntimeException("atomic.Variable '" + name + "' is not assigned");
         }
         return vars.get(name);
     }
