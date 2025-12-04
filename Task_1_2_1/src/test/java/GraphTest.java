@@ -1,3 +1,7 @@
+import implementations.AdjacencyListGraph;
+import implementations.AdjacencyMatrixGraph;
+import implementations.IncidenceMatrixGraph;
+import interfaces.Graph;
 import org.junit.jupiter.api.*;
 import java.io.*;
 import java.nio.file.*;
