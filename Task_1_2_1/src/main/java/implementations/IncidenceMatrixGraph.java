@@ -1,7 +1,8 @@
+package implementations;
+
+import interfaces.Graph;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 
 public class IncidenceMatrixGraph implements Graph {
@@ -70,33 +71,37 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     @Override
+    public Map<String, List<String>> getAdjacencyRepresentation() {
+        Map<String, List<String>> representation = new HashMap<>();
+
+        for (String vertex : vertices) {
+            representation.put(vertex, new ArrayList<>());
+        }
+
+        for (String[] edge : edges) {
+            representation.get(edge[0]).add(edge[1]);
+        }
+
+        for (List<String> neighbors : representation.values()) {
+            Collections.sort(neighbors);
+        }
+
+        return representation;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof IncidenceMatrixGraph g)) {
-            return false;
-        }
-        if (!vertices.equals(g.vertices)) {
-            return false;
-        }
-        if (edges.size() != g.edges.size()) {
+        if (!(o instanceof Graph otherGraph)) {
             return false;
         }
 
-        List<List<String>> e1 = edges.stream()
-                .map(e -> List.of(e[0], e[1]))
-                .sorted(Comparator.comparing((List<String> l) -> l.get(0))
-                        .thenComparing(l -> l.get(1)))
-                .toList();
+        Map<String, List<String>> thisRep = this.getAdjacencyRepresentation();
+        Map<String, List<String>> otherRep = otherGraph.getAdjacencyRepresentation();
 
-        List<List<String>> e2 = g.edges.stream()
-                .map(e -> List.of(e[0], e[1]))
-                .sorted(Comparator.comparing((List<String> l) -> l.get(0))
-                        .thenComparing(l -> l.get(1)))
-                .toList();
-
-        return e1.equals(e2);
+        return thisRep.equals(otherRep);
     }
 
     @Override

@@ -1,8 +1,9 @@
+package implementations;
+
+import interfaces.Graph;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 public class AdjacencyMatrixGraph implements Graph {
@@ -106,11 +107,28 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     @Override
+    public Map<String, List<String>> getAdjacencyRepresentation() {
+        Map<String, List<String>> representation = new HashMap<>();
+        for (String vertex : vertices) {
+            representation.put(vertex, getNeighbors(vertex));
+            Collections.sort(representation.get(vertex));
+        }
+        return representation;
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (!(o instanceof AdjacencyMatrixGraph g)) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Graph otherGraph)) {
             return false;
         }
-        return vertices.equals(g.vertices) && Arrays.deepEquals(matrix, g.matrix);
+
+        Map<String, List<String>> thisRep = this.getAdjacencyRepresentation();
+        Map<String, List<String>> otherRep = otherGraph.getAdjacencyRepresentation();
+
+        return thisRep.equals(otherRep);
     }
 
     @Override

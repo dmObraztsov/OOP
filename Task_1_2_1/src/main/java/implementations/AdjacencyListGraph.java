@@ -1,3 +1,7 @@
+package implementations;
+
+import interfaces.Graph;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -87,18 +91,36 @@ public class AdjacencyListGraph implements Graph {
         }
 
         if (result.size() != adj.size()) {
-            throw new RuntimeException("Graph has a cycle!");
+            throw new RuntimeException("interfaces.Graph has a cycle!");
         }
         return result;
     }
 
     @Override
+    public Map<String, List<String>> getAdjacencyRepresentation() {
+        Map<String, List<String>> copy = new HashMap<>();
+        for (Map.Entry<String, List<String>> entry : adj.entrySet()) {
+            copy.put(entry.getKey(), new ArrayList<>(entry.getValue()));
+            Collections.sort(copy.get(entry.getKey()));
+        }
+        return copy;
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (!(o instanceof AdjacencyListGraph)) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Graph otherGraph)) {
             return false;
         }
-        return adj.equals(((AdjacencyListGraph) o).adj);
+
+        Map<String, List<String>> thisRep = this.getAdjacencyRepresentation();
+        Map<String, List<String>> otherRep = otherGraph.getAdjacencyRepresentation();
+
+        return thisRep.equals(otherRep);
     }
+
 
     @Override
     public String toString() {

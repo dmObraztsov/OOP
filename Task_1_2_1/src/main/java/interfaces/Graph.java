@@ -1,5 +1,8 @@
+package interfaces;
+
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface Graph {
     void addVertex(String vertex);
@@ -19,4 +22,7 @@ public interface Graph {
     boolean equals(Object o);
 
     String toString();
+
+    Map<String, List<String>> getAdjacencyRepresentation();
+
 }
