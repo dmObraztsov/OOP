@@ -1,31 +1,28 @@
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        PrimeChecker checker = new PrimeChecker();
-
-        // 5000 больших простых чисел
+    public static void main(String[] args) {
         int[] largePrimes = new int[5000];
         Arrays.fill(largePrimes, 20319251);
 
         System.out.println("--- Start ---");
 
-        // 1. Последовательное
+        PrimeChecker sequential = new SequentialChecker();
         long start = System.currentTimeMillis();
-        checker.sequentialCheck(largePrimes);
-        System.out.println("Sequential: " + (System.currentTimeMillis() - start) + " ms");
+        boolean res1 = sequential.hasNonPrime(largePrimes);
+        System.out.println("Sequential: " + (System.currentTimeMillis() - start) + " ms, " + res1);
 
-        // 2. java.lang.Thread
         int cores = Runtime.getRuntime().availableProcessors();
         for (int i = 1; i <= cores; i++) {
+            PrimeChecker threaded = new ThreadChecker(i);
             start = System.currentTimeMillis();
-            checker.threadedCheck(largePrimes, i);
-            System.out.println("Threads (" + i + "): " + (System.currentTimeMillis() - start) + " ms");
+            boolean res2 = threaded.hasNonPrime(largePrimes);
+            System.out.println("Threads (" + i + "): " + (System.currentTimeMillis() - start) + " ms, " + res2);
         }
 
-        // 3. parallelStream()
+        PrimeChecker stream = new StreamChecker();
         start = System.currentTimeMillis();
-        checker.parallelStreamCheck(largePrimes);
-        System.out.println("Parallel Stream: " + (System.currentTimeMillis() - start) + " ms");
+        boolean res3 = stream.hasNonPrime(largePrimes);
+        System.out.println("Parallel Stream: " + (System.currentTimeMillis() - start) + " ms, " + res3);
     }
 }
