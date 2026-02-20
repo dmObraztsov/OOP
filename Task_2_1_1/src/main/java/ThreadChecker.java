@@ -1,5 +1,3 @@
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class ThreadChecker implements PrimeChecker {
     private final int threadCount;
 
@@ -13,7 +11,7 @@ public class ThreadChecker implements PrimeChecker {
     @Override
     public boolean hasNonPrime(int[] array) {
         validate(array);
-        AtomicBoolean result = new AtomicBoolean(false);
+        MyAtomicBoolean result = new MyAtomicBoolean(false);
         Thread[] threads = new Thread[Math.min(threadCount, array.length)];
         int chunkSize = (array.length + threads.length - 1) / threads.length;
 
