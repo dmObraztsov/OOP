@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="storage/ProductWarehouse.html#addPizza(model.PizzaOrder)" class="member-name-link">addPizza(PizzaOrder)</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
@@ -63,7 +63,9 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="worker/Baker.html" class="type-name-link" title="class in worker">Baker</a> - Class in <a href="worker/package-summary.html">worker</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="worker/Baker.html#%3Cinit%3E(int,long,storage.OrderQueue,storage.SynchronizedWarehouse)" class="member-name-link">Baker(int, long, OrderQueue, SynchronizedWarehouse)</a> - Constructor for class worker.<a href="worker/Baker.html" title="class in worker">Baker</a></dt>
+<dt><a href="worker/Baker.html#%3Cinit%3E(int,long,storage.OrderQueue,storage.ProductWarehouse)" class="member-name-link">Baker(int, long, OrderQueue, ProductWarehouse)</a> - Constructor for class worker.<a href="worker/Baker.html" title="class in worker">Baker</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/Worker.Role.html#BAKER" class="member-name-link">BAKER</a> - Enum constant in enum class worker.<a href="worker/Worker.Role.html" title="enum class in worker">Worker.Role</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.BakerConfig.html#%3Cinit%3E()" class="member-name-link">BakerConfig()</a> - Constructor for class config.<a href="config/PizzaShopConfig.BakerConfig.html" title="class in config">PizzaShopConfig.BakerConfig</a></dt>
 <dd>&nbsp;</dd>
@@ -80,22 +82,32 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="worker/Courier.html" class="type-name-link" title="class in worker">Courier</a> - Class in <a href="worker/package-summary.html">worker</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="worker/Courier.html#%3Cinit%3E(int,int,long,storage.SynchronizedWarehouse)" class="member-name-link">Courier(int, int, long, SynchronizedWarehouse)</a> - Constructor for class worker.<a href="worker/Courier.html" title="class in worker">Courier</a></dt>
+<dt><a href="worker/Courier.html#%3Cinit%3E(int,int,long,storage.ProductWarehouse)" class="member-name-link">Courier(int, int, long, ProductWarehouse)</a> - Constructor for class worker.<a href="worker/Courier.html" title="class in worker">Courier</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/Worker.Role.html#COURIER" class="member-name-link">COURIER</a> - Enum constant in enum class worker.<a href="worker/Worker.Role.html" title="enum class in worker">Worker.Role</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.CourierConfig.html#%3Cinit%3E()" class="member-name-link">CourierConfig()</a> - Constructor for class config.<a href="config/PizzaShopConfig.CourierConfig.html" title="class in config">PizzaShopConfig.CourierConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.html#couriers" class="member-name-link">couriers</a> - Variable in class config.<a href="config/PizzaShopConfig.html" title="class in config">PizzaShopConfig</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="worker/DefaultWorkerFactory.html#createWorkers(config.PizzaShopConfig,storage.OrderQueue,storage.ProductWarehouse)" class="member-name-link">createWorkers(PizzaShopConfig, OrderQueue, ProductWarehouse)</a> - Method in class worker.<a href="worker/DefaultWorkerFactory.html" title="class in worker">DefaultWorkerFactory</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/WorkerFactory.html#createWorkers(config.PizzaShopConfig,storage.OrderQueue,storage.ProductWarehouse)" class="member-name-link">createWorkers(PizzaShopConfig, OrderQueue, ProductWarehouse)</a> - Method in interface worker.<a href="worker/WorkerFactory.html" title="interface in worker">WorkerFactory</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
+<dt><a href="worker/DefaultWorkerFactory.html" class="type-name-link" title="class in worker">DefaultWorkerFactory</a> - Class in <a href="worker/package-summary.html">worker</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/DefaultWorkerFactory.html#%3Cinit%3E()" class="member-name-link">DefaultWorkerFactory()</a> - Constructor for class worker.<a href="worker/DefaultWorkerFactory.html" title="class in worker">DefaultWorkerFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="model/PizzaOrder.OrderState.html#DELIVERED" class="member-name-link">DELIVERED</a> - Enum constant in enum class model.<a href="model/PizzaOrder.OrderState.html" title="enum class in model">PizzaOrder.OrderState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.CourierConfig.html#deliveryTime" class="member-name-link">deliveryTime</a> - Variable in class config.<a href="config/PizzaShopConfig.CourierConfig.html" title="class in config">PizzaShopConfig.CourierConfig</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="storage/OrderQueue.html#dequeue()" class="member-name-link">dequeue()</a> - Method in interface storage.<a href="storage/OrderQueue.html" title="interface in storage">OrderQueue</a></dt>
+<dt><a href="storage/OrderQueue.html#dequeue(long)" class="member-name-link">dequeue(long)</a> - Method in interface storage.<a href="storage/OrderQueue.html" title="interface in storage">OrderQueue</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="storage/SynchronizedOrderQueue.html#dequeue()" class="member-name-link">dequeue()</a> - Method in class storage.<a href="storage/SynchronizedOrderQueue.html" title="class in storage">SynchronizedOrderQueue</a></dt>
+<dt><a href="storage/SynchronizedOrderQueue.html#dequeue(long)" class="member-name-link">dequeue(long)</a> - Method in class storage.<a href="storage/SynchronizedOrderQueue.html" title="class in storage">SynchronizedOrderQueue</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
@@ -103,6 +115,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="storage/OrderQueue.html#enqueue(model.PizzaOrder)" class="member-name-link">enqueue(PizzaOrder)</a> - Method in interface storage.<a href="storage/OrderQueue.html" title="interface in storage">OrderQueue</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="storage/SynchronizedOrderQueue.html#enqueue(model.PizzaOrder)" class="member-name-link">enqueue(PizzaOrder)</a> - Method in class storage.<a href="storage/SynchronizedOrderQueue.html" title="class in storage">SynchronizedOrderQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="logger/Logger.html#error(java.lang.String)" class="member-name-link">error(String)</a> - Static method in class logger.<a href="logger/Logger.html" title="class in logger">Logger</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
@@ -131,9 +145,15 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="storage/SynchronizedOrderQueue.html#getProcessedCount()" class="member-name-link">getProcessedCount()</a> - Method in class storage.<a href="storage/SynchronizedOrderQueue.html" title="class in storage">SynchronizedOrderQueue</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="storage/ProductWarehouse.html#getReservationCount()" class="member-name-link">getReservationCount()</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
+<dt><a href="storage/ProductWarehouse.html#getReceivedCount()" class="member-name-link">getReceivedCount()</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="storage/SynchronizedWarehouse.html#getReservationCount()" class="member-name-link">getReservationCount()</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
+<dt><a href="storage/SynchronizedWarehouse.html#getReceivedCount()" class="member-name-link">getReceivedCount()</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/Baker.html#getRole()" class="member-name-link">getRole()</a> - Method in class worker.<a href="worker/Baker.html" title="class in worker">Baker</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/Courier.html#getRole()" class="member-name-link">getRole()</a> - Method in class worker.<a href="worker/Courier.html" title="class in worker">Courier</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/Worker.html#getRole()" class="member-name-link">getRole()</a> - Method in interface worker.<a href="worker/Worker.html" title="interface in worker">Worker</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="model/PizzaOrder.html#getState()" class="member-name-link">getState()</a> - Method in class model.<a href="model/PizzaOrder.html" title="class in model">PizzaOrder</a></dt>
 <dd>&nbsp;</dd>
@@ -147,6 +167,12 @@ loadScripts(document, 'script');</script>
 <dt><a href="model/PizzaOrder.OrderState.html#IN_DELIVERY" class="member-name-link">IN_DELIVERY</a> - Enum constant in enum class model.<a href="model/PizzaOrder.OrderState.html" title="enum class in model">PizzaOrder.OrderState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="model/PizzaOrder.OrderState.html#IN_STORAGE" class="member-name-link">IN_STORAGE</a> - Enum constant in enum class model.<a href="model/PizzaOrder.OrderState.html" title="enum class in model">PizzaOrder.OrderState</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="storage/ProductWarehouse.html#incrementDelivered()" class="member-name-link">incrementDelivered()</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="storage/SynchronizedWarehouse.html#incrementDelivered()" class="member-name-link">incrementDelivered()</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="logger/Logger.html#info(java.lang.String)" class="member-name-link">info(String)</a> - Static method in class logger.<a href="logger/Logger.html" title="class in logger">Logger</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="storage/OrderQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in interface storage.<a href="storage/OrderQueue.html" title="interface in storage">OrderQueue</a></dt>
 <dd>&nbsp;</dd>
@@ -171,19 +197,24 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="config/PizzaShopConfig.html#loadFromJson(java.lang.String)" class="member-name-link">loadFromJson(String)</a> - Static method in class config.<a href="config/PizzaShopConfig.html" title="class in config">PizzaShopConfig</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="logger/package-summary.html">logger</a> - package logger</dt>
+<dd>&nbsp;</dd>
+<dt><a href="logger/Logger.html" class="type-name-link" title="class in logger">Logger</a> - Class in <a href="logger/package-summary.html">logger</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="logger/Logger.html#%3Cinit%3E()" class="member-name-link">Logger()</a> - Constructor for class logger.<a href="logger/Logger.html" title="class in logger">Logger</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="logger/Logger.html#logOrder(model.PizzaOrder)" class="member-name-link">logOrder(PizzaOrder)</a> - Static method in class logger.<a href="logger/Logger.html" title="class in logger">Logger</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
-<dt><a href="PizzaShop.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class <a href="PizzaShop.html" title="class in Unnamed Package">PizzaShop</a></dt>
+<dt><a href="Main.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class <a href="Main.html" title="class in Unnamed Package">Main</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="storage/SynchronizedWarehouse.html#markDelivered(int)" class="member-name-link">markDelivered(int)</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
+<dt><a href="Main.html" class="type-name-link" title="class in Unnamed Package">Main</a> - Class in <a href="package-summary.html">Unnamed Package</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class <a href="Main.html" title="class in Unnamed Package">Main</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="model/package-summary.html">model</a> - package model</dt>
-<dd>&nbsp;</dd>
-</dl>
-<h2 class="title" id="I:N">N</h2>
-<dl class="index">
-<dt><a href="storage/SynchronizedOrderQueue.html#notifyNewOrder()" class="member-name-link">notifyNewOrder()</a> - Method in class storage.<a href="storage/SynchronizedOrderQueue.html" title="class in storage">SynchronizedOrderQueue</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
@@ -207,6 +238,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="PizzaShop.html#%3Cinit%3E(config.PizzaShopConfig)" class="member-name-link">PizzaShop(PizzaShopConfig)</a> - Constructor for class <a href="PizzaShop.html" title="class in Unnamed Package">PizzaShop</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="PizzaShop.html#%3Cinit%3E(config.PizzaShopConfig,storage.OrderQueue,storage.ProductWarehouse,worker.WorkerFactory)" class="member-name-link">PizzaShop(PizzaShopConfig, OrderQueue, ProductWarehouse, WorkerFactory)</a> - Constructor for class <a href="PizzaShop.html" title="class in Unnamed Package">PizzaShop</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.html" class="type-name-link" title="class in config">PizzaShopConfig</a> - Class in <a href="config/package-summary.html">config</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.html#%3Cinit%3E()" class="member-name-link">PizzaShopConfig()</a> - Constructor for class config.<a href="config/PizzaShopConfig.html" title="class in config">PizzaShopConfig</a></dt>
@@ -215,21 +248,11 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.CourierConfig.html" class="type-name-link" title="class in config">PizzaShopConfig.CourierConfig</a> - Class in <a href="config/package-summary.html">config</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="model/PizzaOrder.html#printStatus()" class="member-name-link">printStatus()</a> - Method in class model.<a href="model/PizzaOrder.html" title="class in model">PizzaOrder</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="storage/ProductWarehouse.html" class="type-name-link" title="interface in storage">ProductWarehouse</a> - Interface in <a href="storage/package-summary.html">storage</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="storage/ProductWarehouse.html#releaseReservation()" class="member-name-link">releaseReservation()</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="storage/SynchronizedWarehouse.html#releaseReservation()" class="member-name-link">releaseReservation()</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="storage/ProductWarehouse.html#reserveSpace()" class="member-name-link">reserveSpace()</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="storage/SynchronizedWarehouse.html#reserveSpace()" class="member-name-link">reserveSpace()</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="worker/Baker.html#run()" class="member-name-link">run()</a> - Method in class worker.<a href="worker/Baker.html" title="class in worker">Baker</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="worker/Courier.html#run()" class="member-name-link">run()</a> - Method in class worker.<a href="worker/Courier.html" title="class in worker">Courier</a></dt>
@@ -238,8 +261,6 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
 <dt><a href="model/PizzaOrder.html#setState(model.PizzaOrder.OrderState)" class="member-name-link">setState(PizzaOrder.OrderState)</a> - Method in class model.<a href="model/PizzaOrder.html" title="class in model">PizzaOrder</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="PizzaShop.html#shutdownGracefully()" class="member-name-link">shutdownGracefully()</a> - Method in class <a href="PizzaShop.html" title="class in Unnamed Package">PizzaShop</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="storage/OrderQueue.html#size()" class="member-name-link">size()</a> - Method in interface storage.<a href="storage/OrderQueue.html" title="interface in storage">OrderQueue</a></dt>
 <dd>&nbsp;</dd>
@@ -279,7 +300,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
+<dt><a href="worker/Worker.Role.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class worker.<a href="worker/Worker.Role.html" title="enum class in worker">Worker.Role</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
 <dt><a href="model/PizzaOrder.OrderState.html#values()" class="member-name-link">values()</a> - Static method in enum class model.<a href="model/PizzaOrder.OrderState.html" title="enum class in model">PizzaOrder.OrderState</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="worker/Worker.Role.html#values()" class="member-name-link">values()</a> - Static method in enum class worker.<a href="worker/Worker.Role.html" title="enum class in worker">Worker.Role</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
@@ -287,11 +317,9 @@ the order they are declared.</div>
 </dl>
 <h2 class="title" id="I:W">W</h2>
 <dl class="index">
-<dt><a href="storage/SynchronizedOrderQueue.html#waitForOrder(long)" class="member-name-link">waitForOrder(long)</a> - Method in class storage.<a href="storage/SynchronizedOrderQueue.html" title="class in storage">SynchronizedOrderQueue</a></dt>
+<dt><a href="storage/ProductWarehouse.html#waitForPizzas(long)" class="member-name-link">waitForPizzas(long)</a> - Method in interface storage.<a href="storage/ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="storage/SynchronizedWarehouse.html#waitForPizzas(long)" class="member-name-link">waitForPizzas(long)</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="storage/SynchronizedWarehouse.html#waitForSpace(long)" class="member-name-link">waitForSpace(long)</a> - Method in class storage.<a href="storage/SynchronizedWarehouse.html" title="class in storage">SynchronizedWarehouse</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="model/PizzaOrder.OrderState.html#WAITING_FOR_STORAGE" class="member-name-link">WAITING_FOR_STORAGE</a> - Enum constant in enum class model.<a href="model/PizzaOrder.OrderState.html" title="enum class in model">PizzaOrder.OrderState</a></dt>
 <dd>&nbsp;</dd>
@@ -301,10 +329,14 @@ the order they are declared.</div>
 <dd>&nbsp;</dd>
 <dt><a href="worker/Worker.html" class="type-name-link" title="interface in worker">Worker</a> - Interface in <a href="worker/package-summary.html">worker</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="worker/Worker.Role.html" class="type-name-link" title="enum class in worker">Worker.Role</a> - Enum Class in <a href="worker/package-summary.html">worker</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="worker/WorkerFactory.html" class="type-name-link" title="interface in worker">WorkerFactory</a> - Interface in <a href="worker/package-summary.html">worker</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="config/PizzaShopConfig.html#workingTime" class="member-name-link">workingTime</a> - Variable in class config.<a href="config/PizzaShopConfig.html" title="class in config">PizzaShopConfig</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>

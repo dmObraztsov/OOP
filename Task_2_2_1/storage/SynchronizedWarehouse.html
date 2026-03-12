@@ -119,32 +119,23 @@ implements <a href="ProductWarehouse.html" title="interface in storage">ProductW
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDeliveredCount()" class="member-name-link">getDeliveredCount</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReservationCount()" class="member-name-link">getReservationCount</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isFull()" class="member-name-link">isFull</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReceivedCount()" class="member-name-link">getReceivedCount</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#markDelivered(int)" class="member-name-link">markDelivered</a><wbr>(int&nbsp;count)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#incrementDelivered()" class="member-name-link">incrementDelivered</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#releaseReservation()" class="member-name-link">releaseReservation</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reserveSpace()" class="member-name-link">reserveSpace</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isFull()" class="member-name-link">isFull</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/PizzaOrder.html" title="class in model">PizzaOrder</a>[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#takePizzas(int)" class="member-name-link">takePizzas</a><wbr>(int&nbsp;count)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#waitForPizzas(long)" class="member-name-link">waitForPizzas</a><wbr>(long&nbsp;timeout)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#waitForPizzas(long)" class="member-name-link">waitForPizzas</a><wbr>(long&nbsp;timeoutMs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#waitForSpace(long)" class="member-name-link">waitForSpace</a><wbr>(long&nbsp;timeout)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -179,30 +170,13 @@ implements <a href="ProductWarehouse.html" title="interface in storage">ProductW
 <li>
 <section class="detail" id="addPizza(model.PizzaOrder)">
 <h3>addPizza</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addPizza</span><wbr><span class="parameters">(<a href="../model/PizzaOrder.html" title="class in model">PizzaOrder</a>&nbsp;order)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addPizza</span><wbr><span class="parameters">(<a href="../model/PizzaOrder.html" title="class in model">PizzaOrder</a>&nbsp;order)</span>
+                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="ProductWarehouse.html#addPizza(model.PizzaOrder)">addPizza</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="reserveSpace()">
-<h3>reserveSpace</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">reserveSpace</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="ProductWarehouse.html#reserveSpace()">reserveSpace</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="releaseReservation()">
-<h3>releaseReservation</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">releaseReservation</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="ProductWarehouse.html#releaseReservation()">releaseReservation</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
 </section>
 </li>
@@ -213,6 +187,26 @@ implements <a href="ProductWarehouse.html" title="interface in storage">ProductW
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="ProductWarehouse.html#takePizzas(int)">takePizzas</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="waitForPizzas(long)">
+<h3>waitForPizzas</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">waitForPizzas</span><wbr><span class="parameters">(long&nbsp;timeoutMs)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="ProductWarehouse.html#waitForPizzas(long)">waitForPizzas</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="incrementDelivered()">
+<h3>incrementDelivered</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">incrementDelivered</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="ProductWarehouse.html#incrementDelivered()">incrementDelivered</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
 </dl>
 </section>
 </li>
@@ -237,6 +231,16 @@ implements <a href="ProductWarehouse.html" title="interface in storage">ProductW
 </section>
 </li>
 <li>
+<section class="detail" id="getReceivedCount()">
+<h3>getReceivedCount</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getReceivedCount</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="ProductWarehouse.html#getReceivedCount()">getReceivedCount</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="isFull()">
 <h3>isFull</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isFull</span>()</div>
@@ -254,34 +258,6 @@ implements <a href="ProductWarehouse.html" title="interface in storage">ProductW
 <dt>Specified by:</dt>
 <dd><code><a href="ProductWarehouse.html#isEmpty()">isEmpty</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
 </dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getReservationCount()">
-<h3>getReservationCount</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getReservationCount</span>()</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="ProductWarehouse.html#getReservationCount()">getReservationCount</a></code>&nbsp;in interface&nbsp;<code><a href="ProductWarehouse.html" title="interface in storage">ProductWarehouse</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="markDelivered(int)">
-<h3>markDelivered</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">markDelivered</span><wbr><span class="parameters">(int&nbsp;count)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="waitForPizzas(long)">
-<h3>waitForPizzas</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">waitForPizzas</span><wbr><span class="parameters">(long&nbsp;timeout)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="waitForSpace(long)">
-<h3>waitForSpace</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">waitForSpace</span><wbr><span class="parameters">(long&nbsp;timeout)</span></div>
 </section>
 </li>
 </ul>

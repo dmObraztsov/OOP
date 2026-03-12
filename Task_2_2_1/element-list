@@ -1,5 +1,6 @@
 unnamed package
 config
+logger
 model
 storage
 worker
