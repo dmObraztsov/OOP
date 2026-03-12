@@ -42,7 +42,6 @@ public class PizzaShopConfig {
             JSONObject bakery = jsonObject.getJSONObject("bakeries");
 
             PizzaShopConfig config = new PizzaShopConfig();
-
             config.bakers = new ArrayList<>();
             JSONArray bakersArray = bakery.getJSONArray("bakers");
             for (int i = 0; i < bakersArray.length(); i++) {

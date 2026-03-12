@@ -1,25 +1,33 @@
 package worker;
 
+import logger.Logger;
 import model.PizzaOrder;
-import storage.SynchronizedWarehouse;
+import storage.ProductWarehouse;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Courier implements Worker {
     private final int id;
     private final int bagCapacity;
-    private final long deliveryTime;
-    private final SynchronizedWarehouse warehouse;
+    private final long maxDeliveryTime;
+    private final ProductWarehouse warehouse;
     private volatile boolean working = true;
 
-    public Courier(int id, int bagCapacity, long deliveryTime, SynchronizedWarehouse warehouse) {
+    public Courier(int id, int bagCapacity, long deliveryTime, ProductWarehouse warehouse) {
         this.id = id;
         this.bagCapacity = bagCapacity;
-        this.deliveryTime = deliveryTime;
+        this.maxDeliveryTime = deliveryTime;
         this.warehouse = warehouse;
     }
 
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public Role getRole() {
+        return Role.COURIER;
     }
 
     @Override
@@ -34,43 +42,34 @@ public class Courier implements Worker {
 
     @Override
     public void run() {
-        while (working) {
-            if (warehouse.isEmpty()) {
-                try {
-                    warehouse.waitForPizzas(500);
-                } catch (Exception e) {
-                    Thread.currentThread().interrupt();
-                }
+        while (working || !warehouse.isEmpty()) {
+            warehouse.waitForPizzas(250);
+            PizzaOrder[] orders = warehouse.takePizzas(bagCapacity);
+            if (orders.length == 0) {
                 continue;
             }
-
-            PizzaOrder[] pizzas = warehouse.takePizzas(bagCapacity);
-
-            if (pizzas.length == 0) {
-                if (!working) {
-                    break;
-                }
-                continue;
-            }
-
-            for (PizzaOrder pizza : pizzas) {
-                pizza.setState(PizzaOrder.OrderState.IN_DELIVERY);
-                pizza.printStatus();
-            }
-
             try {
-                Thread.sleep(deliveryTime);
+                for (PizzaOrder order : orders) {
+                    order.setState(PizzaOrder.OrderState.IN_DELIVERY);
+                    Logger.logOrder(order);
+                }
+                Thread.sleep(randomDeliveryTime());
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                break;
+            } finally {
+                for (PizzaOrder order : orders) {
+                    order.setState(PizzaOrder.OrderState.DELIVERED);
+                    warehouse.incrementDelivered();
+                    Logger.logOrder(order);
+                }
             }
-
-            for (PizzaOrder pizza : pizzas) {
-                pizza.setState(PizzaOrder.OrderState.DELIVERED);
-                pizza.printStatus();
-            }
-
-            warehouse.markDelivered(pizzas.length);
         }
+    }
+
+    private long randomDeliveryTime() {
+        if (maxDeliveryTime <= 1) {
+            return Math.max(maxDeliveryTime, 0);
+        }
+        return ThreadLocalRandom.current().nextLong(1, maxDeliveryTime + 1);
     }
 }

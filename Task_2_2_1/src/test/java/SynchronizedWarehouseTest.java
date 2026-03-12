@@ -7,27 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SynchronizedWarehouseTest {
 
     @Test
-    void reserveSpaceAndFullLogic() {
-        SynchronizedWarehouse w = new SynchronizedWarehouse(2);
-        assertTrue(w.isEmpty());
-        assertFalse(w.isFull());
-        assertEquals(0, w.getReservationCount());
-
-        assertTrue(w.reserveSpace());
-        assertEquals(1, w.getReservationCount());
-        assertTrue(w.reserveSpace());
-        assertEquals(2, w.getReservationCount());
-        assertTrue(w.isFull(), "reservations should count towards fullness");
-
-        assertFalse(w.reserveSpace(), "should not reserve when full");
-
-        w.releaseReservation();
-        assertEquals(1, w.getReservationCount());
-        assertFalse(w.isFull());
-    }
-
-    @Test
-    void addPizzaUpdatesStateAndCounts() {
+    void addPizzaUpdatesStateAndCounts() throws Exception {
         SynchronizedWarehouse w = new SynchronizedWarehouse(1);
         PizzaOrder o = new PizzaOrder(1);
         o.setState(PizzaOrder.OrderState.WAITING_FOR_STORAGE);
@@ -36,13 +16,11 @@ public class SynchronizedWarehouseTest {
         assertEquals(1, w.getAvailableCount());
         assertEquals(PizzaOrder.OrderState.IN_STORAGE, o.getState());
         assertTrue(w.isFull());
-
-        PizzaOrder o2 = new PizzaOrder(2);
-        assertFalse(w.addPizza(o2), "should not add when capacity reached");
+        assertEquals(1, w.getReceivedCount());
     }
 
     @Test
-    void takePizzasRemovesFromStorage() {
+    void takePizzasRemovesFromStorage() throws Exception {
         SynchronizedWarehouse w = new SynchronizedWarehouse(5);
         PizzaOrder a = new PizzaOrder(1);
         PizzaOrder b = new PizzaOrder(2);
@@ -65,11 +43,12 @@ public class SynchronizedWarehouseTest {
     }
 
     @Test
-    void markDeliveredIncrementsCounter() {
+    void incrementDeliveredIncrementsCounter() {
         SynchronizedWarehouse w = new SynchronizedWarehouse(1);
         assertEquals(0, w.getDeliveredCount());
-        w.markDelivered(3);
-        assertEquals(3, w.getDeliveredCount());
+        w.incrementDelivered();
+        w.incrementDelivered();
+        assertEquals(2, w.getDeliveredCount());
     }
 
     @Test
@@ -93,24 +72,28 @@ public class SynchronizedWarehouseTest {
     }
 
     @Test
-    void waitForSpaceUnblocksWhenPizzaTaken() throws Exception {
+    void addPizzaBlocksWhenFullAndUnblocksAfterTake() throws Exception {
         SynchronizedWarehouse w = new SynchronizedWarehouse(1);
         w.addPizza(new PizzaOrder(1));
-        assertTrue(w.isFull());
 
-        long[] elapsed = new long[1];
-        Thread waiter = new Thread(() -> {
-            long start = System.currentTimeMillis();
-            w.waitForSpace(5_000);
-            elapsed[0] = System.currentTimeMillis() - start;
+        PizzaOrder delayed = new PizzaOrder(2);
+        Thread adder = new Thread(() -> {
+            try {
+                w.addPizza(delayed);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
 
-        waiter.start();
+        adder.start();
         Thread.sleep(150);
-        w.takePizzas(1);
+        assertTrue(adder.isAlive(), "должен ждать место на складе");
 
-        waiter.join(2_000);
-        assertFalse(waiter.isAlive());
-        assertTrue(elapsed[0] < 2_000);
+        PizzaOrder[] taken = w.takePizzas(1);
+        assertEquals(1, taken.length);
+
+        adder.join(2_000);
+        assertFalse(adder.isAlive(), "после освобождения места поток должен продолжить");
+        assertEquals(1, w.getAvailableCount());
     }
 }

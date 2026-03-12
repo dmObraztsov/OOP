@@ -1,40 +1,18 @@
 {
   "bakeries": {
-    "bakers": [
-      {
-        "id": 1,
-        "cookingTime": 3000
-      },
-      {
-        "id": 2,
-        "cookingTime": 4000
-      },
-      {
-        "id": 3,
-        "cookingTime": 2500
-      }
-    ],
-    "couriers": [
-      {
-        "id": 1,
-        "bagCapacity": 3,
-        "deliveryTime": 5000
-      },
-      {
-        "id": 2,
-        "bagCapacity": 2,
-        "deliveryTime": 4000
-      },
-      {
-        "id": 3,
-        "bagCapacity": 4,
-        "deliveryTime": 6000
-      }
-    ],
+    "workingTime": 6000,
+    "ordersPerSecond": 20,
     "warehouse": {
       "capacity": 10
     },
-    "workingTime": 60000,
-    "ordersPerSecond": 2
+    "bakers": [
+      { "id": 1, "cookingTime": 120 },
+      { "id": 2, "cookingTime": 150 },
+      { "id": 3, "cookingTime": 180 }
+    ],
+    "couriers": [
+      { "id": 1, "bagCapacity": 3, "deliveryTime": 350 },
+      { "id": 2, "bagCapacity": 3, "deliveryTime": 400 }
+    ]
   }
 }

@@ -1,70 +1,73 @@
 package storage;
 
+import logger.Logger;
 import model.PizzaOrder;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SynchronizedWarehouse implements ProductWarehouse {
-    private final int capacity;
-    private final List<PizzaOrder> storage;
     private final Object lock = new Object();
-    private int reservations = 0;
+    private final int capacity;
+    private final List<PizzaOrder> storage = new ArrayList<>();
     private int deliveredCount = 0;
+    private int receivedCount = 0;
 
     public SynchronizedWarehouse(int capacity) {
         this.capacity = capacity;
-        this.storage = new ArrayList<>();
     }
 
     @Override
-    public boolean addPizza(PizzaOrder order) {
+    public boolean addPizza(PizzaOrder order) throws InterruptedException {
         synchronized (lock) {
-            if (storage.size() >= capacity) {
-                return false;
+            while (storage.size() >= capacity) {
+                order.setState(PizzaOrder.OrderState.WAITING_FOR_STORAGE);
+                Logger.logOrder(order);
+                lock.wait();
             }
-            storage.add(order);
             order.setState(PizzaOrder.OrderState.IN_STORAGE);
-            order.printStatus();
+            storage.add(order);
+            receivedCount++;
+            Logger.logOrder(order);
             lock.notifyAll();
             return true;
-        }
-    }
-
-    @Override
-    public boolean reserveSpace() {
-        synchronized (lock) {
-            if (storage.size() + reservations >= capacity) {
-                return false;
-            }
-            reservations++;
-            return true;
-        }
-    }
-
-    @Override
-    public void releaseReservation() {
-        synchronized (lock) {
-            if (reservations > 0) {
-                reservations--;
-                lock.notifyAll();
-            }
         }
     }
 
     @Override
     public PizzaOrder[] takePizzas(int count) {
         synchronized (lock) {
-            int available = Math.min(count, storage.size());
-            if (available == 0) {
-                return new PizzaOrder[0];
+            int toTake = Math.min(count, storage.size());
+            PizzaOrder[] result = new PizzaOrder[toTake];
+            for (int i = 0; i < toTake; i++) {
+                result[i] = storage.removeFirst();
             }
-
-            PizzaOrder[] pizzas = new PizzaOrder[available];
-            for (int i = 0; i < available; i++) {
-                pizzas[i] = storage.remove(0);
+            if (toTake > 0) {
+                lock.notifyAll();
             }
+            return result;
+        }
+    }
 
+    @Override
+    public void waitForPizzas(long timeoutMs) {
+        synchronized (lock) {
+            if (!storage.isEmpty()) {
+                return;
+            }
+            try {
+                lock.wait(timeoutMs);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    @Override
+    public void incrementDelivered() {
+        synchronized (lock) {
+            deliveredCount++;
             lock.notifyAll();
-            return pizzas;
         }
     }
 
@@ -77,13 +80,22 @@ public class SynchronizedWarehouse implements ProductWarehouse {
 
     @Override
     public int getDeliveredCount() {
-        return deliveredCount;
+        synchronized (lock) {
+            return deliveredCount;
+        }
+    }
+
+    @Override
+    public int getReceivedCount() {
+        synchronized (lock) {
+            return receivedCount;
+        }
     }
 
     @Override
     public boolean isFull() {
         synchronized (lock) {
-            return storage.size() + reservations >= capacity;
+            return storage.size() >= capacity;
         }
     }
 
@@ -91,44 +103,6 @@ public class SynchronizedWarehouse implements ProductWarehouse {
     public boolean isEmpty() {
         synchronized (lock) {
             return storage.isEmpty();
-        }
-    }
-
-    @Override
-    public int getReservationCount() {
-        synchronized (lock) {
-            return reservations;
-        }
-    }
-
-
-    public void markDelivered(int count) {
-        deliveredCount += count;
-    }
-
-    public void waitForPizzas(long timeout) {
-        synchronized (lock) {
-            while (storage.isEmpty()) {
-                try {
-                    lock.wait(timeout);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
-            }
-        }
-    }
-
-    public void waitForSpace(long timeout) {
-        synchronized (lock) {
-            while (storage.size() + reservations >= capacity) {
-                try {
-                    lock.wait(timeout);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
-            }
         }
     }
 }

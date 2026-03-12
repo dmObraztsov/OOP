@@ -11,7 +11,7 @@ public class PizzaOrder {
     public enum OrderState {
         PENDING("Заказ создан, ожидает пекаря"),
         COOKING("Пицца готовится"),
-        WAITING_FOR_STORAGE("Ожидание свободное место на складе"),
+        WAITING_FOR_STORAGE("Ожидание свободного места на складе"),
         IN_STORAGE("На складе"),
         IN_DELIVERY("На доставке"),
         DELIVERED("Доставлено");
@@ -41,24 +41,16 @@ public class PizzaOrder {
         return createdAt;
     }
 
-    public OrderState getState() {
+    public synchronized OrderState getState() {
         return state.get();
     }
 
-    public void setState(OrderState newState) {
+    public synchronized void setState(OrderState newState) {
         state.set(newState);
-    }
-
-    public void printStatus() {
-        System.out.println("[Заказ " + orderId + "] " + state.get().getDescription());
     }
 
     @Override
     public String toString() {
-        return "PizzaOrder{" +
-                "orderId=" + orderId +
-                ", state=" + state.get() +
-                ", createdAt=" + createdAt +
-                '}';
+        return String.format("[%s] Заказ #%d: %s", createdAt.toLocalTime().withNano(0), orderId, state.get().getDescription());
     }
 }

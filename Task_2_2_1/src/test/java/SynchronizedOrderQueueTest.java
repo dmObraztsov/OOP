@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SynchronizedOrderQueueTest {
 
     @Test
-    void enqueueDequeueUpdatesSizeAndProcessedCount() {
+    void enqueueDequeueUpdatesSizeAndProcessedCount() throws Exception {
         SynchronizedOrderQueue q = new SynchronizedOrderQueue();
         assertTrue(q.isEmpty());
         assertEquals(0, q.size());
@@ -20,11 +20,11 @@ public class SynchronizedOrderQueueTest {
         assertEquals(2, q.size());
         assertFalse(q.isEmpty());
 
-        PizzaOrder d1 = q.dequeue();
+        PizzaOrder d1 = q.dequeue(50);
         assertNotNull(d1);
-        PizzaOrder d2 = q.dequeue();
+        PizzaOrder d2 = q.dequeue(50);
         assertNotNull(d2);
-        assertNull(q.dequeue());
+        assertNull(q.dequeue(50));
 
         assertEquals(0, q.size());
         assertTrue(q.isEmpty());
@@ -32,14 +32,16 @@ public class SynchronizedOrderQueueTest {
     }
 
     @Test
-    void waitForOrderUnblocksOnEnqueue() throws Exception {
+    void dequeueUnblocksOnEnqueue() throws Exception {
         SynchronizedOrderQueue q = new SynchronizedOrderQueue();
 
-        long[] elapsed = new long[1];
+        PizzaOrder[] result = new PizzaOrder[1];
         Thread waiter = new Thread(() -> {
-            long start = System.currentTimeMillis();
-            q.waitForOrder(5_000);
-            elapsed[0] = System.currentTimeMillis() - start;
+            try {
+                result[0] = q.dequeue(5_000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         });
 
         waiter.start();
@@ -48,12 +50,18 @@ public class SynchronizedOrderQueueTest {
 
         waiter.join(2_000);
         assertFalse(waiter.isAlive(), "waiter thread should have unblocked");
-        assertTrue(elapsed[0] < 2_000, "waitForOrder should unblock shortly after enqueue");
+        assertNotNull(result[0]);
+        assertEquals(1, result[0].getOrderId());
     }
 
     @Test
-    void notifyNewOrderDoesNotThrow() {
+    void dequeueTimeoutReturnsNull() throws Exception {
         SynchronizedOrderQueue q = new SynchronizedOrderQueue();
-        assertDoesNotThrow(q::notifyNewOrder);
+        long start = System.currentTimeMillis();
+        PizzaOrder order = q.dequeue(200);
+        long elapsed = System.currentTimeMillis() - start;
+
+        assertNull(order);
+        assertTrue(elapsed >= 150, "dequeue должен ждать таймаут");
     }
 }

@@ -5,7 +5,7 @@ import model.PizzaOrder;
 public interface OrderQueue {
     void enqueue(PizzaOrder order);
 
-    PizzaOrder dequeue();
+    PizzaOrder dequeue(long timeoutMs) throws InterruptedException;
 
     int size();
 
