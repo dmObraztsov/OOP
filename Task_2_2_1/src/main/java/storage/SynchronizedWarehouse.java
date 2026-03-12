@@ -40,7 +40,7 @@ public class SynchronizedWarehouse implements ProductWarehouse {
             int toTake = Math.min(count, storage.size());
             PizzaOrder[] result = new PizzaOrder[toTake];
             for (int i = 0; i < toTake; i++) {
-                result[i] = storage.removeFirst();
+                result[i] = storage.remove(0);
             }
             if (toTake > 0) {
                 lock.notifyAll();
