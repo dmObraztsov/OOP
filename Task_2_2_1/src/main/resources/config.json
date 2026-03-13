@@ -1,0 +1,18 @@
+{
+  "bakeries": {
+    "workingTime": 6000,
+    "ordersPerSecond": 20,
+    "warehouse": {
+      "capacity": 10
+    },
+    "bakers": [
+      { "id": 1, "cookingTime": 120 },
+      { "id": 2, "cookingTime": 150 },
+      { "id": 3, "cookingTime": 180 }
+    ],
+    "couriers": [
+      { "id": 1, "bagCapacity": 3, "deliveryTime": 350 },
+      { "id": 2, "bagCapacity": 3, "deliveryTime": 400 }
+    ]
+  }
+}

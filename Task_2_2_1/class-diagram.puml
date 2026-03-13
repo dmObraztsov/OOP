@@ -1,0 +1,119 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+
+package "app" {
+  class Main
+  class PizzaShop
+}
+
+package "config" {
+  class PizzaShopConfig {
+  }
+
+  class BakerConfig {
+  }
+
+  class CourierConfig {
+  }
+}
+
+package "model" {
+  class PizzaOrder {
+  }
+
+  enum OrderState {
+    PENDING
+    COOKING
+    WAITING_FOR_STORAGE
+    IN_STORAGE
+    IN_DELIVERY
+    DELIVERED
+  }
+}
+
+package "logger" {
+  class Logger {
+  }
+}
+
+package "storage" {
+  interface OrderQueue {
+  }
+
+  class SynchronizedOrderQueue {
+  }
+
+  interface ProductWarehouse {
+  }
+
+  class SynchronizedWarehouse {
+  }
+}
+
+package "worker" {
+  interface Worker {
+  }
+
+  enum Role {
+    BAKER
+    COURIER
+  }
+
+  class Baker {
+  }
+
+  class Courier {
+  }
+
+  interface WorkerFactory {
+  }
+
+  class DefaultWorkerFactory
+}
+
+' --- generalization / realization ---
+Worker <|.. Baker
+Worker <|.. Courier
+WorkerFactory <|.. DefaultWorkerFactory
+OrderQueue <|.. SynchronizedOrderQueue
+ProductWarehouse <|.. SynchronizedWarehouse
+
+' --- composition / usage ---
+Main --> PizzaShop : start()
+Main --> PizzaShopConfig : loadFromJson()
+Main ..> Logger : error/info
+
+PizzaShop --> PizzaShopConfig
+PizzaShop --> OrderQueue
+PizzaShop --> ProductWarehouse
+PizzaShop --> WorkerFactory
+PizzaShop --> Worker
+PizzaShop ..> Logger
+PizzaShop --> PizzaOrder : creates/tracks
+
+DefaultWorkerFactory --> PizzaShopConfig
+DefaultWorkerFactory --> OrderQueue
+DefaultWorkerFactory --> ProductWarehouse
+DefaultWorkerFactory --> Worker
+DefaultWorkerFactory --> Baker : creates
+DefaultWorkerFactory --> Courier : creates
+
+Baker --> OrderQueue
+Baker --> ProductWarehouse
+Baker --> PizzaOrder
+Baker ..> Logger
+
+Courier --> ProductWarehouse
+Courier --> PizzaOrder
+Courier ..> Logger
+
+SynchronizedOrderQueue --> PizzaOrder
+SynchronizedWarehouse --> PizzaOrder
+
+PizzaShopConfig *-- BakerConfig
+PizzaShopConfig *-- CourierConfig
+PizzaOrder *-- OrderState
+Worker *-- Role
+
+@enduml
