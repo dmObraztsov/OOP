@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.task_2_3_1.controller.GameController">
+    <Canvas fx:id="canvas" focusTraversable="true" onKeyPressed="#handleKeyPress"/>
+</StackPane>
