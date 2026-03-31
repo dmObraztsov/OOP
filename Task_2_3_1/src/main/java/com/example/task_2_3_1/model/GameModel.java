@@ -94,31 +94,35 @@ public class GameModel {
         return height;
     }
 
-    public void update() {
+    public MoveResult update() {
         if (gameOver || gameWon) {
-            return;
+            return null;
         }
 
         snake.setDirection(this.direction);
-
+        Point oldTail = new Point(snake.getBody().getLast().x(), snake.getBody().getLast().y());
         Point nextHead = calculateNextHead();
+        Point eatenFood = null;
+        boolean spawnedNewFood = false;
 
         if (isCollision(nextHead)) {
             gameOver = true;
-            return;
+            return null;
         }
 
         if (food.contains(nextHead)) {
+            eatenFood = nextHead;
             snake.grow();
             food.remove(nextHead);
             spawnFood();
-            if (snake.getBody().size() >= targetLength) {
-                gameWon = true;
-            }
+            spawnedNewFood = true;
+            if (snake.getBody().size() >= targetLength) gameWon = true;
         } else {
             snake.move();
         }
+
         directionChangedThisTick = false;
+        return new MoveResult(oldTail, nextHead, eatenFood, spawnedNewFood);
     }
 
 
