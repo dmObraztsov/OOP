@@ -30,7 +30,7 @@ public class GameController {
         int n = (int) (canvas.getWidth() / TILE_SIZE);
         int m = (int) (canvas.getHeight() / TILE_SIZE);
 
-        model = new GameModel(n, m, 5, 10);
+        model = new GameModel(n, m, 10, 10);
     }
 
     private void startTimer() {
@@ -39,6 +39,10 @@ public class GameController {
 
             @Override
             public void handle(long now) {
+                if (model == null) {
+                    return;
+                }
+
                 if (now - lastUpdate >= DELAY) {
                     model.update();
                     draw();
@@ -58,6 +62,9 @@ public class GameController {
 
     private void draw() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        if (model == null) {
+            return;
+        }
         for (int i = 0; i < model.getWidth(); i++) {
             for (int j = 0; j < model.getHeight(); j++) {
                 if ((i + j) % 2 == 0) {
@@ -145,20 +152,11 @@ public class GameController {
 
         if (model.isGameOver() || model.isGameWon()) return;
 
-        Direction current = model.getSnake().getDirection();
         switch (event.getCode()) {
-            case UP -> {
-                if (current != Direction.DOWN) model.getSnake().setDirection(Direction.UP);
-            }
-            case DOWN -> {
-                if (current != Direction.UP) model.getSnake().setDirection(Direction.DOWN);
-            }
-            case LEFT -> {
-                if (current != Direction.RIGHT) model.getSnake().setDirection(Direction.LEFT);
-            }
-            case RIGHT -> {
-                if (current != Direction.LEFT) model.getSnake().setDirection(Direction.RIGHT);
-            }
+            case UP -> model.setDirection(Direction.UP);
+            case DOWN -> model.setDirection(Direction.DOWN);
+            case LEFT -> model.setDirection(Direction.LEFT);
+            case RIGHT -> model.setDirection(Direction.RIGHT);
         }
     }
 }

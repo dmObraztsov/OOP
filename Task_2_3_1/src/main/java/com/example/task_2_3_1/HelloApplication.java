@@ -3,6 +3,7 @@ package com.example.task_2_3_1;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
+        stage.setResizable(false);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.show();
     }
 }

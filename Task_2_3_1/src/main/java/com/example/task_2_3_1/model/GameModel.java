@@ -8,8 +8,10 @@ public class GameModel {
     private final int width, height, targetLength, foodCount;
     private final Snake snake;
     private final List<Point> food = new ArrayList<>();
+    private Direction direction = Direction.RIGHT;
     private boolean gameOver = false;
     private boolean gameWon = false;
+    private boolean directionChangedThisTick = false;
 
     public GameModel(int width, int height, int targetLength, int foodCount) {
         this.width = width;
@@ -21,19 +23,29 @@ public class GameModel {
     }
 
     private void spawnFood() {
-        Random random = new Random();
-        while (food.size() < foodCount) {
-            Point p = new Point(random.nextInt(width), random.nextInt(height));
-            if (!snake.getBody().contains(p) && !food.contains(p)) {
-                food.add(p);
+        List<Point> freeCells = new ArrayList<>();
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                Point p = new Point(x, y);
+                if (!snake.getBody().contains(p) && !food.contains(p)) {
+                    freeCells.add(p);
+                }
             }
+        }
+
+        Random random = new Random();
+        while (food.size() < foodCount && !freeCells.isEmpty()) {
+            int randomIndex = random.nextInt(freeCells.size());
+            Point foodPoint = freeCells.remove(randomIndex);
+            food.add(foodPoint);
         }
     }
 
     private Point calculateNextHead() {
         Point head = snake.getHead();
-        return new Point(head.x() + snake.getDirection().dx,
-                head.y() + snake.getDirection().dy);
+        return new Point(head.x() + this.direction.dx,
+                head.y() + this.direction.dy);
     }
 
     private boolean isCollision(Point p) {
@@ -41,6 +53,22 @@ public class GameModel {
                 || snake.getBody().contains(p);
     }
 
+
+    public void setDirection(Direction newDirection) {
+        if (directionChangedThisTick) {
+            return;
+        }
+
+        Direction current = snake.getDirection();
+
+        if (newDirection == Direction.UP && current == Direction.DOWN) return;
+        if (newDirection == Direction.DOWN && current == Direction.UP) return;
+        if (newDirection == Direction.LEFT && current == Direction.RIGHT) return;
+        if (newDirection == Direction.RIGHT && current == Direction.LEFT) return;
+
+        this.direction = newDirection;
+        directionChangedThisTick = true;
+    }
 
     public Snake getSnake() {
         return snake;
@@ -71,6 +99,8 @@ public class GameModel {
             return;
         }
 
+        snake.setDirection(this.direction);
+
         Point nextHead = calculateNextHead();
 
         if (isCollision(nextHead)) {
@@ -88,7 +118,10 @@ public class GameModel {
         } else {
             snake.move();
         }
+        directionChangedThisTick = false;
     }
+
+
 
     public void reset() {
         this.gameOver = false;
