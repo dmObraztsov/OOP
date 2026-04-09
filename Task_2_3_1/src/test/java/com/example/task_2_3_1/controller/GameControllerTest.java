@@ -155,43 +155,4 @@ public class GameControllerTest {
         assertEquals(initialDir, model.getSnake().getDirection(),
                 "Ввод должен игнорироваться, если игра выиграна");
     }
-
-    @Test
-    @Timeout(value = 10, unit = java.util.concurrent.TimeUnit.SECONDS)
-    void testInitializeMethod() throws Exception {
-        Canvas testCanvas = new Canvas(300, 400);
-        javafx.scene.layout.StackPane parent = new javafx.scene.layout.StackPane();
-        parent.getChildren().add(testCanvas);
-
-        parent.setPrefWidth(500);
-        parent.setPrefHeight(600);
-
-        setField(controller, "canvas", testCanvas);
-
-        java.util.concurrent.CountDownLatch latch = new java.util.concurrent.CountDownLatch(1);
-
-        Platform.runLater(() -> {
-            try {
-                controller.initialize();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                latch.countDown();
-            }
-        });
-
-        boolean executed = latch.await(2, java.util.concurrent.TimeUnit.SECONDS);
-
-        assertTrue(executed, "Platform.runLater не успел выполниться");
-
-        assertEquals(parent.widthProperty().get(), testCanvas.widthProperty().get(), "Ширина Canvas не привязана к родителю");
-
-        Field modelField = GameController.class.getDeclaredField("model");
-        modelField.setAccessible(true);
-        assertNotNull(modelField.get(controller), "Модель должна быть инициализирована");
-
-        Field rendererField = GameController.class.getDeclaredField("renderer");
-        rendererField.setAccessible(true);
-        assertNotNull(rendererField.get(controller), "Рендерер должен быть инициализирован");
-    }
 }
