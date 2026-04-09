@@ -45,12 +45,11 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 
-    systemProperty("glass.platform", "monocle")
-    systemProperty("monocle.platform", "headless")
-    systemProperty("prism.order", "sw")
-    systemProperty("testfx.robot", "glass")
-    systemProperty("testfx.headless", "true")
-
+    if (System.getenv("GITHUB_ACTIONS") == "true") {
+        systemProperty("glass.platform", "monocle")
+        systemProperty("monocle.platform", "headless")
+        systemProperty("prism.order", "sw")
+    }
     finalizedBy(tasks.jacocoTestReport)
 }
 

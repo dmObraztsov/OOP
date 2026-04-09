@@ -21,8 +21,18 @@ public class GameControllerTest {
     private GameModel model;
 
     @BeforeAll
-    static void initJavaFX() {
-        try { Platform.startup(() -> {}); } catch (Exception ignored) {}
+    static void initJavaFX() throws InterruptedException {
+        java.util.concurrent.CountDownLatch latch = new java.util.concurrent.CountDownLatch(1);
+
+        try {
+            Platform.startup(latch::countDown);
+        } catch (IllegalStateException e) {
+            latch.countDown();
+        }
+
+        if (!latch.await(5, java.util.concurrent.TimeUnit.SECONDS)) {
+            throw new RuntimeException("Не удалось дождаться запуска JavaFX потока");
+        }
     }
 
     @BeforeEach
