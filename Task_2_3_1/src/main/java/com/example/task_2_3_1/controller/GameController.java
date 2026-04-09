@@ -61,7 +61,7 @@ public class GameController {
 
 
     @FXML
-    private void handleKeyPress(KeyEvent event) {
+    public void handleKeyPress(KeyEvent event) {
         if (model == null) return;
 
         if (event.getCode() == KeyCode.R) {
