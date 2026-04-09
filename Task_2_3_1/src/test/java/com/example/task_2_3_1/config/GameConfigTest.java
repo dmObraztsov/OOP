@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameConfigTest {
     @Test
-    void testConfigValues() {
-        assertTrue(GameConfig.TILE_SIZE > 0);
-        assertNotNull(GameConfig.COLOR_BG_LIGHT);
-        assertEquals("Arial", GameConfig.FONT_FAMILY);
+    void testConfigInitialization() {
+        assertAll("Конфигурация игры",
+                () -> assertTrue(GameConfig.TILE_SIZE > 0),
+                () -> assertNotNull(GameConfig.COLOR_SNAKE_HEAD),
+                () -> assertNotNull(GameConfig.COLOR_BG_DARK),
+                () -> assertEquals(10, GameConfig.TARGET_LENGTH),
+                () -> assertFalse(GameConfig.FONT_FAMILY.isEmpty())
+        );
     }
 }
