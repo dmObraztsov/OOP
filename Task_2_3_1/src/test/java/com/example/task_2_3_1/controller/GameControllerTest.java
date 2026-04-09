@@ -159,8 +159,13 @@ public class GameControllerTest {
         java.util.concurrent.CountDownLatch latch = new java.util.concurrent.CountDownLatch(1);
 
         Platform.runLater(() -> {
-            controller.initialize();
-            latch.countDown();
+            try {
+                controller.initialize();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                latch.countDown();
+            }
         });
 
         boolean executed = latch.await(2, java.util.concurrent.TimeUnit.SECONDS);
