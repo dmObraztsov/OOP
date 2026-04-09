@@ -88,4 +88,93 @@ public class GameControllerTest {
         modelField.setAccessible(true);
         assertNotNull(modelField.get(controller));
     }
+
+    @Test
+    void testHandleKeyPressWithNullModel() {
+        try {
+            setField(controller, "model", null);
+        } catch (Exception e) {
+            fail("Не удалось занулить модель");
+        }
+
+        KeyEvent upEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.UP, false, false, false, false);
+
+        assertDoesNotThrow(() -> controller.handleKeyPress(upEvent),
+                "Контроллер должен игнорировать нажатия, если модель еще не инициализирована");
+    }
+
+    @Test
+    void testAllDirectionsKeyStrokes() {
+        assertFalse(model.isGameOver(), "Игра должна быть активна");
+        KeyEvent downEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.DOWN, false, false, false, false);
+        controller.handleKeyPress(downEvent);
+        model.update();
+        assertEquals(Direction.DOWN, model.getSnake().getDirection(),
+                "Змейка должна изменить направление на DOWN после нажатия и шага");
+        KeyEvent leftEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.LEFT, false, false, false, false);
+        controller.handleKeyPress(leftEvent);
+        model.update();
+        assertEquals(Direction.LEFT, model.getSnake().getDirection());
+
+        assertFalse(model.isGameOver(), "Игра должна быть активна");
+        KeyEvent upEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.UP, false, false, false, false);
+        controller.handleKeyPress(upEvent);
+        model.update();
+        assertEquals(Direction.UP, model.getSnake().getDirection());
+
+        assertFalse(model.isGameOver(), "Игра должна быть активна");
+        KeyEvent rightEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.RIGHT, false, false, false, false);
+        controller.handleKeyPress(rightEvent);
+        model.update();
+        assertEquals(Direction.RIGHT, model.getSnake().getDirection());
+    }
+
+    @Test
+    void testHandleKeyPressWhenGameWon() throws Exception {
+        Field targetLengthField = GameModel.class.getDeclaredField("targetLength");
+        targetLengthField.setAccessible(true);
+        int currentSize = model.getSnake().getBody().size();
+        targetLengthField.set(model, currentSize);
+
+        Direction initialDir = model.getSnake().getDirection();
+
+        KeyEvent rightEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.RIGHT, false, false, false, false);
+        controller.handleKeyPress(rightEvent);
+
+        assertEquals(initialDir, model.getSnake().getDirection(),
+                "Ввод должен игнорироваться, если игра выиграна");
+    }
+
+    @Test
+    void testInitializeMethod() throws Exception {
+        Canvas testCanvas = new Canvas(300, 400);
+        javafx.scene.layout.StackPane parent = new javafx.scene.layout.StackPane();
+        parent.getChildren().add(testCanvas);
+
+        parent.setPrefWidth(500);
+        parent.setPrefHeight(600);
+
+        setField(controller, "canvas", testCanvas);
+
+        java.util.concurrent.CountDownLatch latch = new java.util.concurrent.CountDownLatch(1);
+
+        Platform.runLater(() -> {
+            controller.initialize();
+            latch.countDown();
+        });
+
+        boolean executed = latch.await(2, java.util.concurrent.TimeUnit.SECONDS);
+
+        assertTrue(executed, "Platform.runLater не успел выполниться");
+
+        assertEquals(parent.widthProperty().get(), testCanvas.widthProperty().get(), "Ширина Canvas не привязана к родителю");
+
+        Field modelField = GameController.class.getDeclaredField("model");
+        modelField.setAccessible(true);
+        assertNotNull(modelField.get(controller), "Модель должна быть инициализирована");
+
+        Field rendererField = GameController.class.getDeclaredField("renderer");
+        rendererField.setAccessible(true);
+        assertNotNull(rendererField.get(controller), "Рендерер должен быть инициализирован");
+    }
 }
