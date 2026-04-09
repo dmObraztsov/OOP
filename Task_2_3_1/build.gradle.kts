@@ -39,6 +39,8 @@ javafx {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.testfx:testfx-core:4.0.17")
+    testImplementation("org.testfx:monocle:jdk-12.0.1+2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
