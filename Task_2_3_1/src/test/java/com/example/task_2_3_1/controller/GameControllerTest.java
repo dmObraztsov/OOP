@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -146,6 +147,7 @@ public class GameControllerTest {
     }
 
     @Test
+    @Timeout(value = 10, unit = java.util.concurrent.TimeUnit.SECONDS)
     void testInitializeMethod() throws Exception {
         Canvas testCanvas = new Canvas(300, 400);
         javafx.scene.layout.StackPane parent = new javafx.scene.layout.StackPane();
