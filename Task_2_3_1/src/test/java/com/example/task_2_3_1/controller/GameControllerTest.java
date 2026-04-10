@@ -42,21 +42,44 @@ public class GameControllerTest {
         f.set(obj, value);
     }
 
+    private void pressKey(KeyCode code) {
+        KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", code, false, false, false, false);
+        controller.handleKeyPress(event);
+    }
+
     @Test
     void testDirectionChangesAfterUpdate() {
         assertFalse(model.isGameOver(), "Игра должна быть активна");
-        KeyEvent downEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.DOWN, false, false, false, false);
-        controller.handleKeyPress(downEvent);
+        pressKey(KeyCode.DOWN);
         model.update();
         assertEquals(Direction.DOWN, model.getSnake().getDirection(),
                 "Змейка должна изменить направление на DOWN после нажатия и шага");
     }
 
     @Test
+    void testDirection180FromRightNotChangesAfterUpdate() { // нельзя поворачивать на 180 right->left
+        assertFalse(model.isGameOver(), "Игра должна быть активна");
+        pressKey(KeyCode.LEFT);
+        model.update();
+        assertEquals(Direction.RIGHT, model.getSnake().getDirection(),
+                "Змейка не должна изменить направление на LEFT после нажатия при движении RIGHT");
+    }
+
+    @Test
+    void testDirection180FromUpNotChangesAfterUpdate() { // нельзя поворачивать на 180 up->down
+        assertFalse(model.isGameOver(), "Игра должна быть активна");
+        pressKey(KeyCode.UP);
+        model.update();
+        pressKey(KeyCode.DOWN);
+        model.update();
+        assertEquals(Direction.UP, model.getSnake().getDirection(),
+                "Змейка не должна изменить направление на DOWN после нажатия при движении UP");
+    }
+
+    @Test
     void testResetKey() {
         model.update();
-        KeyEvent rEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.R, false, false, false, false);
-        controller.handleKeyPress(rEvent);
+        pressKey(KeyCode.R);
 
         assertEquals(1, model.getSnake().getBody().size());
     }
@@ -67,15 +90,48 @@ public class GameControllerTest {
         field.setAccessible(true);
         field.set(model, true);
 
-        KeyEvent upEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.UP, false, false, false, false);
-        controller.handleKeyPress(upEvent);
+        pressKey(KeyCode.UP);
 
         assertNotEquals(Direction.UP, model.getSnake().getDirection());
     }
 
     @Test
-    void testHandleExitKey() {
-        KeyEvent exitEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.E, false, false, false, false);
+    void testSnakeCollidesWithSelf() throws Exception { // смерть об себя
+        model = new GameModel(50, 50, 10, 1);
+
+        setField(controller, "model", model);
+
+        setField(controller, "renderer", new com.example.task_2_3_1.view.GameRenderer(null));
+
+        Snake snake = model.getSnake();
+
+        for (int i = 0; i < 10; i++) {
+            snake.grow();
+            model.update();
+        }
+
+        model.update();
+
+        assertFalse(model.isGameOver(), "Игра должна быть активна");
+
+        assertEquals(Direction.RIGHT, snake.getDirection(), "not RIGHT");
+
+        pressKey(KeyCode.DOWN);
+        model.update();
+        assertEquals(Direction.DOWN, snake.getDirection(), "not DOWN");
+
+
+        pressKey(KeyCode.LEFT);
+        model.update();
+        assertEquals(Direction.LEFT, snake.getDirection(), "not LEFT");
+
+
+        pressKey(KeyCode.UP);
+        model.update();
+        assertEquals(Direction.UP, snake.getDirection(), "not UP");
+
+
+        assertTrue(model.isGameOver(), "Змейка должна была врезаться в себя");
     }
 
     @Test
