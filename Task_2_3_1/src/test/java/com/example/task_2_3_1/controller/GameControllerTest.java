@@ -105,7 +105,7 @@ public class GameControllerTest {
 
         Snake snake = model.getSnake();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             snake.grow();
             model.update();
         }

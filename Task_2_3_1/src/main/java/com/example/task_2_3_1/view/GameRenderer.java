@@ -121,12 +121,17 @@ public class GameRenderer {
     }
 
     private void drawHead(int x, int y) {
+        double size = GameConfig.TILE_SIZE;
+        double eyeSize = GameConfig.SNAKE_EYE_SIZE;
+
         gc.setFill(Color.web(GameConfig.COLOR_SNAKE_HEAD));
-        gc.fillRoundRect(x * GameConfig.TILE_SIZE - 1, y * GameConfig.TILE_SIZE - 1,
-                GameConfig.TILE_SIZE + 1, GameConfig.TILE_SIZE + 1, 10, 10);
+        gc.fillRoundRect(x * size - 1, y * size - 1, size + 1, size + 1, size * 0.5, size * 0.5);
+
         gc.setFill(Color.BLACK);
-        gc.fillOval(x * GameConfig.TILE_SIZE + 5, y * GameConfig.TILE_SIZE + 5, GameConfig.SNAKE_EYE_SIZE, GameConfig.SNAKE_EYE_SIZE);
-        gc.fillOval(x * GameConfig.TILE_SIZE + 11, y * GameConfig.TILE_SIZE + 5, GameConfig.SNAKE_EYE_SIZE, GameConfig.SNAKE_EYE_SIZE);
+
+        double eyeY = y * size + (size * 0.25);
+        gc.fillOval(x * size + (size * 0.2), eyeY, eyeSize, eyeSize);
+        gc.fillOval(x * size + (size * 0.6), eyeY, eyeSize, eyeSize);
     }
 
     private void drawBodyPart(int x, int y) {

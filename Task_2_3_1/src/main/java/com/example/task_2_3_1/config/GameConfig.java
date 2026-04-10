@@ -4,7 +4,7 @@ public class GameConfig {
     public static final int TILE_SIZE = 30;
     public static final int TARGET_LENGTH = 10;
     public static final long UPDATE_INTERVAL = 150_000_000L;
-    public static final int INITIAL_FOOD_COUNT = 3;
+    public static final int INITIAL_FOOD_COUNT = 200;
 
     public static final String COLOR_BG_LIGHT = "#AAD751";
     public static final String COLOR_BG_DARK = "#A2D149";
