@@ -21,10 +21,15 @@ public class GameController {
     private GameRenderer renderer;
 
     private void initGame() {
-        int n = (int) (canvas.getWidth() / GameConfig.TILE_SIZE);
-        int m = (int) (canvas.getHeight() / GameConfig.TILE_SIZE);
+        double canvasWidth = canvas.getWidth();
+        double canvasHeight = canvas.getHeight();
 
-        model = new GameModel(n, m, GameConfig.TARGET_LENGTH, GameConfig.INITIAL_FOOD_COUNT);
+        double n = canvasWidth / GameConfig.FIELD_WIDTH;
+        double m = canvasHeight / GameConfig.FIELD_HEIGHT;
+
+        GameConfig.TILE_SIZE = Math.min(n, m);
+        renderer.updateOffsets(canvasWidth, canvasHeight);
+        model = new GameModel(GameConfig.FIELD_WIDTH, GameConfig.FIELD_HEIGHT, GameConfig.TARGET_LENGTH, GameConfig.INITIAL_FOOD_COUNT);
     }
 
     private void startTimer() {

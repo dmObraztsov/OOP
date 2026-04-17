@@ -1,10 +1,11 @@
 package com.example.task_2_3_1.config;
 
 public class GameConfig {
-    public static final int TILE_SIZE = 30;
+    public static final int FIELD_WIDTH = 10;
+    public static final int FIELD_HEIGHT = 10;
     public static final int TARGET_LENGTH = 10;
-    public static final long UPDATE_INTERVAL = 150_000_000L;
-    public static final int INITIAL_FOOD_COUNT = 200;
+    public static final long UPDATE_INTERVAL = 200_000_000L;
+    public static final int INITIAL_FOOD_COUNT = 3;
 
     public static final String COLOR_BG_LIGHT = "#AAD751";
     public static final String COLOR_BG_DARK = "#A2D149";
@@ -24,4 +25,5 @@ public class GameConfig {
     public static final String GAME_OVER = "GAME OVER";
     public static final String GAME_WON = "GAME WON";
 
+    public static double TILE_SIZE = 30;
 }

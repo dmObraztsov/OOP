@@ -11,9 +11,16 @@ import java.util.LinkedList;
 
 public class GameRenderer {
     private final GraphicsContext gc;
+    private double offsetX;
+    private double offsetY;
 
     public GameRenderer(GraphicsContext gc) {
         this.gc = gc;
+    }
+
+    public void updateOffsets(double canvasWidth, double canvasHeight){
+        this.offsetX = (canvasWidth - (GameConfig.FIELD_WIDTH * GameConfig.TILE_SIZE)) / 2;
+        this.offsetY = (canvasHeight - (GameConfig.FIELD_HEIGHT * GameConfig.TILE_SIZE)) / 2;
     }
 
     public void fullRender(GameModel model) {
@@ -58,10 +65,10 @@ public class GameRenderer {
         double size = GameConfig.TILE_SIZE - tailReduce;
 
         gc.fillOval(
-                x * GameConfig.TILE_SIZE + tailReduce / 2.0,
-                y * GameConfig.TILE_SIZE + tailReduce / 2.0,
-                size,
-                size
+                (int) offsetX + x * GameConfig.TILE_SIZE + tailReduce / 2.0,
+                (int) offsetY + y * GameConfig.TILE_SIZE + tailReduce / 2.0,
+                (int) size,
+                (int) size
         );
     }
 
@@ -110,43 +117,43 @@ public class GameRenderer {
     }
 
     private void drawTile(int i, int j) {
+
         gc.setFill(Color.web((i + j) % 2 == 0 ? GameConfig.COLOR_BG_LIGHT : GameConfig.COLOR_BG_DARK));
 
         gc.fillRect(
-                i * GameConfig.TILE_SIZE - 1.0,
-                j * GameConfig.TILE_SIZE - 1.0,
-                GameConfig.TILE_SIZE + 2.0,
-                GameConfig.TILE_SIZE + 2.0
+                (int) Math.round(offsetX + i * GameConfig.TILE_SIZE - 0.5),
+                (int) Math.round(offsetY + j * GameConfig.TILE_SIZE - 0.5),
+                (int) GameConfig.TILE_SIZE + 2,
+                (int) GameConfig.TILE_SIZE + 2
         );
     }
 
     private void drawHead(int x, int y) {
         double size = GameConfig.TILE_SIZE;
-        double eyeSize = GameConfig.SNAKE_EYE_SIZE;
+        double eyeSize = size * 0.15;
 
         gc.setFill(Color.web(GameConfig.COLOR_SNAKE_HEAD));
-        gc.fillRoundRect(x * size - 1, y * size - 1, size + 1, size + 1, size * 0.5, size * 0.5);
+        gc.fillRect((int) offsetX + x * size + 1, (int) offsetY + y * size + 1, (int) size - 1, (int) size - 1);
 
         gc.setFill(Color.BLACK);
 
-        double eyeY = y * size + (size * 0.25);
-        gc.fillOval(x * size + (size * 0.2), eyeY, eyeSize, eyeSize);
-        gc.fillOval(x * size + (size * 0.6), eyeY, eyeSize, eyeSize);
+        double eyeY = (int) offsetY + y * size + (size * 0.25);
+        gc.fillOval((int) offsetX + x * size + (size * 0.2), eyeY, eyeSize, eyeSize);
+        gc.fillOval((int) offsetX + x * size + (size * 0.6), eyeY, eyeSize, eyeSize);
     }
 
     private void drawBodyPart(int x, int y) {
         gc.setFill(Color.web(GameConfig.COLOR_SNAKE_BODY));
-        gc.fillRoundRect(x * GameConfig.TILE_SIZE + 1, y * GameConfig.TILE_SIZE + 1,
-                GameConfig.TILE_SIZE - 2, GameConfig.TILE_SIZE - 2, 5, 5);
+        gc.fillRect((int) offsetX + x * GameConfig.TILE_SIZE + 1, (int) offsetY + y * GameConfig.TILE_SIZE + 1,
+                (int) GameConfig.TILE_SIZE - 2, (int) GameConfig.TILE_SIZE - 2);
     }
 
     private void drawFood(GameModel model) {
         for (Point p : model.getFood()) {
             gc.setFill(Color.web(GameConfig.COLOR_FOOD_MAIN));
-            gc.fillOval(p.x() * GameConfig.TILE_SIZE + 2, p.y() * GameConfig.TILE_SIZE + 2, GameConfig.TILE_SIZE - 4, GameConfig.TILE_SIZE - 4);
+            gc.fillOval((int) offsetX + p.x() * GameConfig.TILE_SIZE + 2, (int) offsetY+ p.y() * GameConfig.TILE_SIZE + 2, (int) GameConfig.TILE_SIZE - 4, (int) GameConfig.TILE_SIZE - 4);
             gc.setFill(Color.web(GameConfig.COLOR_FOOD_STEM));
-            gc.fillRect(p.x() * GameConfig.TILE_SIZE + GameConfig.TILE_SIZE / 2.0 - 1, p.y() * GameConfig.TILE_SIZE + 1, 2, 4);
+            gc.fillRect((int) offsetX + p.x() * GameConfig.TILE_SIZE + GameConfig.TILE_SIZE / 2.0 - 1, (int) offsetY + p.y() * GameConfig.TILE_SIZE + 1, 2, 4);
         }
     }
-
 }
