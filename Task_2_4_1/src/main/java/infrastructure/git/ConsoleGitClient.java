@@ -8,6 +8,27 @@ import java.util.concurrent.TimeUnit;
 
 public class ConsoleGitClient implements GitClient {
 
+    private int executeCommand(Path workingDir, String... command) {
+        try {
+            if (!Files.exists(workingDir)) {
+                Files.createDirectories(workingDir);
+            }
+            ProcessBuilder pb = new ProcessBuilder(command);
+            pb.directory(workingDir.toFile());
+            pb.inheritIO();
+
+            Process process = pb.start();
+            int exitCode = process.waitFor();
+
+            if (exitCode != 0) {
+                System.err.println("Command failed with code " + exitCode + ": " + String.join(" ", command));
+            }
+
+            return exitCode;
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Error executing command: " + String.join(" ", command), e);
+        }
+    }
     @Override
     public void cloneRepository(String url, Path destination) {
         String absoluteDestination = destination.toAbsolutePath().toString();
@@ -17,7 +38,21 @@ public class ConsoleGitClient implements GitClient {
 
     @Override
     public void checkoutBranch(Path repoPath, String branchName) {
-        executeCommand(repoPath, "git", "checkout", branchName);
+        try {
+            executeCommand(repoPath, "git", "reset", "--hard", "HEAD");
+            executeCommand(repoPath, "git", "clean", "-fd");
+
+            System.out.println("[DEBUG] Switching to branch: " + branchName);
+
+            int exitCode = executeCommand(repoPath, "git", "checkout", "-f", branchName, "--");
+
+            if (exitCode != 0) {
+                executeCommand(repoPath, "git", "fetch", "origin");
+                executeCommand(repoPath, "git", "checkout", "-f", "-b", branchName, "origin/" + branchName, "--");
+            }
+        } catch (Exception e) {
+            System.err.println("[DEBUG] [!] Git error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -28,23 +63,6 @@ public class ConsoleGitClient implements GitClient {
             return process.waitFor(5, TimeUnit.SECONDS) && process.exitValue() == 0;
         } catch (Exception e) {
             return false;
-        }
-    }
-
-    private void executeCommand(Path workingDir, String... command) {
-        try {
-            if (!Files.exists(workingDir)) {
-                Files.createDirectories(workingDir);
-            }
-            ProcessBuilder pb = new ProcessBuilder(command);
-            pb.directory(workingDir.toFile());
-            pb.inheritIO();
-            Process process = pb.start();
-            if (process.waitFor() != 0) {
-                System.err.println("Error with code " + process.waitFor());
-            }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Error executing git command lol", e);
         }
     }
 

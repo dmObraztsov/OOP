@@ -21,6 +21,12 @@ public class Main {
             System.out.println("[SYSTEM] Loaded tasks: " + config.getTasks().size());
             System.out.println("[SYSTEM] Loaded groups: " + config.getGroups().size());
 
+            Path workspacePath = Path.of(System.getProperty("user.home"))
+                    .resolve("grading_temp")
+                    .toAbsolutePath();
+
+            System.out.println("[SYSTEM] Workspace established at: " + workspacePath);
+
             if (config.getGroups().isEmpty()) {
                 System.out.println("[SYSTEM] WARNING: No groups found! Check your DSL parser.");
             } else {
@@ -33,10 +39,9 @@ public class Main {
                     new GradleBuildRunner(),
                     new Semester1Strategy(),
                     new ValidationService(),
-                    new TestResultParser()
+                    new TestResultParser(),
+                    workspacePath
             );
-
-            manager.processAll(config);
 
             List<StudentResult> results = manager.processAll(config);
             HtmlReportGenerator reportGenerator = new HtmlReportGenerator();

@@ -9,7 +9,7 @@ tasks {
             name: 'GOL Phase 2',
             max: 5.0,
             soft: '2026-04-10',
-            hard: '2026-04-20'
+            hard: '2026-04-30'
 
     task id: 'Task_1_3_1',
             name: 'GOL Phase 3',

@@ -41,7 +41,6 @@ public class HtmlReportGenerator {
 
             String gradeClass = res.totalScore() >= 10 ? "grade-excellent" : "grade-bad";
             html.append("<td class='").append(gradeClass).append("'>").append(res.finalGrade()).append("</td>");
-            html.append("</tr>");
         }
 
         html.append("</tbody></table></body></html>");

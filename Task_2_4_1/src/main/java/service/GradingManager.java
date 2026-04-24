@@ -22,29 +22,41 @@ public class GradingManager {
     private final GradingStrategy strategy;
     private final ValidationService validationService;
     private final TestResultParser testParser;
+    private final Path workspace;
+
 
 
     public GradingManager(GitClient gitClient, BuildRunner buildRunner,
-                          GradingStrategy strategy, ValidationService validationService, TestResultParser testParser) {
+                          GradingStrategy strategy, ValidationService validationService, TestResultParser testParser, Path workspace) {
         this.gitClient = gitClient;
         this.buildRunner = buildRunner;
         this.strategy = strategy;
         this.validationService = validationService;
         this.testParser = testParser;
+        this.workspace = workspace;
     }
 
     public List<StudentResult> processAll(CourseConfiguration config) {
         List<StudentResult> allResults = new ArrayList<>();
 
         System.out.println("[DEBUG] processAll started with " + config.getGroups().size() + " groups");
+        System.out.println("[DEBUG] Using workspace: " + workspace.toAbsolutePath());
 
         for (Group group : config.getGroups()) {
+            Path groupDir = workspace.resolve(group.name());
+
             for (Student student : group.students()) {
                 Map<String, Double> taskScores = new LinkedHashMap<>();
                 double total = 0;
 
+                Path studentDir = groupDir.resolve(student.githubId());
+                if (!Files.exists(studentDir)) {
+                    System.out.println("[DEBUG] Cloning repo for student: " + student.githubId());
+                    gitClient.cloneRepository(student.repoUrl(), studentDir);
+                }
+
                 for (Task task : config.getTasks().values()) {
-                    double score = evaluateTask(student, task, Path.of("build/workspace").resolve(group.name()));
+                    double score = evaluateTask(student, task, groupDir);
                     taskScores.put(task.id(), score);
                     total += score;
                 }
@@ -64,39 +76,35 @@ public class GradingManager {
         System.out.println("[DEBUG] Student: " + student.fullName() + " (ID: " + student.githubId() + ")");
 
         try {
-            System.out.println("[DEBUG] Attempting git checkout to branch: " + branchName);
             gitClient.checkoutBranch(studentDir, branchName);
 
             Path taskPath = studentDir.resolve(task.id());
-            System.out.println("[DEBUG] Looking for project folder at: " + taskPath.toAbsolutePath());
+            if (!Files.exists(taskPath)) {
+                System.out.println("[DEBUG] [!] ERROR: Folder '" + task.id() + "' NOT FOUND!");
+                return 0.0;
+            }
 
-            if (Files.exists(taskPath)) {
-                System.out.println("[DEBUG] SUCCESS: Folder found. Starting build process...");
+            System.out.println("[DEBUG] SUCCESS: Folder found. Starting build process...");
+            var buildResult = buildRunner.run(taskPath);
 
-                var buildResult = buildRunner.run(taskPath);
-                System.out.println("[DEBUG] Compilation status: " + (buildResult.compileSuccess() ? "PASSED" : "FAILED"));
+            if (buildResult.compileSuccess()) {
+                Path xmlResults = taskPath.resolve("build").resolve("test-results").resolve("test");
+                TestSummary summary = testParser.parseDirectory(xmlResults);
 
-                if (buildResult.compileSuccess()) {
-                    LocalDate submitDate = ((ConsoleGitClient) gitClient).getFirstCommitDate(studentDir, branchName);
-                    System.out.println("[DEBUG] First commit detected on: " + submitDate);
+                System.out.println("[DEBUG] " + summary); // Tests: X/Y passed...
 
-                    double score = strategy.calculateTaskScore(task, submitDate, LocalDate.now(), false);
-                    System.out.println("[DEBUG] Final calculated score: " + score);
-                    return score;
-                } else {
-                    System.out.println("[DEBUG] [!] Task failed to compile or tests failed. Score: 0.0");
-                }
+                LocalDate submitDate = ((ConsoleGitClient) gitClient).getFirstCommitDate(studentDir, branchName);
+                System.out.println("[DEBUG] First commit detected on: " + submitDate);
+
+                double score = strategy.calculateTaskScore(task, submitDate, LocalDate.now(), summary.allPassed());
+
+                System.out.println("[DEBUG] Final calculated score: " + score);
+                return score;
             } else {
-                System.out.println("[DEBUG] [!] ERROR: Folder '" + task.id() + "' NOT FOUND in the repository!");
-                System.out.print("[DEBUG] Current directory contents: ");
-                try (var stream = Files.list(studentDir)) {
-                    stream.forEach(p -> System.out.print(p.getFileName() + " | "));
-                }
-                System.out.println();
+                System.out.println("[DEBUG] [!] Build failed. Score: 0.0");
             }
         } catch (Exception e) {
-            System.out.println("[DEBUG] [!] EXCEPTION during processing: " + e.getMessage());
-            e.printStackTrace();
+            System.out.println("[DEBUG] [!] EXCEPTION: " + e.getMessage());
         }
         return 0.0;
     }

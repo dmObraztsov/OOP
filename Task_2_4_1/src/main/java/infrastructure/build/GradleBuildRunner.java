@@ -1,25 +1,45 @@
 package infrastructure.build;
 
+import infrastructure.build.BuildResult;
+import infrastructure.build.BuildRunner;
+
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class GradleBuildRunner implements BuildRunner {
     @Override
     public BuildResult run(Path projectPath) {
-        // gradlew для Unix или gradlew.bat для Windows
         String executable = System.getProperty("os.name").toLowerCase().contains("win")
                 ? "gradlew.bat" : "./gradlew";
 
-        int exitCode = executeGradle(projectPath, executable, "clean", "compileJava", "checkstyleMain", "test");
+        Path gradlePath = projectPath.resolve(executable).toAbsolutePath();
 
-        return new BuildResult(exitCode == 0, true, 10, 0, 0);
+        if (!Files.exists(gradlePath)) {
+            System.err.println("[DEBUG] [!] Gradle executable not found at: " + gradlePath);
+            return new BuildResult(false, false, 0, 0, 0);
+        }
+
+        int exitCode = executeGradle(projectPath,
+                gradlePath.toString(),
+                "-Dfile.encoding=UTF-8",
+                "clean",
+                "compileJava",
+                "test");
+
+        return new BuildResult(exitCode == 0, exitCode == 0, 0, 0, 0);
     }
 
     private int executeGradle(Path projectPath, String... command) {
         try {
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(projectPath.toFile());
-            return pb.start().waitFor();
+
+            pb.inheritIO();
+
+            Process process = pb.start();
+            return process.waitFor();
         } catch (Exception e) {
+            System.err.println("[DEBUG] [!] Failed to execute Gradle: " + e.getMessage());
             return -1;
         }
     }
