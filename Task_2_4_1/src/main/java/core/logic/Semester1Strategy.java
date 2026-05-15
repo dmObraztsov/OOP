@@ -14,7 +14,6 @@ public class Semester1Strategy implements GradingStrategy {
         boolean metHard = !hardApprove.isAfter(task.hardDeadline());
 
         if (metSoft && metHard) {
-            // Оставляем полный балл
         } else if (metSoft || metHard) {
             score -= 0.5;
         } else {
@@ -26,10 +25,12 @@ public class Semester1Strategy implements GradingStrategy {
     }
 
     @Override
-    public String mapTotalToGrade(double total, boolean ignored) {
-        if (total >= 13) return "отлично";
-        if (total >= 10) return "хорошо";
-        if (total >= 7) return "удовлетворительно";
+    public String mapTotalToGrade(double total, double activityScore, boolean ignored) {
+        double finalScore = (activityScore < 0.5) ? total * 0.8 : total;
+
+        if (finalScore >= 13) return "отлично";
+        if (finalScore >= 10) return "хорошо";
+        if (finalScore >= 7) return "удовлетворительно";
         return "неудовлетворительно";
     }
 }

@@ -1,9 +1,14 @@
 package infrastructure.git;
 
+import core.util.Logger;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ConsoleGitClient implements GitClient {
@@ -15,65 +20,98 @@ public class ConsoleGitClient implements GitClient {
             }
             ProcessBuilder pb = new ProcessBuilder(command);
             pb.directory(workingDir.toFile());
-            pb.inheritIO();
 
+            // Убираем inheritIO(), чтобы ошибки не летели в консоль вперемешку с логами,
+            // а обрабатывались нами через Logger.
             Process process = pb.start();
             int exitCode = process.waitFor();
 
             if (exitCode != 0) {
-                System.err.println("Command failed with code " + exitCode + ": " + String.join(" ", command));
+                Logger.error("Команда завершилась с ошибкой " + exitCode + ": " + String.join(" ", command));
             }
 
             return exitCode;
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Error executing command: " + String.join(" ", command), e);
+            Logger.error("Критический сбой при выполнении: " + String.join(" ", command) + " | " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
+
     @Override
     public void cloneRepository(String url, Path destination) {
-        String absoluteDestination = destination.toAbsolutePath().toString();
-        System.out.println("Clone to: " + absoluteDestination);
-        executeCommand(Path.of("."), "git", "clone", url, absoluteDestination);
+        Logger.info("Клонирование репозитория: " + url + " -> " + destination.getFileName());
+        // Выполняем из корня временной папки
+        executeCommand(destination.getParent(), "git", "clone", url, destination.toAbsolutePath().toString());
     }
 
     @Override
     public void checkoutBranch(Path repoPath, String branchName) {
         try {
+            Logger.debug("[" + repoPath.getFileName() + "] Очистка рабочей копии...");
             executeCommand(repoPath, "git", "reset", "--hard", "HEAD");
             executeCommand(repoPath, "git", "clean", "-fd");
 
-            System.out.println("[DEBUG] Switching to branch: " + branchName);
-
+            Logger.info("[" + repoPath.getFileName() + "] Переключение на ветку: " + branchName);
             int exitCode = executeCommand(repoPath, "git", "checkout", "-f", branchName, "--");
 
             if (exitCode != 0) {
+                Logger.debug("[" + repoPath.getFileName() + "] Ветка локально не найдена, пробуем fetch origin...");
                 executeCommand(repoPath, "git", "fetch", "origin");
-                executeCommand(repoPath, "git", "checkout", "-f", "-b", branchName, "origin/" + branchName, "--");
+                int secondAttempt = executeCommand(repoPath, "git", "checkout", "-f", "-b", branchName, "origin/" + branchName, "--");
+
+                if (secondAttempt != 0) {
+                    Logger.error("[" + repoPath.getFileName() + "] Не удалось найти ветку: " + branchName);
+                }
             }
         } catch (Exception e) {
-            System.err.println("[DEBUG] [!] Git error: " + e.getMessage());
+            Logger.error("[" + repoPath.getFileName() + "] Ошибка Git checkout: " + e.getMessage());
         }
+    }
+
+    @Override
+    public void fetchAll(Path repoPath) {
+        Logger.debug("[" + repoPath.getFileName() + "] Обновление данных (git fetch --all)...");
+        executeCommand(repoPath, "git", "fetch", "--all");
     }
 
     @Override
     public boolean testConnection(String url) {
         try {
-            ProcessBuilder pb = new ProcessBuilder("git", "ls-remote", url, "HEAD");
+            Logger.debug("Проверка соединения с " + url);
+            ProcessBuilder pb = new ProcessBuilder("git", "ls-remote", "-h", url);
+            pb.environment().put("GIT_TERMINAL_PROMPT", "0");
+
             Process process = pb.start();
-            return process.waitFor(5, TimeUnit.SECONDS) && process.exitValue() == 0;
+            boolean finished = process.waitFor(10, TimeUnit.SECONDS);
+            return finished && process.exitValue() == 0;
         } catch (Exception e) {
+            Logger.error("Ошибка при проверке соединения: " + e.getMessage());
             return false;
         }
     }
 
-    public LocalDate getSoftDeadlineDate(Path repoPath, String taskId) {
-        String dateStr = executeAndGetOutput(repoPath, "git", "log", "--reverse", "--format=%as", "--", taskId);
-        return dateStr.isEmpty() ? null : LocalDate.parse(dateStr.split("\n")[0]);
+    public LocalDate getFirstCommitDate(Path repoPath, String branchName) {
+        try {
+            String out = executeAndGetOutput(repoPath, "git", "log", "--reverse", "--format=%as");
+            if (!out.isEmpty()) {
+                return LocalDate.parse(out.split("\n")[0]);
+            }
+        } catch (Exception e) {
+            Logger.error("[" + repoPath.getFileName() + "] Ошибка даты первого коммита: " + e.getMessage());
+        }
+        return LocalDate.now();
     }
 
-    public LocalDate getHardDeadlineDate(Path repoPath) {
-        String dateStr = executeAndGetOutput(repoPath, "git", "log", "-1", "--format=%as");
-        return dateStr.isEmpty() ? null : LocalDate.parse(dateStr.trim());
+    public LocalDate getLastCommitDate(Path repoPath, String branchName) {
+        try {
+            String out = executeAndGetOutput(repoPath, "git", "log", "-1", "--format=%as");
+            if (!out.isEmpty()) {
+                return LocalDate.parse(out.trim());
+            }
+        } catch (Exception e) {
+            Logger.error("[" + repoPath.getFileName() + "] Ошибка даты последнего коммита: " + e.getMessage());
+        }
+        return LocalDate.now();
     }
 
     private String executeAndGetOutput(Path workingDir, String... command) {
@@ -83,22 +121,26 @@ public class ConsoleGitClient implements GitClient {
                     .start();
             return new String(process.getInputStream().readAllBytes()).trim();
         } catch (Exception e) {
+            Logger.error("Ошибка получения вывода команды: " + String.join(" ", command));
             return "";
         }
     }
 
-    public LocalDate getFirstCommitDate(Path repoPath, String branchName) {
+    public List<String> getCommitDates(Path repoPath) {
+        Logger.debug("[" + repoPath.getFileName() + "] Сбор дат всех коммитов для активности...");
+        return executeAndGetLines(repoPath, "git", "log", "--all", "--no-merges", "--format=%aI");
+    }
+
+    private List<String> executeAndGetLines(Path path, String... command) {
         try {
-            Process process = new ProcessBuilder("git", "log", branchName, "--reverse", "--format=%as")
-                    .directory(repoPath.toFile())
+            Process process = new ProcessBuilder(command)
+                    .directory(path.toFile())
                     .start();
-
-            String output = new String(process.getInputStream().readAllBytes()).trim();
-            if (output.isEmpty()) return LocalDate.now();
-
-            return LocalDate.parse(output.split("\n")[0]);
+            try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                return reader.lines().toList();
+            }
         } catch (Exception e) {
-            return LocalDate.now();
+            return List.of();
         }
     }
 }

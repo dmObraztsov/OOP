@@ -20,10 +20,15 @@ public class Semester2Strategy implements GradingStrategy {
     }
 
     @Override
-    public String mapTotalToGrade(double total, boolean isTask1_2_Done) {
-        if (total >= 5 && isTask1_2_Done) return "отлично";
-        if (total >= 4) return "хорошо";
-        if (total >= 3) return "удовлетворительно";
+    public String mapTotalToGrade(double total, double activityScore, boolean isTask1_2_Done) {
+        double limitScore = total;
+        if (activityScore < 0.4) {
+            limitScore = Math.min(total, 3.5);
+        }
+
+        if (limitScore >= 5 && isTask1_2_Done) return "отлично";
+        if (limitScore >= 4) return "хорошо";
+        if (limitScore >= 3) return "удовлетворительно";
         return "неудовлетворительно";
     }
 }

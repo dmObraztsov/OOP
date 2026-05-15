@@ -7,5 +7,5 @@ import java.time.LocalDate;
 public interface GradingStrategy {
     double calculateTaskScore(Task task, LocalDate softSubmitDate, LocalDate hardApproveDate, boolean bonusCondition);
 
-    String mapTotalToGrade(double totalScore, boolean specialCondition);
+    String mapTotalToGrade(double totalScore, double activityScore, boolean specialCondition);
 }

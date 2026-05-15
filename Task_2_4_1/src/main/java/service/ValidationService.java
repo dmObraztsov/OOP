@@ -11,4 +11,5 @@ public class ValidationService {
     public double getTestCoverage(Path projectPath) {
         return 85.0;
     }
+
 }

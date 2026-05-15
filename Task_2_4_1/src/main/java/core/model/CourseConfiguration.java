@@ -6,7 +6,6 @@ import java.util.*;
 public class CourseConfiguration {
     private final Map<String, Task> tasks = new HashMap<>();
     private final List<Group> groups = new ArrayList<>();
-    private final Map<String, List<String>> studentTasks = new HashMap<>();
     private final List<ExtraPoints> extraPoints = new ArrayList<>();
 
     public void addTask(Task task) {
