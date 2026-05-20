@@ -24,18 +24,22 @@ class HtmlReportGeneratorTest {
 
     @Test
     void testGenerateWithEmptyResults() throws IOException {
+        // given
         HtmlReportGenerator generator = new HtmlReportGenerator();
         Path reportPath = tempDir.resolve("report.html");
 
+        // when
         generator.generate(Collections.emptyList(), reportPath);
-
-        assertTrue(Files.exists(reportPath));
         String content = Files.readString(reportPath);
+
+        // then
+        assertTrue(Files.exists(reportPath));
         assertTrue(content.contains("Нет данных для отчета"));
     }
 
     @Test
     void testGenerateWithData() throws IOException {
+        // given
         HtmlReportGenerator generator = new HtmlReportGenerator();
         Path reportPath = tempDir.resolve("report_full.html");
 
@@ -49,11 +53,12 @@ class HtmlReportGeneratorTest {
                 10.0, 0.0, "отлично", "н/я", 1.0, 0.0
         );
 
+        // when
         generator.generate(List.of(result), reportPath);
-
-        assertTrue(Files.exists(reportPath));
         String content = Files.readString(reportPath);
 
+        // then
+        assertTrue(Files.exists(reportPath));
         assertTrue(content.contains("Test Student"), "Имя студента должно быть в отчете");
         assertTrue(content.contains("Task_1_1"), "ID задачи должен быть в отчете");
     }

@@ -9,8 +9,8 @@ class Semester2StrategyTest {
 
     @Test
     void testCalculateTaskScore_S2_OnTime() {
+        // given
         Semester2Strategy strategy = new Semester2Strategy();
-
         Task task = new Task(
                 "Task_2_1",
                 "Advanced Java",
@@ -19,20 +19,21 @@ class Semester2StrategyTest {
                 LocalDate.of(2026, 3, 15)
         );
 
-        double score = strategy.calculateTaskScore(
-                task,
-                LocalDate.of(2026, 2, 20),
-                LocalDate.of(2026, 2, 25),
-                false
-        );
+        LocalDate firstCommit = LocalDate.of(2026, 2, 20);
+        LocalDate lastCommit = LocalDate.of(2026, 2, 25);
+        boolean hasBonus = false;
 
+        // when
+        double score = strategy.calculateTaskScore(task, firstCommit, lastCommit, hasBonus);
+
+        // then
         assertEquals(10.0, score, "Во втором семестре за сдачу вовремя должен быть полный балл");
     }
 
     @Test
     void testCalculateTaskScore_S2_AfterHardDeadline() {
+        // given
         Semester2Strategy strategy = new Semester2Strategy();
-
         Task task = new Task(
                 "Task_2_1",
                 "Advanced Java",
@@ -41,22 +42,29 @@ class Semester2StrategyTest {
                 LocalDate.of(2026, 3, 15)
         );
 
-        double score = strategy.calculateTaskScore(
-                task,
-                LocalDate.of(2026, 3, 10),
-                LocalDate.of(2026, 3, 20),
-                false
-        );
+        LocalDate firstCommit = LocalDate.of(2026, 3, 10);
+        LocalDate lastCommit = LocalDate.of(2026, 3, 20);
+        boolean hasBonus = false;
 
+        // when
+        double score = strategy.calculateTaskScore(task, firstCommit, lastCommit, hasBonus);
+
+        // then
         assertEquals(0.0, score, "После жесткого дедлайна во втором семестре баллы не начисляются");
     }
 
     @Test
     void testMapTotalToGrade_S2_Excellence() {
+        // given
         Semester2Strategy strategy = new Semester2Strategy();
+        double totalScore = 18.0;
+        double activity = 1.0;
+        boolean examPassed = true;
 
-        String grade = strategy.mapTotalToGrade(18.0, 1.0, true);
+        // when
+        String grade = strategy.mapTotalToGrade(totalScore, activity, examPassed);
 
-        assertEquals("отлично", grade.toLowerCase(), "18 баллов должны давать 'отлично'");
+        // then
+        assertEquals("отлично", grade.toLowerCase(), "18 баллов при полной активности должны давать 'отлично'");
     }
 }

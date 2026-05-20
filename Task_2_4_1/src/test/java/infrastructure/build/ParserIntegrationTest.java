@@ -16,6 +16,7 @@ class ParserIntegrationTest {
 
     @Test
     void testFullCoverageParsing() throws IOException {
+        // given
         Path jacocoFile = tempDir.resolve("jacoco.xml");
         String content = """
                 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -25,18 +26,21 @@ class ParserIntegrationTest {
                 </report>
                 """;
         Files.writeString(jacocoFile, content);
-
         CoverageParser parser = new CoverageParser();
+
+
+        // when
         double coverage = parser.parseCoverage(jacocoFile);
 
+        // then
         assertEquals(80.0, coverage, 0.01, "Покрытие должно быть 80%");
     }
 
     @Test
     void testTestResultParsing() throws IOException {
+        // given
         Path testDir = tempDir.resolve("test-results");
         Files.createDirectories(testDir);
-
         String testXml1 = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <testsuite tests="10" failures="2" errors="0" skipped="1">
@@ -50,10 +54,12 @@ class ParserIntegrationTest {
 
         Files.writeString(testDir.resolve("TEST-1.xml"), testXml1);
         Files.writeString(testDir.resolve("TEST-2.xml"), testXml2);
-
         TestResultParser parser = new TestResultParser();
+
+        // when
         TestSummary summary = parser.parseDirectory(testDir);
 
+        // then
         assertEquals(15, summary.total());
         assertEquals(3, summary.failed());
         assertEquals(1, summary.skipped());
@@ -62,10 +68,13 @@ class ParserIntegrationTest {
 
     @Test
     void testParserHandlesMissingFiles() {
+        // given
         CoverageParser coverageParser = new CoverageParser();
         TestResultParser testParser = new TestResultParser();
 
+        // then
         assertDoesNotThrow(() -> {
+            // when
             double res = coverageParser.parseCoverage(Path.of("invalid_path_123.xml"));
             assertEquals(0.0, res);
 

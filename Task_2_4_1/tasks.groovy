@@ -2,20 +2,20 @@ tasks {
     task id: 'Task_1_1_1',
             name: 'PyrSort',
             max: 1.0,
-            soft: '2025-09-13',
+            soft: '2026-05-15',
             hard: '2025-09-13'
 
-//    task id: 'Task_1_1_2',
-//            name: 'BlackJack',
-//            max: 2.0,
-//            soft: '2025-09-20',
-//            hard: '2025-09-27'
-//
-//    task id: 'Task_1_1_3',
-//            name: 'OpWithEq',
-//            max: 2.0,
-//            soft: '2025-10-04',
-//            hard: '2025-10-11'
+    task id: 'Task_1_1_2',
+            name: 'BlackJack',
+            max: 2.0,
+            soft: '2025-09-20',
+            hard: '2025-09-27'
+
+    task id: 'Task_1_1_3',
+            name: 'OpWithEq',
+            max: 2.0,
+            soft: '2025-10-04',
+            hard: '2025-10-11'
 //
 //    task id: 'Task_1_2_1',
 //            name: 'Graph',

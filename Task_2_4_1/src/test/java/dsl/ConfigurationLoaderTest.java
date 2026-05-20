@@ -17,6 +17,7 @@ class ConfigurationLoaderTest {
 
     @Test
     void testLoadConfigurationFromDsl() throws IOException {
+        // given
         Path dslFile = tempDir.resolve("course.groovy");
         String dslContent = """
             tasks {
@@ -30,9 +31,11 @@ class ConfigurationLoaderTest {
             """;
         Files.writeString(dslFile, dslContent);
 
+        // when
         ConfigurationLoader loader = new ConfigurationLoader();
         CourseConfiguration config = loader.load(dslFile.toFile());
 
+        // then
         assertEquals(1, config.getTasks().size());
         assertEquals(1, config.getGroups().size());
         assertTrue(config.getTasks().containsKey("T1"));

@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.temporal.IsoFields;
+import java.util.AbstractMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,67 +48,85 @@ public class GradingManager {
         ZonedDateTime s2Start = ZonedDateTime.parse("2026-02-01T00:00:00+03:00[Europe/Moscow]");
         ZonedDateTime s2End = ZonedDateTime.parse("2026-05-31T23:59:59+03:00[Europe/Moscow]");
 
-        Logger.info("Начало массовой проверки групп: " + config.getGroups().size());
+        Logger.info("Подготовка к параллельной обработке...");
 
-        return config.getGroups().stream()
-                .flatMap(group -> {
-                    Path groupDir = workspace.resolve(group.name());
-
-                    return group.students().parallelStream().map(student -> {
-                        String sid = student.githubId();
-                        Logger.info("[" + sid + "] Начинаю обработку студента...");
-
-                        Path studentDir = groupDir.resolve(sid);
-
-                        try {
-                            if (!Files.exists(studentDir.resolve(".git"))) {
-                                Logger.info("[" + sid + "] Репозиторий отсутствует. Клонирую...");
-                                gitClient.cloneRepository(student.repoUrl(), studentDir);
-                            } else {
-                                Logger.debug("[" + sid + "] Репозиторий найден. Обновляю (fetch)...");
-                                gitClient.fetchAll(studentDir);
-                            }
-
-                            List<String> allDates = gitClient.getCommitDates(studentDir);
-                            double act1 = calculateActivity(allDates, s1Start, s1End);
-                            double act2 = calculateActivity(allDates, s2Start, s2End);
-
-                            Logger.debug("[" + sid + "] Активность рассчитана: S1=" + act1 + ", S2=" + act2);
-
-                            Map<String, TaskResult> p1Res = new LinkedHashMap<>();
-                            Map<String, TaskResult> p2Res = new LinkedHashMap<>();
-                            double t1 = 0, t2 = 0;
-
-                            for (Task task : config.getTasks().values()) {
-                                boolean isPart1 = task.id().startsWith("Task_1");
-                                GradingStrategy currentStrat = isPart1 ? strategy1 : strategy2;
-                                TaskResult res = evaluateTask(student, task, groupDir, currentStrat);
-
-                                if (isPart1) {
-                                    p1Res.put(task.id(), res);
-                                    t1 += res.score();
-                                } else {
-                                    p2Res.put(task.id(), res);
-                                    t2 += res.score();
-                                }
-                            }
-
-                            Logger.info("[" + sid + "] Проверка завершена. Баллы: S1=" + t1 + ", S2=" + t2);
-
-                            return new StudentResult(
-                                    student, p1Res, p2Res, t1, t2,
-                                    strategy1.mapTotalToGrade(t1, act1, true),
-                                    strategy2.mapTotalToGrade(t2, act2, true),
-                                    act1, act2
-                            );
-                        } catch (Exception e) {
-                            Logger.error("[" + sid + "] Критическая ошибка при обработке: " + e.getMessage());
-                            return null;
-                        }
-                    });
-                })
-                .filter(java.util.Objects::nonNull)
+        var allTasks = config.getGroups().stream()
+                .flatMap(group -> group.students().stream()
+                        .map(student -> new AbstractMap.SimpleEntry<>(group, student)))
                 .toList();
+
+        Logger.info("Запуск массовой проверки. Студентов к обработке: " + allTasks.size());
+
+        java.util.concurrent.ForkJoinPool customPool = new java.util.concurrent.ForkJoinPool(8);
+
+        try {
+            return customPool.submit(() ->
+                    allTasks.parallelStream().map(entry -> {
+                                Group group = entry.getKey();
+                                Student student = entry.getValue();
+                                String sid = student.githubId();
+
+                                Logger.info("[" + sid + "] Начинаю обработку в потоке: " + Thread.currentThread().getName());
+
+                                Path groupDir = workspace.resolve(group.name());
+                                Path studentDir = groupDir.resolve(sid);
+
+                                try {
+                                    if (!Files.exists(studentDir.resolve(".git"))) {
+                                        Logger.info("[" + sid + "] Репозиторий отсутствует. Клонирую...");
+                                        gitClient.cloneRepository(student.repoUrl(), studentDir);
+                                    } else {
+                                        Logger.debug("[" + sid + "] Репозиторий найден. Обновляю (fetch)...");
+                                        gitClient.fetchAll(studentDir);
+                                    }
+
+                                    List<String> allDates = gitClient.getCommitDates(studentDir);
+                                    double act1 = calculateActivity(allDates, s1Start, s1End);
+                                    double act2 = calculateActivity(allDates, s2Start, s2End);
+
+                                    Map<String, TaskResult> p1Res = new LinkedHashMap<>();
+                                    Map<String, TaskResult> p2Res = new LinkedHashMap<>();
+                                    double t1 = 0, t2 = 0;
+
+                                    for (Task task : config.getTasks().values()) {
+                                        boolean isPart1 = task.id().startsWith("Task_1");
+                                        GradingStrategy currentStrat = isPart1 ? strategy1 : strategy2;
+
+                                        TaskResult res = evaluateTask(student, task, groupDir, currentStrat);
+
+
+
+                                        if (isPart1) {
+                                            p1Res.put(task.id(), res);
+                                            t1 += res.score();
+                                        } else {
+                                            p2Res.put(task.id(), res);
+                                            t2 += res.score();
+                                        }
+                                    }
+                                    Logger.info("[" + sid + "] Проверка завершена. S1=" + t1 + ", S2=" + t2);
+
+                                    return new StudentResult(
+                                            student, p1Res, p2Res, t1, t2,
+                                            strategy1.mapTotalToGrade(t1, act1, true),
+                                            strategy2.mapTotalToGrade(t2, act2, true),
+                                            act1, act2
+                                    );
+                                } catch (Exception e) {
+                                    Logger.error("[" + sid + "] Критическая ошибка: " + e.getMessage());
+                                    return null;
+                                }
+                            })
+                            .filter(java.util.Objects::nonNull)
+                            .toList()
+            ).get();
+
+        } catch (Exception e) {
+            Logger.error("Ошибка при выполнении параллельного пула: " + e.getMessage());
+            return List.of();
+        } finally {
+            customPool.shutdown();
+        }
     }
 
     private TaskResult evaluateTask(Student student, Task task, Path groupDir, GradingStrategy currentStrategy) {
@@ -149,6 +168,21 @@ public class GradingManager {
 
             LocalDate firstCommit = gitClient.getFirstCommitDate(studentDir, task.id());
             LocalDate lastCommit = gitClient.getLastCommitDate(studentDir, task.id());
+
+
+            Logger.debug("[" + sid + ":" + task.id() + "] --- ПРОВЕРКА ДАТ ДЛЯ СТРАТЕГИИ ---");
+            Logger.debug("[" + sid + ":" + task.id() + "] Soft Deadline в конфиге: " + task.softDeadline());
+            Logger.debug("[" + sid + ":" + task.id() + "] Hard Deadline в конфиге: " + task.hardDeadline());
+            Logger.debug("[" + sid + ":" + task.id() + "] Дата первого коммита (softSubmit): " + firstCommit);
+            Logger.debug("[" + sid + ":" + task.id() + "] Дата последнего коммита (hardApprove): " + lastCommit);
+
+            if (firstCommit != null && lastCommit != null) {
+                boolean metSoft = !firstCommit.isAfter(task.softDeadline());
+                boolean metHard = !lastCommit.isAfter(task.hardDeadline());
+                Logger.debug("[" + sid + ":" + task.id() + "] Результат: metSoft=" + metSoft + ", metHard=" + metHard);
+            } else {
+                Logger.error("[" + sid + ":" + task.id() + "] ВНИМАНИЕ: Одна из дат NULL!");
+            }
 
             double score = currentStrategy.calculateTaskScore(task, firstCommit, lastCommit, false);
 
