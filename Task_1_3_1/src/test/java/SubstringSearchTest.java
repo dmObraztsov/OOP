@@ -1,0 +1,245 @@
+import org.junit.jupiter.api.*;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class SubstringSearchTest {
+
+    private Path tempFile;
+
+    @AfterEach
+    void cleanup() throws IOException {
+        if (tempFile != null) {
+            Files.deleteIfExists(tempFile);
+        }
+    }
+
+    private Path createTempFileWithContent(String content) throws IOException {
+        tempFile = Files.createTempFile("test", ".txt");
+        Files.write(tempFile, content.getBytes(StandardCharsets.UTF_8));
+        return tempFile;
+    }
+
+    @Test
+    void testSimpleAscii() throws IOException {
+        Path file = createTempFileWithContent("ababa");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "aba");
+
+        assertEquals(List.of(0, 2), result);
+    }
+
+    @Test
+    void testUtf8Russian() throws IOException {
+        Path file = createTempFileWithContent("привет брабра мир");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "бра");
+
+        assertEquals(List.of(7, 10), result);
+    }
+
+    @Test
+    void testNoOccurrences() throws IOException {
+        Path file = createTempFileWithContent("abcdefg");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "zzz");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testOccurrenceAtEnd() throws IOException {
+        Path file = createTempFileWithContent("12345бра");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "бра");
+
+        assertEquals(List.of(5), result);
+    }
+
+    @Test
+    void testOverlappingMatches() throws IOException {
+        Path file = createTempFileWithContent("aaaaa");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "aaa");
+
+        // позиции: 0, 1, 2
+        assertEquals(List.of(0, 1, 2), result);
+    }
+
+    @Test
+    void testLargeGeneratedFile() throws IOException {
+        tempFile = Files.createTempFile("big", ".txt");
+
+        String block = "абвгдеж12345бра";
+        int repeats = 200_000;
+
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)) {
+            for (int i = 0; i < repeats; i++) {
+                writer.write(block);
+            }
+        }
+
+        int blockLen = block.length();
+        int patternPos = blockLen - 3;
+        List<Integer> expected = new ArrayList<>();
+        for (int i = 0; i < repeats; i++) {
+            expected.add(i * blockLen + patternPos);
+        }
+
+        List<Integer> result = SubstringSearch.findOccurrences(tempFile.toString(), "бра");
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testHugeStreamedFile() throws IOException {
+        tempFile = Files.createTempFile("huge", ".txt");
+
+        String filler = "ABCDEФЫВА";
+        String target = "бра";
+
+        int chunks = 500_000;
+        int hitEvery = 10000;
+
+        long expectedIndex = 0;
+        List<Integer> expected = new ArrayList<>();
+
+        try (BufferedWriter writer = Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)) {
+            for (int i = 0; i < chunks; i++) {
+
+                writer.write(filler);
+                expectedIndex += filler.length();
+
+                if (i % hitEvery == 0) {
+                    writer.write(target);
+                    expected.add((int) expectedIndex);
+                    expectedIndex += target.length();
+                }
+            }
+        }
+
+        List<Integer> result = SubstringSearch.findOccurrences(tempFile.toString(), target);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testPatternLongerThanFile() throws IOException {
+        Path file = createTempFileWithContent("абв");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "абвгд");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testMatchAcrossArtificialBoundary() throws IOException {
+        String part1 = "AAAAAABR".replace("BR", "бр".substring(0, 1));
+        String part2 = "раBBBBB";
+        Path file = createTempFileWithContent(part1 + part2);
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "бра");
+
+        assertEquals(List.of(6), result);
+    }
+
+    @Test
+    void testSingleCharFileNoMatch() throws IOException {
+        Path file = createTempFileWithContent("a");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "b");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testSingleCharFileExactMatch() throws IOException {
+        Path file = createTempFileWithContent("я");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "я");
+
+        assertEquals(List.of(0), result);
+    }
+
+    @Test
+    void testEmptyFile() throws IOException {
+        Path file = createTempFileWithContent("");
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "abc");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testEmptyPattern() {
+        Path file = null;
+        try {
+            file = createTempFileWithContent("abcdef");
+        } catch (IOException e) {
+            fail("Unexpected error creating temp file");
+        }
+
+        Path finalFile = file;
+        assertThrows(StringIndexOutOfBoundsException.class, () -> {
+            SubstringSearch.findOccurrences(finalFile.toString(), "");
+        });
+    }
+
+    @Test
+    void testSubstringWithSpaces() throws IOException {
+        Path file = createTempFileWithContent(
+                "word with spaces and another word with spaces"
+        );
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "word with");
+
+        assertEquals(List.of(0, 29), result);
+    }
+
+
+    @Test
+    void testSubstringWithSymbols() throws IOException {
+        Path file = createTempFileWithContent(
+                "Value: !@#$%^ and again !@#$%^ end"
+        );
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "!@#$%^");
+
+        assertEquals(List.of(7, 24), result);
+    }
+
+
+    @Test
+    void testManySingleCharMatches() throws IOException {
+        Path file = createTempFileWithContent("bbbbbbbbbb");
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "b");
+
+        assertEquals(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), result);
+    }
+
+    @Test
+    void testMatchAcrossNewline() throws IOException {
+        Path file = createTempFileWithContent("abcde\r\nfghij");
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "e\r\nf");
+
+        assertEquals(List.of(4), result);
+    }
+
+    @Test
+    void testLargeFileNoMatch() throws IOException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("xxxxxxxxxxxxxxxxxxxx".repeat(20000));
+
+        Path file = createTempFileWithContent(sb.toString());
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "abc");
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testManySpacesBeforeMatch() throws IOException {
+        Path file = createTempFileWithContent("                    target");
+
+        List<Integer> result = SubstringSearch.findOccurrences(file.toString(), "target");
+
+        assertEquals(List.of(20), result);
+    }
+}
